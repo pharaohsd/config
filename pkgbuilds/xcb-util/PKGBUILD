@@ -6,7 +6,7 @@ pkgrel=1
 pkgdesc="Utilities for X C Bindings, required by Awesome 3.0"
 arch=('i686' 'x86_64')
 license=('GPL')
-depends=('libxcb' 'xcbproto')
+depends=('libxcb' 'xcb-proto')
 makedepends=('gperf' 'git')
 provides=('xcb-util')
 
