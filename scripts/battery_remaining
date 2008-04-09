@@ -1,0 +1,16 @@
+#!/bin/bash
+bat=1
+ 
+battery() {
+	remaining=$(grep 'remaining capacity' /proc/acpi/battery/BAT$bat/state| awk {'print $3'})
+	lastfull=$(grep 'last full capacity' /proc/acpi/battery/BAT$bat/info| awk {'print $4'})
+	percentage=$(echo "($remaining * 100) / ($lastfull)" | bc)
+
+  if [ $percentage -eq 100 ] ; then
+    echo "Battery fully charged."
+  else
+  	echo "${percentage}% remaining."
+  fi
+}
+ 
+battery

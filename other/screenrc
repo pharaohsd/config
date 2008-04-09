@@ -1,0 +1,50 @@
+#---------------------------------------------------------------------------------------------------------------
+# .screenrc
+# Last modified 05/04/2008 23:23
+#---------------------------------------------------------------------------------------------------------------
+
+#defflow auto
+defscrollback 10000
+deflogin on
+altscreen on
+autodetach on
+msgwait 2 # 1 second messages
+shell /bin/zsh
+activity "active: %n (%t) [%w:%s]"
+bell "bell: %n (%t) [%w:%s]^G"
+vbell_msg "[[[ ding ]]]"
+vbell off
+startup_message off
+
+termcapinfo xterm|xterms|xterm-color|screen|xs|rxvt ti@:te@
+
+caption always "%{= kb}[ %{G}%H::$USER %{b}][ %=%{w}%?%-Lw%?%{b}(%{W}%n*%f %t%?(%u)%?%{b})%{w}%?%+Lw%?%= %{b}][%{kB} %d.%m.%Y %{kW}%0c %{kb}]"
+#hardstatus alwayslastline "%{=b W}%{k} %= %w %=" 
+
+sorendition +b kG
+
+# Default apps
+screen -t root su
+screen -t torrent rtorrent
+#screen -t 'mail' mutt
+screen -t rss snownews -u
+screen -t irc irssi
+screen -t
+screen -t
+#screen -t 'log'	sudo tail -f /var/log/messages.log
+
+bind k
+bind W
+bind ^k
+bind .
+bind ^\
+bind \\
+bind ^h
+bind h
+bind 'K' kill
+bind 'W' windowlist
+
+bindkey -k k1 prev
+bindkey -k k2 next
+
+select 1
