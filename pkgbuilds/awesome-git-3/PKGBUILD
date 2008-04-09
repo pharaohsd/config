@@ -1,14 +1,16 @@
-pkgname=awesome-3
+# Contributor: Gigamo <gigamo@gmail.com>
+
+pkgname=awesome-git-3
 pkgver=20080409
 pkgrel=1
 pkgdesc="Awesome-3 git branch for Awesome"
-arch=('i686')
+arch=('i686' 'x86_64')
 url="http://awesome.naquadah.org/"
 license=('GPL')
-depends=('cairo' 'xcb-util' 'confuse' 'libxft' 'libxinerama' 'libxrandr')
+depends=('cairo' 'xcb-util' 'confuse' 'pango' 'libxinerama' 'libxrandr')
 makedepends=('asciidoc' 'docbook-xsl' 'git' 'pkgconfig' 'xmlto')
 provides=('awesome')
-conflicts=('awesome')
+conflicts=('awesome' 'awesome-git')
 source=()
 md5sums=()
 
@@ -28,7 +30,6 @@ build() {
     git-checkout awesome-3
   fi
 
-  msg "GIT checkout done or server timeout"
   msg "Starting make..."
 
   cd $_gitname
@@ -40,6 +41,8 @@ build() {
 
   msg "Making cfg backup"
   cp ~/.awesomerc ~/.awesome.bak
+
+  msg "Installing sample awesomerc to /usr/share/awesome"
 
   install -D -m644 awesomerc $startdir/pkg/usr/share/awesome/awesomerc
 }

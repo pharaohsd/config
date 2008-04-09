@@ -1,7 +1,9 @@
+# Contributor: Gigamo <gigamo@gmail.com>
+
 pkgname=xcb-util
 pkgver=20080409
 pkgrel=1
-pkgdesc="XCB Utilities as required by Awesome 3.0"
+pkgdesc="Utilities for X C Bindings, required by Awesome 3.0"
 arch=('i686' 'x86_64')
 url=""
 license=('GPL')
@@ -24,10 +26,9 @@ build() {
     git clone $_gitroot
   fi
  
-  #msg "Applying patch..."
-
   cd $_gitname
 
+  #msg "Applying patch..."
   #wget http://users.telenet.be/gigamo/tmp/arnau.diff
   #patch -p1 -i arnau.diff
 

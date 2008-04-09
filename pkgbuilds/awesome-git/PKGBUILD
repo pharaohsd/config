@@ -1,0 +1,43 @@
+# Original author: noonov <noonov@gmail.com>
+# Modified by: Gigamo <gigamo@gmail.com>
+
+pkgname=awesome-git
+pkgver=20080409
+pkgrel=1
+pkgdesc="A tiling window manager initially based on a dwm code rewriting"
+arch=('i686' 'x86_64')
+url="http://awesome.naquadah.org/"
+license=('GPL')
+depends=('cairo' 'confuse' 'pango' 'libxinerama' 'libxrandr')
+makedepends=('asciidoc' 'autoconf' 'automake' 'docbook-xsl' 'git' 'pkgconfig' 'xmlto')
+provides=('awesome')
+conflicts=('awesome')
+source=()
+md5sums=()
+
+_gitroot="git://git.naquadah.org/awesome.git"
+_gitname="awesome"
+
+build() {
+  cd $srcdir
+
+  if [ -d $_gitname ]; then
+    (cd $_gitname && git-pull origin)
+  else
+    git clone $_gitroot
+  fi
+ 
+  msg "Starting make..."
+
+  rm -rf $_gitname-build
+  cp -r $_gitname $_gitname-build
+  cd $_gitname-build
+
+  autoreconf -vis || return 1
+  ./configure --prefix=/usr || return 1
+  make || return 1
+  make DESTDIR=$pkgdir install || return 1
+
+  install -D -m644 awesomerc \
+    $pkgdir/usr/share/awesome/awesomerc
+}
