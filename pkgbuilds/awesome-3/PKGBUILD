@@ -38,5 +38,8 @@ build() {
   make || return 1
   make DESTDIR=$startdir/pkg install || return 1
 
+  msg "Making cfg backup"
+  cp ~/.awesomerc ~/.awesome.bak
+
   install -D -m644 awesomerc $startdir/pkg/usr/share/awesome/awesomerc
 }

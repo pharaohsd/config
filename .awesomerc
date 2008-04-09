@@ -1,5 +1,6 @@
 # By Gigamo (09/04/08)
-# Development version of awesome only (awesome 2.3.rc1.1 and up!)
+# Made for awesome-3 git branch, but should (currently still)
+# work with 2.3-rc1
 #
 # TODO: Make use of emptybox widgets
 
