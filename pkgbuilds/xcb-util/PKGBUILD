@@ -1,0 +1,40 @@
+pkgname=xcb-util
+pkgver=20080409
+pkgrel=1
+pkgdesc="XCB Utilities as required by Awesome 3.0"
+arch=('i686' 'x86_64')
+url=""
+license=('GPL')
+depends=()
+makedepends=()
+provides=('xcb-util')
+conflicts=()
+source=()
+md5sums=()
+
+_gitroot="git://anongit.freedesktop.org/git/xcb/util"
+_gitname="util"
+
+build() {
+  cd $srcdir
+
+  if [ -d $_gitname ]; then
+    (cd $_gitname && git-pull origin)
+  else
+    git clone $_gitroot
+  fi
+ 
+  msg "Starting make..."
+
+  rm -rf $_gitname-build
+  cp -r $_gitname $_gitname-build
+  cd $_gitname-build
+
+  wget http://users.telenet.be/gigamo/tmp/arnau.diff
+  patch -p1 -i arnau.diff
+
+  autoreconf -vis || return 1
+  ./configure --prefix=/usr || return 1
+  make || return 1
+  make DESTDIR=$pkgdir install || return 1
+}

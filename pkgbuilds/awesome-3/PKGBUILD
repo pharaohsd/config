@@ -1,0 +1,42 @@
+pkgname=awesome-3
+pkgver=20080409
+pkgrel=1
+pkgdesc="Awesome-3 git branch for Awesome"
+arch=('i686')
+url="http://awesome.naquadah.org/"
+license=('GPL')
+depends=('cairo' 'xcb-util' 'confuse' 'libxft' 'libxinerama' 'libxrandr')
+makedepends=('asciidoc' 'docbook-xsl' 'git' 'pkgconfig' 'xmlto')
+provides=('awesome')
+conflicts=('awesome')
+source=()
+md5sums=()
+
+_gitroot="git://git.naquadah.org/awesome.git"
+_gitname="awesome"
+
+build() {
+  cd $startdir/src
+
+  if [ -d $_gitname ]; then
+    (cd $_gitname && git-fetch origin && git-reset --hard origin/awesome-3)
+  else
+    git clone $_gitroot
+    cd $_gitname
+    git-fetch origin awesome-3:awesome-3
+    sleep 2
+    git-checkout awesome-3
+  fi
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting make..."
+
+  cd $_gitname
+
+  autoreconf -vis || return 1 
+  ./configure --prefix=/usr || return 1
+  make || return 1
+  make DESTDIR=$startdir/pkg install || return 1
+
+  install -D -m644 awesomerc $startdir/pkg/usr/share/awesome/awesomerc
+}
