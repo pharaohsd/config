@@ -24,14 +24,14 @@ build() {
     git clone $_gitroot
   fi
  
-  msg "Starting make..."
+  msg "Applying patch..."
 
-  rm -rf $_gitname-build
-  cp -r $_gitname $_gitname-build
-  cd $_gitname-build
+  cd $_gitname
 
   wget http://users.telenet.be/gigamo/tmp/arnau.diff
   patch -p1 -i arnau.diff
+
+  msg "Starting make..."
 
   autoreconf -vis || return 1
   ./configure --prefix=/usr || return 1
