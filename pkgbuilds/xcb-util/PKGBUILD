@@ -12,8 +12,8 @@ conflicts=()
 source=()
 md5sums=()
 
-_gitroot="git://anongit.freedesktop.org/git/xcb/util"
-_gitname="util"
+_gitroot="git://git.naquadah.org/arnau/xcb-util.git"
+_gitname="xcb-util"
 
 build() {
   cd $srcdir
@@ -24,12 +24,12 @@ build() {
     git clone $_gitroot
   fi
  
-  msg "Applying patch..."
+  #msg "Applying patch..."
 
   cd $_gitname
 
-  wget http://users.telenet.be/gigamo/tmp/arnau.diff
-  patch -p1 -i arnau.diff
+  #wget http://users.telenet.be/gigamo/tmp/arnau.diff
+  #patch -p1 -i arnau.diff
 
   msg "Starting make..."
 
