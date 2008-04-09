@@ -1,0 +1,4 @@
+#Triggers file version 1.0
+-publics -pattern 'Gigamo' -command 'exec echo -e "^tw() ^fg(khaki)$C ($N)\n ^fg(khaki)$N:^fg() $M" > /home/gig/.irssi_pipe' 
+-publics -pattern 'awesome config' -command 'exec echo -e "^tw() ^fg(khaki)$C ($N)\n ^fg(khaki)$N:^fg() $M" > /home/gig/.irssi_pipe' 
+-publics -pattern 'amazing' -command 'exec echo -e "^tw() ^fg(khaki)$C ($N)\n ^fg(khaki)$N:^fg() $M" > /home/gig/.irssi_pipe' 
