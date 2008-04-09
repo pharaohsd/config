@@ -11,8 +11,6 @@ depends=('cairo' 'xcb-util' 'confuse' 'pango' 'libxinerama' 'libxrandr')
 makedepends=('asciidoc' 'docbook-xsl' 'git' 'pkgconfig' 'xmlto')
 provides=('awesome')
 conflicts=('awesome' 'awesome-git')
-source=()
-md5sums=()
 
 _gitroot="git://git.naquadah.org/awesome.git"
 _gitname="awesome"

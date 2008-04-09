@@ -5,14 +5,10 @@ pkgver=20080409
 pkgrel=1
 pkgdesc="Utilities for X C Bindings, required by Awesome 3.0"
 arch=('i686' 'x86_64')
-url=""
 license=('GPL')
 depends=('libxcb' 'xcbproto')
 makedepends=('gperf' 'git')
 provides=('xcb-util')
-conflicts=()
-source=()
-md5sums=()
 
 _gitroot="git://git.naquadah.org/arnau/xcb-util.git"
 _gitname="xcb-util"
