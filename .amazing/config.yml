@@ -53,7 +53,6 @@ widgets:
             type: Memory
             every: 10
             format: '"data mem #@usage"'
-            #format: '"data memtotal #@usagetotal\n0 widget_tell #@identifier data mem #@usage\n0 widget_tell #@identifier data swap #@swap_usagetotal"'
         # Memory textbox
         top tb_mem:
             type: Memory
@@ -97,7 +96,7 @@ widgets:
                 else
                   "text #@count#{urgcol}"
                 end
-            username: username
+            username: username 
             password: password
         # Pacman updates
         top pacman:
@@ -116,12 +115,6 @@ widgets:
             type: CPUUsage
             every: 2
             format: '"data cpu0 #@usage"'
-            #format: |
-            #    if @usage.to_i >= 90
-            #      "data cpu0 #@usage\n0 widget_tell top cpu0 fg cpu0 #ff5656"
-            #    else
-            #      "data cpu0 #@usage\n0 widget_tell top cpu0 fg cpu0 #aecf96"
-            #    end
             cpu: 0
         # Download speed
         top down:
@@ -147,11 +140,6 @@ widgets:
                 else
                   "text %.1f#{normcol}" % @up
                 end
-#        # Network traffic graph
-#        top netgraph:
-#            type: NetTraffic
-#            every: 3
-#            format: '"data dl #@down\n0 widget_tell #@identifier data ul #@up"'
         # MPD
         top mpd:
             type: MPD

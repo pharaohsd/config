@@ -1,5 +1,5 @@
 # By Gigamo (09/04/08)
-# Made for awesome-3 git branch, but should (currently still)
+# Intended for awesome-3 git branch, but should (currently still)
 # work with 2.3-rc1
 #
 # TODO: Make use of emptybox widgets
@@ -27,8 +27,8 @@ screen 0
         }
         urgent 
         { 
-            bg = "#ff0000" 
-            fg = "#a0a0a0"
+            bg = "#0a0a0a" 
+            fg = "#ffffff"
         }
             #bg="#8ba574" green , "#285577" blue
     }
