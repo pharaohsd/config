@@ -11,8 +11,10 @@
 #     Arch users can just "pacman -S scrot imagemagick ncftp" :)
 #
 
-#--[ Version number ]----------------------------------------------
-version=1 #-- This now became release-worthy :) 
+#--[ Version history ]---------------------------------------------
+version=1 #-- This now became release-worthy :)
+#--[ Current version ]---------------------------------------------
+version=1.1 #-- Display error message when no $1 specified
 #------------------------------------------------------------------
 
 # Booleans
@@ -29,7 +31,8 @@ ftppass=""
 usage() {
   echo "usage: screenshot [name]"
   echo
-  echo "     test   - would make a screenshot called test.png"
+  echo "     test         - would scrot a screenshot called test.png"
+  echo "     -h | --help  - display this :)"
   echo
   exit
 }
@@ -37,12 +40,21 @@ usage() {
 # The date...to append to the pic ;)
 today=`date +"%d.%m.%y"`
 
+err() {
+  echo "$1"
+  exit 1
+}
+
 # Picture name which is appended as an argument
+if [ -z "$1" ] ; then
+  err "No screenshotname specified! See screenshot --help"
+fi
+
 case "$1" in
   '-h'|'--help')
     usage
     ;;
-  *)
+  *) 
     picname=$1
     ;;
 esac
