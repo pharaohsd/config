@@ -3,14 +3,16 @@
 pkgname=awesome-git-3
 pkgver=20080410
 pkgrel=1
-pkgdesc="Awesome-3 git branch for Awesome"
+pkgdesc="awesome-3 git branch of the Awesome Window Manager"
 arch=('i686' 'x86_64')
 url="http://awesome.naquadah.org/"
 license=('GPL')
 depends=('cairo' 'xcb-util' 'confuse' 'pango' 'libxinerama' 'libxrandr')
 makedepends=('asciidoc' 'docbook-xsl' 'git' 'pkgconfig' 'xmlto')
 provides=('awesome')
-conflicts=('awesome' 'awesome-git')
+conflicts=('awesome' 'awesome-git' 'awesome-git-3')
+source=()
+md5sums=('')
 
 _gitroot="git://git.naquadah.org/awesome.git"
 _gitname="awesome"
@@ -27,18 +29,12 @@ build() {
   fi
 
   msg "Starting make..."
-
   cd $_gitname
-
   autoreconf -vis || return 1 
   ./configure --prefix=/usr || return 1
   make || return 1
   make DESTDIR=$startdir/pkg install || return 1
 
-  msg "Making cfg backup"
-  cp ~/.awesomerc ~/.awesome.bak
-
   msg "Installing sample awesomerc to /usr/share/awesome"
-
   install -D -m644 awesomerc $startdir/pkg/usr/share/awesome/awesomerc
 }

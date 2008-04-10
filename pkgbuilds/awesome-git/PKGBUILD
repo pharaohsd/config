@@ -2,7 +2,7 @@
 # Modified by: Gigamo <gigamo@gmail.com>
 
 pkgname=awesome-git
-pkgver=20080409
+pkgver=20080410
 pkgrel=1
 pkgdesc="A tiling window manager initially based on a dwm code rewriting"
 arch=('i686' 'x86_64')
@@ -12,6 +12,8 @@ depends=('cairo' 'confuse' 'pango' 'libxinerama' 'libxrandr')
 makedepends=('asciidoc' 'autoconf' 'automake' 'docbook-xsl' 'git' 'pkgconfig' 'xmlto')
 provides=('awesome')
 conflicts=('awesome')
+source=()
+md5sums=('')
 
 _gitroot="git://git.naquadah.org/awesome.git"
 _gitname="awesome"
@@ -36,6 +38,7 @@ build() {
   make || return 1
   make DESTDIR=$pkgdir install || return 1
 
+  msg "Installing sample awesomerc to /usr/share/awesome"
   install -D -m644 awesomerc \
     $pkgdir/usr/share/awesome/awesomerc
 }

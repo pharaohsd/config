@@ -1,12 +1,9 @@
 # Configuration file for amazing (http://github.com/dag/amazing)
 # Amazing is a widget manager for the awesome window manager
-# Development version of awesome only (version 2.3.rc1.1 and up!)
+# This particular config will only work with development version of awesome 
+# (version 2.3.rc1.1 and up!)
 #
-# By Gigamo (09/04/08)
-
-## Include a third party widget script
-#include:
-#  - /path/to/widget.rb
+# By Gigamo (10/04/08)
 
 # Widgets list begins here
 widgets:
@@ -96,7 +93,7 @@ widgets:
                 else
                   "text #@count#{urgcol}"
                 end
-            username: username
+            username: username 
             password: password
         # Pacman updates
         top pacman:
@@ -153,12 +150,3 @@ widgets:
                 when :stopped
                   "text []"
                 end
-            #format: |
-            #    case @state
-            #    when :playing
-            #      "text #@artist - #@title (#{@position}/#{@length})\n0 widget_tell top ib_mpd image /home/gig/.awesome/transicons/playing.png"
-            #    when :paused
-            #      "text #@artist - #@title (#{@position}/#{@length})\n0 widget_tell top ib_mpd image /home/gig/.awesome/transicons/paused.png"
-            #    when :stopped
-            #      "text (0:00/0:00)\n0 widget_tell top ib_mpd image /home/gig/.awesome/transicons/stopped.png"
-            #    end
