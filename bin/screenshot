@@ -10,29 +10,46 @@
 #
 
 #--[ Version number ]----------------------------------------------
-version=0.3 #-- Add current/currentt.png    --    easier for forums 
+version=1.1 #-- Add arguments 
 #------------------------------------------------------------------
 
-# Set to 1 to upload to FTP
 ftpbool=1
-
-# Set to 1 to display a link to the picture
 linkbool=1
-
-# Set to 1 to make a thumbnail
 thumbbool=1
 
-# Set the FTP host server
 ftphost=""
-
-# Set the FTP password
 ftppath=""
-
-# Set the FTP user
 ftpuser=""
-
-# Set the FTP password
 ftppass=""
+
+usage() {
+  echo "usage: screenshot [option]"
+  echo
+  echo "Options:"
+  echo
+  echo "     -nf, --no-ftp    - don't upload to ftp"
+  echo "     -nt, --no-thumb  - don't make a thumbnail"
+  echo "     -nl, --no-link   - don't display a link to image"
+  echo "     -h, --help       - display this"
+  echo "     *                - no option will use the default values"
+  echo
+  exit
+}
+
+case "$1" in
+  '-nf'|'--no-ftp')
+    ftpbool=0
+    ;;
+  '-nt'|'--no-thumb')
+    thumbbool=0
+    ;;
+  '-nl'|'--no-link')
+    linkbool=0
+    ;;
+  '-h'|'--help')
+    usage
+    ;;
+esac
 
 # The date...to append to the pic ;)
 today=`date +"%d.%m.%y"`
@@ -46,15 +63,14 @@ datedthumb=~/screenshots/desktop${today}thumb.png
 currentthumb=~/screenshots/currentt.png
 
 link() {
-  echo ""
   echo "Link to your freshly uploaded picture and thumbnail:";
-  echo ""
+  echo
   echo "http://$ftphost/gigamo/$ftppath/desktop${today}.png";
   if [ $thumbbool -eq 1 ] ; then
     echo "http://$ftphost/gigamo/$ftppath/desktop${today}thumb.png";
-    echo ""
+    echo
   else
-    echo ""
+    echo
   fi
 }
 
