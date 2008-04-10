@@ -4,23 +4,7 @@
 #
 # Wrote this because I'm too lazy to upload a screenshot to ftp
 # manually all the time :P
-#
-#
-# Requires scrot, imagemagick and ncftp
-#     
-#     Arch users can just "pacman -S scrot imagemagick ncftp" :)
-#
 
-#--[ Version number ]----------------------------------------------
-version=1 #-- This now became release-worthy :) 
-#------------------------------------------------------------------
-
-# Booleans
-ftpbool=1
-linkbool=1
-thumbbool=1
-
-# Ftp information
 ftphost=""
 ftpuser="" # Probably only required for my isp's FTP
 ftppath=""
@@ -36,17 +20,27 @@ usage() {
   exit
 }
 
-# The date...to append to the pic ;)
-today=`date +"%d.%m.%y"`
-
-err() {
-  echo "$1"
-  exit 1
+link() {
+  echo "Link to uploaded picture and thumbnail:";
+  echo
+  echo "http://$ftphost/$ftpuser/$ftppath/${picname}.png";
+  echo "http://$ftphost/$ftpuser/$ftppath/${picname}t.png";
+  echo
 }
 
-# Picture name which is appended as an argument
+printscreen() {
+`cd ~/screenshots && scrot ${picname}.png`
+`cd ~/screenshots && cp ${picname}.png ${picname}t.png`
+`cd ~/screenshots && mogrify -resize 25% ${picname}t.png`
+}
+
+upload() {
+  `ncftpput -u $ftplogin -p $ftppass -R -m $ftphost $ftppath $pic $thumb`
+}
+
 if [ -z "$1" ] ; then
-  err "No screenshotname specified! See screenshot --help"
+  echo "No screenshotname specified! See screenshot --help"
+  exit 1
 fi
 
 case "$1" in
@@ -58,50 +52,9 @@ case "$1" in
     ;;
 esac
 
-# Path to pic and thumb
 pic=~/screenshots/${picname}.png
 thumb=~/screenshots/${picname}t.png
 
-link() {
-  echo "Link to your uploaded picture and thumbnail:";
-  echo
-  echo "http://$ftphost/$ftpuser/$ftppath/${picname}.png";
-  if [ $thumbbool -eq 1 ] ; then
-    echo "http://$ftphost/$ftpuser/$ftppath/${picname}t.png";
-    echo
-  else
-    echo
-  fi
-}
-
-printscreen() {
-  `cd ~/screenshots && scrot ${picname}.png`
-  if [ $thumbbool -eq 1 ] ; then
-    `cd ~/screenshots && cp ${picname}.png ${picname}t.png`
-    `cd ~/screenshots && mogrify -resize 25% ${picname}t.png`
-  else
-    echo "Chosen not to make a thumbnail, skipping";
-  fi
-}
-
-upload() {
-  if [ $thumbbool -eq 1 ] ; then
-    `ncftpput -u $ftplogin -p $ftppass -R -m $ftphost $ftppath $pic $thumb`
-  else
-    `ncftpput -u $ftplogin -p $ftppass -R -m $ftphost $ftppath $pic`
-  fi
-}
-
 printscreen
-
-if [ $ftpbool -eq 1 ] ; then
-  upload
-  if [ $linkbool -eq 1 ] ; then
-    link
-  else
-    echo "Chosen not to display image link, skipping";
-  fi
-else
-  echo "Chosen not to upload to FTP, exiting";
-  exit
-fi
+upload
+link
