@@ -29,7 +29,6 @@ build() {
   fi
 
   msg "Starting make..."
-  cd $_gitname
   autoreconf -vis || return 1 
   ./configure --prefix=/usr || return 1
   make || return 1
