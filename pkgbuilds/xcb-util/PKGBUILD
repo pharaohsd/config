@@ -3,7 +3,7 @@
 pkgname=xcb-util
 pkgver=20080409
 pkgrel=1
-pkgdesc="Utilities for X C Bindings, required by Awesome 3.0"
+pkgdesc="Utility libraries for XC Binding"
 arch=('i686' 'x86_64')
 license=('GPL')
 depends=('libxcb' 'xcb-proto')
