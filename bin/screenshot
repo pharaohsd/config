@@ -10,64 +10,44 @@
 #
 
 #--[ Version number ]----------------------------------------------
-version=1.1 #-- Add arguments 
+version=1.2 #-- Remove arguments, add screenshotname argument 
 #------------------------------------------------------------------
 
+# Booleans
 ftpbool=1
 linkbool=1
 thumbbool=1
 
+# Ftp information
 ftphost=""
 ftppath=""
 ftpuser=""
 ftppass=""
 
 usage() {
-  echo "usage: screenshot [option]"
+  echo "usage: screenshot [name]"
   echo
-  echo "Options:"
-  echo
-  echo "     -nf, --no-ftp    - don't upload to ftp"
-  echo "     -nt, --no-thumb  - don't make a thumbnail"
-  echo "     -nl, --no-link   - don't display a link to image"
-  echo "     -h, --help       - display this"
-  echo "     *                - no option will use the default values"
+  echo "     test   - would make a screenshot called test.png"
   echo
   exit
 }
 
-case "$1" in
-  '-nf'|'--no-ftp')
-    ftpbool=0
-    ;;
-  '-nt'|'--no-thumb')
-    thumbbool=0
-    ;;
-  '-nl'|'--no-link')
-    linkbool=0
-    ;;
-  '-h'|'--help')
-    usage
-    ;;
-esac
-
 # The date...to append to the pic ;)
 today=`date +"%d.%m.%y"`
 
-# The actual path to the screenshot
-datedpic=~/screenshots/desktop${today}.png
-currentpic=~/screenshots/current.png
+# Picture name which is appended as an argument
+picname=$1
 
-# The actual path to the thumbnail
-datedthumb=~/screenshots/desktop${today}thumb.png
-currentthumb=~/screenshots/currentt.png
+# Path to pic and thumb
+pic=~/screenshots/${picname}.png
+thumb=~/screenshots/${picname}t.png
 
 link() {
   echo "Link to your freshly uploaded picture and thumbnail:";
   echo
-  echo "http://$ftphost/gigamo/$ftppath/desktop${today}.png";
+  echo "http://$ftphost/gigamo/$ftppath/${picname}.png";
   if [ $thumbbool -eq 1 ] ; then
-    echo "http://$ftphost/gigamo/$ftppath/desktop${today}thumb.png";
+    echo "http://$ftphost/gigamo/$ftppath/${picname}t.png";
     echo
   else
     echo
@@ -75,12 +55,10 @@ link() {
 }
 
 printscreen() {
-  `cd ~/screenshots && scrot desktop${today}.png`
-  `cd ~/screenshots && cp desktop${today}.png current.png`
+  `cd ~/screenshots && scrot ${picname}.png`
   if [ $thumbbool -eq 1 ] ; then
-    `cd ~/screenshots && cp desktop${today}.png desktop${today}thumb.png`
-    `cd ~/screenshots && mogrify -resize 25% desktop${today}thumb.png`
-    `cd ~/screenshots && cp desktop${today}thumb.png currentt.png`
+    `cd ~/screenshots && cp ${picname}.png ${picname}t.png`
+    `cd ~/screenshots && mogrify -resize 25% ${picname}t.png`
   else
     echo "Chosen not to make a thumbnail, skipping";
   fi
@@ -88,9 +66,9 @@ printscreen() {
 
 upload() {
   if [ $thumbbool -eq 1 ] ; then
-    `ncftpput -u $ftpuser -p $ftppass -R -m $ftphost $ftppath $datedpic $currentpic $datedthumb $currentthumb`
+    `ncftpput -u $ftpuser -p $ftppass -R -m $ftphost $ftppath $pic $thumb`
   else
-    `ncftpput -u $ftpuser -p $ftppass -R -m $ftphost $ftppath $datedpic $currentpic`
+    `ncftpput -u $ftpuser -p $ftppass -R -m $ftphost $ftppath $pic`
   fi
 }
 
