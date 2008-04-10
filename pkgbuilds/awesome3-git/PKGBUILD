@@ -1,6 +1,6 @@
 # Contributor: Gigamo <gigamo@gmail.com>
 
-pkgname=awesome-git-3
+pkgname=awesome3-git
 pkgver=20080410
 pkgrel=1
 pkgdesc="awesome-3 git branch of the Awesome Window Manager"
