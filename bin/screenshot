@@ -11,10 +11,8 @@
 #     Arch users can just "pacman -S scrot imagemagick ncftp" :)
 #
 
-#--[ Version history ]---------------------------------------------
-version=1 #-- This now became release-worthy :)
-#--[ Current version ]---------------------------------------------
-version=1.1 #-- Display error message when no $1 specified
+#--[ Version number ]----------------------------------------------
+version=1 #-- This now became release-worthy :) 
 #------------------------------------------------------------------
 
 # Booleans
@@ -24,8 +22,9 @@ thumbbool=1
 
 # Ftp information
 ftphost=""
+ftpuser="" # Probably only required for my isp's FTP
 ftppath=""
-ftpuser=""
+ftplogin=""
 ftppass=""
 
 usage() {
@@ -66,9 +65,9 @@ thumb=~/screenshots/${picname}t.png
 link() {
   echo "Link to your uploaded picture and thumbnail:";
   echo
-  echo "http://$ftphost/gigamo/$ftppath/${picname}.png";
+  echo "http://$ftphost/$ftpuser/$ftppath/${picname}.png";
   if [ $thumbbool -eq 1 ] ; then
-    echo "http://$ftphost/gigamo/$ftppath/${picname}t.png";
+    echo "http://$ftphost/$ftpuser/$ftppath/${picname}t.png";
     echo
   else
     echo
@@ -87,9 +86,9 @@ printscreen() {
 
 upload() {
   if [ $thumbbool -eq 1 ] ; then
-    `ncftpput -u $ftpuser -p $ftppass -R -m $ftphost $ftppath $pic $thumb`
+    `ncftpput -u $ftplogin -p $ftppass -R -m $ftphost $ftppath $pic $thumb`
   else
-    `ncftpput -u $ftpuser -p $ftppass -R -m $ftphost $ftppath $pic`
+    `ncftpput -u $ftplogin -p $ftppass -R -m $ftphost $ftppath $pic`
   fi
 }
 
