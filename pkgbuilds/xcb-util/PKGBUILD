@@ -7,10 +7,10 @@ pkgdesc="Utility libraries for XC Binding"
 arch=('i686' 'x86_64')
 license=('GPL')
 depends=('libxcb' 'xcb-proto')
-makedepends=('gperf' 'git')
+makedepends=('gperf' 'autoconf' 'pkgconfig' 'automake' 'git')
 provides=('xcb-util')
 url="http://xcb.freedesktop.org"
-source=()
+source=(http://git.naquadah.org/?p=arnau/xcb-util.git;a=summary)
 md5sums=('')
 
 _gitroot="git://git.naquadah.org/arnau/xcb-util.git"
