@@ -44,15 +44,15 @@ URxvt*foreground:         #919191
 !URxvt*font:              -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-1
 !URxvt*boldFont:          -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-1
 
-!urxvt.font:               -xos4-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-*
-!urxvt.boldFont:           -xos4-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-* 
-!urxvt.italicFont:         -xos4-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-*  
-!urxvt.boldItalicFont:     -xos4-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-*
+urxvt.font:               -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-1
+urxvt.boldFont:           -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-1
+!urxvt.italicFont:         -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso10646-1
+!urxvt.boldItalicFont:     -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso10646-1
 
-urxvt.font:               xft:Terminus:pixelsize=12
-urxvt.boldFont:           xft:Terminus:pixelsize=12
-urxvt.italicFont:         xft:Terminus:pixelsize=12
-urxvt.boldItalicFont:     xft:Terminus:pixelsize=12
+!urxvt.font:               xft:Terminus:pixelsize=12
+!urxvt.boldFont:           xft:Terminus:pixelsize=12
+!urxvt.italicFont:         xft:Terminus:pixelsize=12
+!urxvt.boldItalicFont:     xft:Terminus:pixelsize=12
 
 !urxvt.font:               xft:smoothansi:pixelsize=12
 !urxvt.boldFont:           xft:smoothansi:pixelsize=12

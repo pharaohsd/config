@@ -1,6 +1,6 @@
 #!/bin/zsh
 #
-export PATH=$PATH:/sbin:/usr/bin:/usr/local/bin:/usr/sbin:/home/gig:/home/gig/bin:/home/gig/hacks:/opt/java/jre/bin:/opt/mozilla/bin:.
+export PATH=$PATH
 export MOZILLA_FIVE_HOME=/opt/mozilla/bin/mozilla
 export EDITOR=vim
 #export MANPAGER="col -b | vim -c 'set ft=man nonu nomod nolist' -"
@@ -8,6 +8,8 @@ export MAIL=/home/gig/.mail/default
 export PACKAGER="Gigamo <gigamo@gmail.com>"
 export CVS_RSH="ssh"
 export OOO_FORCE_DESKTOP="gnome"
+export LC_ALL=en_US.utf8
+export LANG=en_US.utf8
 
 # watch for people
 watch=(notme)                   # watch for everybody but me
