@@ -83,7 +83,7 @@ widgets:
                 end
         # GMail
         top mail:
-            type: GMail
+            type: GMail 
             every: 180
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #ffffff"
@@ -110,13 +110,13 @@ widgets:
         # CPU graph
         top cpugraph:
             type: CPUUsage
-            every: 3
+            every: 2
             format: '"data cpu0 #{@usage[1]}"'
             cpu: 1
         # Download speed
         top down:
             type: NetTraffic
-            every: 3
+            every: 2
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #56ff56"
@@ -129,7 +129,7 @@ widgets:
         # Upload speed
         top up:
             type: NetTraffic
-            every: 3
+            every: 2
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
