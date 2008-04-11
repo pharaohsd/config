@@ -4,56 +4,48 @@
 #
 # Wrote this because I'm too lazy to upload a screenshot to ftp
 # manually all the time :P
-
-ftphost="users.telenet.be"
-ftpuser="gigamo" # Probably only required for my isp's FTP
-ftppath="pics"
-ftplogin="t363435"
-ftppass="diablo1"
-
+#
 usage() {
   echo "usage: screenshot [name]"
   echo
-  echo "     test         - would scrot a screenshot called test.png"
+  echo "     poopoo       - would scrot a screenshot called poopoo.png"
   echo "     -h | --help  - display this :)"
-  echo
   exit
 }
 
 link() {
-  echo "Link to uploaded picture and thumbnail:";
+  echo "Link to uploaded picture and thumbnail:"
   echo
-  echo "http://$ftphost/$ftpuser/$ftppath/${picname}.png";
-  echo "http://$ftphost/$ftpuser/$ftppath/${picname}t.png";
-  echo
+  echo "http://$ftphost/$ftpuser/$ftppath/${picname}.png"
+  echo "http://$ftphost/$ftpuser/$ftppath/${picname}t.png"
 }
-
 printscreen() {
-  `cd ~/screenshots && scrot ${picname}.png`
-  `cd ~/screenshots && cp ${picname}.png ${picname}t.png`
-  `cd ~/screenshots && mogrify -resize 25% ${picname}t.png`
+  `cd ~/screenshots && scrot ${picname}.png && cp ${picname}.png ${picname}t.png && mogrify -resize 25% ${picname}t.png`
 }
-
 upload() {
+  ftphost=""
+  ftpuser="" # Probably only required for my isp's FTP
+  ftppath=""
+  ftplogin=""
+  ftppass=""
   `ncftpput -u $ftplogin -p $ftppass -R -m $ftphost $ftppath $pic $thumb`
 }
-
-if [ -z "$1" ] ; then
-  echo "No screenshotname specified! See screenshot --help"
-  exit 1
-fi
 
 case "$1" in
   '-h'|'--help')
     usage
     ;;
-  *) 
-    picname=$1
+  *)
+    if [ -z "$1" ] ; then
+      echo "No filename specified! See --help"
+      exit 1
+    else 
+      picname=$1
+      pic=~/screenshots/${picname}.png
+      thumb=~/screenshots/${picname}t.png
+    fi
     ;;
 esac
-
-pic=~/screenshots/${picname}.png
-thumb=~/screenshots/${picname}t.png
 
 printscreen
 upload
