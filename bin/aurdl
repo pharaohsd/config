@@ -1,12 +1,15 @@
 #!/bin/bash
 #
 # Supposed to be a VERY simple aur-download-script...
+# TODO: search function (maybe..)
 usage() {
   echo "Usage: aurdl [name]"
   echo
-  echo "     xcb-util             - would download the AUR tarball of xcb-util"
-  echo "     -d | --destination   - download to a specific folder"
-  echo "     -h | --help          - display this :)"
+  echo "     no option            - download to the working directory"
+  echo "     -d | --destination   - download to a specific directory"
+  echo
+  echo "     For example:           aurdl -d /path/to/dir packagename"
+  echo "                            aurdl packagename"
   exit
 }
 
@@ -15,23 +18,19 @@ download() {
 }
 
 case "$1" in
-  '-h'|'--help')
-    usage
-    ;;
   '-d'|'--destination')
     pacname=$3
     destdir=$2
     cd $destdir && download $pacname
     echo "Package succesfully saved as $pacname.tar.gz in $destdir!"
-    ;;
+  ;;
   *)
     if [ -z "$1" ] ; then
-      echo "No package specified! See --help"
-      exit 1
+      usage
     else 
       pacname=$1
       download $pacname
       echo "Package succesfully saved as $pacname.tar.gz!"
     fi
-    ;;
+  ;;
 esac
