@@ -64,7 +64,7 @@ screen 0
     {
         tag t { layout = "tile" mwfact = 0.575 }
         tag w { layout = "tilebottom" mwfact = 0.625 }
-        tag d { layout = "tilebottom" mwfact = 0.375 }
+        tag d { layout = "tilebottom" mwfact = 0.425 }
         tag 4 { layout = "floating" }
         tag 5 { layout = "tile" nmaster = 3 ncol = 3 }
         tag 6 { layout = "floating" }
@@ -193,14 +193,14 @@ screen 0
         } 
 
 
-        textbox mailpacman_sep { align = "right" text = "   " }
+        textbox mailpacmanraggle_sep { align = "right" text = "   " }
         textbox mail 
         { 
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
             mouse { button = "1" command = "spawn" arg = "firefox3 http://www.gmail.com" } 
             align = "right" 
         } 
-        textbox mailpacman_sep2 
+        textbox mailpacmanraggle_sep2
         { 
             align = "right" 
             text = "/" 
@@ -211,7 +211,18 @@ screen 0
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
             align = "right" 
         }
-        
+        textbox mailpacmanraggle_sep3
+        { 
+            align = "right" 
+            text = "/" 
+            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
+        }
+        textbox raggle 
+        { 
+            style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
+            align = "right" 
+        }
+
         
         textbox clock_sep { align = "right" text = "   " }
         textbox clock 
@@ -266,13 +277,11 @@ rules
 {
     rule { name = "Gimp" tags = "6" float = "true" }
     rule { name = "Pidgin" tags = "4" }
-    rule { name = "Thunar" master = "false" }
     rule { name = "Mirage" float = "true" }
     rule { name = "VLC" float = "true" titlebar { position = off } }
     rule { name = "MPlayer" titlebar { position = off } }
     rule { name = "Minefield" tags = "w" titlebar { position = off} }
     rule { name = "urxvt" icon = "/home/gig/.icons/Somatic-0.2/32x32/apps/gnome-monitor.png" }
-    rule { name = "Tomboy" float = "true" }
 }
 
 ######
