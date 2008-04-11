@@ -5,7 +5,7 @@
 # Wrote this because I'm too lazy to upload a screenshot to ftp
 # manually all the time :P
 #
-usage() {
+Usage() {
   echo "usage: screenshot [name]"
   echo
   echo "     poopoo       - would scrot a screenshot called poopoo.png"
