@@ -64,7 +64,7 @@ screen 0
     {
         tag t { layout = "tile" mwfact = 0.575 }
         tag w { layout = "tilebottom" mwfact = 0.625 }
-        tag d { layout = "tilebottom" mwfact = 0.275 }
+        tag d { layout = "tilebottom" mwfact = 0.375 }
         tag 4 { layout = "floating" }
         tag 5 { layout = "tile" nmaster = 3 ncol = 3 }
         tag 6 { layout = "floating" }
@@ -265,12 +265,12 @@ menu SSH:
 rules
 {
     rule { name = "Gimp" tags = "6" float = "true" }
-    rule { name = "Pidgin" tags = "4" float = "true" icon = "/home/gig/.icons/Somatic-0.2/32x32/apps/gaim.png" }
-    rule { name = "Thunar" master = "false" icon = "/home/gig/.icons/Somatic-0.2/32x32/apps/file-manager.png"}
+    rule { name = "Pidgin" tags = "4" }
+    rule { name = "Thunar" master = "false" }
     rule { name = "Mirage" float = "true" }
     rule { name = "VLC" float = "true" titlebar { position = off } }
     rule { name = "MPlayer" titlebar { position = off } }
-    rule { name = "Minefield" tags = "w" icon = "/home/gig/.icons/Somatic-0.2/32x32/apps/firefox.png" titlebar { position = off} }
+    rule { name = "Minefield" tags = "w" titlebar { position = off} }
     rule { name = "urxvt" icon = "/home/gig/.icons/Somatic-0.2/32x32/apps/gnome-monitor.png" }
     rule { name = "Tomboy" float = "true" }
 }
