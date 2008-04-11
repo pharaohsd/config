@@ -125,6 +125,7 @@ widgets:
                 else
                   "text %.1f#{normcol}" % @download_rate
                 end
+            interface: wlan0
         # Upload speed
         top up:
             type: NetTraffic
