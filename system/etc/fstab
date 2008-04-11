@@ -1,0 +1,15 @@
+# 
+# /etc/fstab: static file system information
+#
+# <file system>        <dir>         <type>    <options>          <dump> <pass>
+none                   /dev/pts      devpts    defaults            0      0
+none                   /dev/shm      tmpfs     defaults            0      0
+
+
+/dev/cdrom /mnt/cdrom   iso9660   ro,user,noauto,unhide   0      0
+/dev/dvd /mnt/dvd   udf   ro,user,noauto,unhide   0      0
+/dev/sda1 /mnt/windows ntfs-3g users,uid=1000,gid=100,fmask=0113,dmask=0002 0 0
+/dev/sda2 /storage jfs defaults 0 0
+/dev/sda3 / ext3 defaults 0 1
+/dev/sda5 /home jfs defaults 0 1
+/dev/sda6 swap swap defaults 0 0
