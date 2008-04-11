@@ -8,6 +8,7 @@
 usage() {
   echo "Usage: screenshot [name]"
   echo
+  echo "     no option              - scrot default directory (~/screenshots)"
   echo "     -d | --destination     - screenshot destination directory"
   echo
   echo "     For example:             screenshot current"
@@ -21,9 +22,11 @@ link() {
   echo "http://$ftphost/$ftpuser/$ftppath/${picname}.png"
   echo "http://$ftphost/$ftpuser/$ftppath/${picname}t.png"
 }
+
 printscreen() {
   `cd $destdir && scrot ${picname}.png && cp ${picname}.png ${picname}t.png && mogrify -resize 25% ${picname}t.png`
 }
+
 upload() {
   ftphost=""
   ftpuser="" # Probably only required for my isp's FTP
