@@ -93,7 +93,7 @@ widgets:
                 else
                   "text #@count#{urgcol}"
                 end
-            username: username 
+            username: username
             password: password
         # Pacman updates
         top pacman:
@@ -121,9 +121,9 @@ widgets:
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #56ff56"
                 if @down.to_i >= 1500
-                  "text %.1f#{urgcol}" % @down
+                  "text %.1f#{urgcol}" % @download_rate
                 else
-                  "text %.1f#{normcol}" % @down
+                  "text %.1f#{normcol}" % @download_rate
                 end
         # Upload speed
         top up:
@@ -133,10 +133,11 @@ widgets:
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
                 if @up.to_i >= 50
-                  "text %.1f#{urgcol}" % @up
+                  "text %.1f#{urgcol}" % @upload_rate
                 else
-                  "text %.1f#{normcol}" % @up
+                  "text %.1f#{normcol}" % @upload_rate
                 end
+            interface: wlan0
         # MPD
         top mpd:
             type: MPD
