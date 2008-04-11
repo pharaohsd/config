@@ -5,11 +5,11 @@
 # Wrote this because I'm too lazy to upload a screenshot to ftp
 # manually all the time :P
 
-ftphost=""
-ftpuser="" # Probably only required for my isp's FTP
-ftppath=""
-ftplogin=""
-ftppass=""
+ftphost="users.telenet.be"
+ftpuser="gigamo" # Probably only required for my isp's FTP
+ftppath="pics"
+ftplogin="t363435"
+ftppass="diablo1"
 
 usage() {
   echo "usage: screenshot [name]"
@@ -29,9 +29,9 @@ link() {
 }
 
 printscreen() {
-`cd ~/screenshots && scrot ${picname}.png`
-`cd ~/screenshots && cp ${picname}.png ${picname}t.png`
-`cd ~/screenshots && mogrify -resize 25% ${picname}t.png`
+  `cd ~/screenshots && scrot ${picname}.png`
+  `cd ~/screenshots && cp ${picname}.png ${picname}t.png`
+  `cd ~/screenshots && mogrify -resize 25% ${picname}t.png`
 }
 
 upload() {

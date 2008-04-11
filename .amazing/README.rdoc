@@ -1,0 +1,50 @@
+= An amazing widget manager for an awesome window manager
+
+* Feeds information to statusbars in the awesome[http://awesome.naquadah.org/] window manager
+* Framework for creating widgets
+* Centralized configuration
+
+Widgets included in the core:
+
+*ACAdapter*:: AC adapter status
+*ALSA*:: Various data for the ALSA mixer
+*Battery*:: Remaining battery power in percentage
+*CPUInfo*:: CPU Information
+*CPUUsage*:: CPU usage
+*Clock*:: Displays date and time
+*File*:: Information for a file
+*Filesystem*:: Various filesystem information
+*GMail*:: GMail checker
+*MOC*:: Music On Console status
+*MPD*:: MPD Information
+*Maildir*:: Mail count in maildirs
+*Memory*:: Various memory related data
+*NetTraffic*:: Network traffic information
+*Pacman*:: Available upgrades in the Pacman package manager
+*Raggle*:: Unread posts in raggle
+
+== Installation procedures
+
+To install, see <tt>ruby setup.rb --help</tt>. Quick and dirty:
+
+  % ruby setup.rb all
+
+If you wish to install with Rubygems, build the gempackage and install it locally.
+
+  % gem build amazing.gemspec
+  # gem install amazing-0.1.gem
+
+You can also install it remotely from the Rubyforge servers (not yet).
+
+  # gem install amazing
+
+== Configuration
+
+Configuration of amazing is documented at the wiki[http://github.com/dag/amazing/wikis/configuration].
+
+== Copying
+
+  Copyright (C) 2008 Dag Odenhall <dag.odenhall@gmail.com>
+  Licensed under the Academic Free License version 3.0
+
+See link:files/COPYING.html for full legal text.

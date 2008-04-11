@@ -3,7 +3,7 @@
 # This particular config will only work with development version of awesome 
 # (version 2.3.rc1.1 and up!)
 #
-# By Gigamo (10/04/08)
+# By Gigamo (11/04/08)
 
 # Widgets list begins here
 widgets:
@@ -111,8 +111,8 @@ widgets:
         top cpugraph:
             type: CPUUsage
             every: 3
-            format: '"data cpu0 #@usage"'
-            cpu: 0
+            format: '"data cpu0 #{@usage[1]}"'
+            cpu: 1
         # Download speed
         top down:
             type: NetTraffic
