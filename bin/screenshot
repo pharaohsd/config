@@ -43,10 +43,9 @@ case "$1" in
       picname=$1
       pic=~/screenshots/${picname}.png
       thumb=~/screenshots/${picname}t.png
+      printscreen
+      upload
+      link
     fi
     ;;
 esac
-
-printscreen
-upload
-link
