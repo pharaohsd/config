@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+echo -ne "Kernel\033[0m: "; uname -r
+echo -ne "Pacman\033[0m: "; pacman -V | egrep ".*Pacman.*" | sed "s/.* Pacman v\(.*\) - .*/\1/"
+echo -ne "Window Manager\033[0m: "; egrep "^[^\#].*" ~/.xinitrc | tail -n 1 | sed "s!.*/!!";
+echo -ne "Shell\033[0m: "; zsh --version
+echo -ne "Vim Theme\033[0m: "; egrep "^color.*" ~/.vimrc | sed "s/color //"
+echo -ne "Mail\033[0m: "; mutt -v | head -n 1
+echo -ne "Now Playing: "; mpc | head -n 1 
+echo -ne "\n\n"
+echo -e "\033[35;1mGigamo                                   \033[0;32mhttp://github.com/gigamo/config"
+echo -e "\033[34;1mmail[\033[0;37mgigamo@gmail.com\033[34;1m]  msn[\033[0;37mgigamo@gmail.com\033[34;1m]  irc[\033[0;37mGigamo@freenode/oftc\033[34;1m]"

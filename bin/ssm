@@ -1,0 +1,69 @@
+#!/bin/sh
+
+####################################################
+# SSM - Simple System Monitor v0.2		   #	
+# A simple system monitor primarily made for myself.#	
+#						   #
+# READ: read readme before using.		   #
+# USE: watch --no-title ./ssm			   #
+# (C)Copyleft Tim Jansson			   # 
+#							   #				
+####################################################
+
+# --- Memory ---
+MEMTOT=`free -m | grep Mem: | awk '{ print $2 }'`
+MEMUSE=`free -m | grep buffers/cache: | awk '{ print $3 }'`
+SWATOT=`free -m | grep Swap: | awk '{ print $2 }'`
+SWAUSE=`free -m | grep Swap: | awk '{ print $3 }'`
+
+# --- Uptime ---
+UDAY=`uptime |awk '{ print $3 }'`
+UHOU=`uptime|awk -F, '{print $2}'`
+
+# --- CPU ---
+MODEL=`cat /proc/cpuinfo |grep "model name" | cut -d' ' -f3-`
+CPMHZ=`cat /proc/cpuinfo |grep "cpu MHz" | cut -d' ' -f3-`
+PROCS=`ps axu |wc -l`
+LOADA=`uptime |sed 's/.*://'`
+
+# --- DISKSPACE ---
+DISK1=`df -h |grep /dev/ |head -n1 |awk '{ print $1 }'`
+DISK2=`df -h |grep /dev/ |head -n1 |awk '{ print $2 }'`
+DISK3=`df -h |grep /dev/ |head -n1 |awk '{ print $3 }'`
+DISK4=`df -h |grep /dev/ |head -n1 |awk '{ print $4 }'`
+DISK5=`df -h |grep /dev/ |head -n1 |awk '{ print $5 }'`
+DISK6=`df -h |grep /dev/ |head -n1 |awk '{ print $6 }'`
+
+echo \+ Simple System Monitor v0.2
+echo " "
+echo \+ General:
+echo \|----------------------------------------
+echo \| Dist........: `cat /etc/*-release`
+echo \| Hostname....: `hostname`    
+echo \| Kernel......: `uname -sr`
+echo \| Uptime......:  $UDAY days $UHOU hours   
+echo " "
+echo \+ Memory Info:
+echo \|----------------------------------------
+echo \| Used memory.: $MEMUSE mb / $MEMTOT mb 
+echo \| Used swap...: $SWAUSE mb / $SWATOT mb
+echo " "
+echo \+ CPU Info:
+echo \|----------------------------------------
+echo \| Model Name..: $MODEL
+echo \| Clock Freq..: $CPMHZ
+echo \| Processes...: $PROCS
+echo \| Load Average: $LOADA
+echo " "
+echo \+ Disk Info - $DISK1:
+echo \|----------------------------------------
+echo \| Filesystem..: $DISK1
+echo \| Size........: $DISK2 
+echo \| Used........: $DISK3 \($DISK5\)
+echo \| Available...: $DISK4
+echo \| Mounted on..: $DISK6
+echo " "
+ 
+
+
+ exit 0
