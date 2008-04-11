@@ -1,7 +1,7 @@
 # Contributor: Gigamo <gigamo@gmail.com>
 
 pkgname=awesome3-git
-pkgver=20080410
+pkgver=20080411
 pkgrel=1
 pkgdesc="awesome-3 git branch of the Awesome Window Manager"
 arch=('i686' 'x86_64')
@@ -28,8 +28,9 @@ build() {
     git checkout -b awesome-3 origin/awesome-3
   fi
 
+  cd $_gitname
   msg "Starting make..."
-  autoreconf -vis || return 1 
+  ./autogen.sh || return 1 
   ./configure --prefix=/usr || return 1
   make || return 1
   make DESTDIR=$startdir/pkg install || return 1

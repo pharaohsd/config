@@ -2,7 +2,7 @@
 # Modified by: Gigamo <gigamo@gmail.com>
 
 pkgname=awesome-git
-pkgver=20080410
+pkgver=20080411
 pkgrel=1
 pkgdesc="A tiling window manager initially based on a dwm code rewriting"
 arch=('i686' 'x86_64')
@@ -33,7 +33,7 @@ build() {
   cp -r $_gitname $_gitname-build
   cd $_gitname-build
 
-  autoreconf -vis || return 1
+  ./autogen.sh || return 1
   ./configure --prefix=/usr || return 1
   make || return 1
   make DESTDIR=$pkgdir install || return 1
