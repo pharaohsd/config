@@ -211,17 +211,6 @@ screen 0
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
             align = "right" 
         }
-        textbox mailpacmanraggle_sep3
-        { 
-            align = "right" 
-            text = "/" 
-            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
-        }
-        textbox raggle 
-        { 
-            style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
-            align = "right" 
-        }
 
         
         textbox clock_sep { align = "right" text = "   " }

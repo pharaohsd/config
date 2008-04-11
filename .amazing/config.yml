@@ -10,7 +10,7 @@ widgets:
     # Screen
     0:
         # Battery
-        top battery:
+        top battery: # top = statusbarname, battery = widgetname
             type: Battery
             every: 20
             format: |
@@ -99,18 +99,6 @@ widgets:
         top pacman:
             type: Pacman
             every: 3600
-            format: |
-                normcol = "\n0 widget_tell #@identifier fg #ffffff"
-                urgcol = "\n0 widget_tell #@identifier fg #ff5656"
-                if @count == 0
-                  "text #@count#{normcol}"
-                else
-                  "text #@count#{urgcol}"
-                end
-        # Unread raggle messages
-        top raggle:
-            type: Raggle
-            every: 850
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #ffffff"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
