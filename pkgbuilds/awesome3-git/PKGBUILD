@@ -1,4 +1,5 @@
 # Contributor: Gigamo <gigamo@gmail.com>
+# Disclaimer: This PKGBUILD is simply a modified noonov <noonov@gmail.com>'s awesome-git PKGBUILD
 
 pkgname=awesome3-git
 pkgver=20080411
@@ -7,10 +8,10 @@ pkgdesc="awesome-3 git branch of the Awesome Window Manager"
 arch=('i686' 'x86_64')
 url="http://awesome.naquadah.org/"
 license=('GPL')
-depends=('cairo' 'xcb-util' 'confuse' 'pango' 'libxinerama' 'libxrandr')
+depends=('xcb-util' 'confuse' 'imlib2' 'pango' 'libxinerama' 'libxrandr')
 makedepends=('asciidoc' 'docbook-xsl' 'git' 'pkgconfig' 'xmlto')
 provides=('awesome')
-conflicts=('awesome' 'awesome-git' 'awesome-git-3')
+conflicts=('awesome' 'awesome-git' 'awesome3-git')
 source=()
 md5sums=('')
 
@@ -18,19 +19,23 @@ _gitroot="git://git.naquadah.org/awesome.git"
 _gitname="awesome"
 
 build() {
+  msg "This git branch is intended for testing only, please report as many bugs as possible :)"
+  msg "Starting build"
   cd $startdir/src
 
   if [ -d $_gitname ]; then
     (cd $_gitname && git-fetch origin && git-reset --hard origin/awesome-3)
   else
-    git clone $_gitroot
-    cd $_gitname
-    git checkout -b awesome-3 origin/awesome-3
+    (git clone $_gitroot && cd $_gitname && git checkout -b awesome-3 origin/awesome-3) 
   fi
 
-  cd $_gitname
-  msg "Starting make..."
-  ./autogen.sh || return 1 
+  rm -rf $_gitname-build
+  cp -r $_gitname $_gitname-build
+  cd $_gitname-build 
+  
+  msg "Getting ready to compile..."
+  ./autogen.sh || return 1
+  msg "Succesfully generated configure files"
   ./configure --prefix=/usr || return 1
   make || return 1
   make DESTDIR=$startdir/pkg install || return 1

@@ -1,4 +1,4 @@
-# Original author: noonov <noonov@gmail.com>
+# Original contributor: noonov <noonov@gmail.com>
 # Modified by: Gigamo <gigamo@gmail.com>
 
 pkgname=awesome-git
@@ -8,7 +8,7 @@ pkgdesc="A tiling window manager initially based on a dwm code rewriting"
 arch=('i686' 'x86_64')
 url="http://awesome.naquadah.org/"
 license=('GPL')
-depends=('cairo' 'confuse' 'pango' 'libxinerama' 'libxrandr')
+depends=('confuse' 'pango' 'imlib2' 'libxinerama' 'libxrandr')
 makedepends=('asciidoc' 'autoconf' 'automake' 'docbook-xsl' 'git' 'pkgconfig' 'xmlto')
 provides=('awesome')
 conflicts=('awesome')
