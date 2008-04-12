@@ -2,44 +2,52 @@
 # Author: Gigamo <gigamo@gmail.com>
 # Wrote this because I'm too lazy to upload manually all the time
 # Requires scrot, imagemagick and ncftp
+# TODO: Try option parsing
 
 # Info
 FTPHOST = ""
 FTPPATH = ""
 FTPUSER = ""
 FTPPASS = ""
+PICPATH = "" # Include trailing space or leave blank to save in working directory
+
+# Probably don't change this
 PICNAME = ARGV
 
+# Definitions
 def usage
   puts "Usage: screenshot [name]"
   puts ""
-  puts "For example       - screenshot current"
-  puts "                    would scrot a screenshot named current.png"
+  puts "    For example   - screenshot current"
+  puts "                  -> would scrot a screenshot named current.png"
   exit 1
 end
 
 def link
+  puts ""
   puts "Link:"
   puts ""
   puts "http://#{FTPHOST}/gigamo/#{FTPPATH}/#{PICNAME}.png"
 end
 
 def printscreen
-  IO.popen("scrot #{PICNAME}.png && cp #{PICNAME}.png #{PICNAME}t.png && mogrify -resize 25% #{PICNAME}t.png") {}
+  IO.popen("scrot #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png") {}
 end
 
 def upload
-  IO.popen("ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICNAME}.png #{PICNAME}t.png") {}
+  IO.popen("ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png") {}
+  puts "Upload succesful!"
 end
 
 def clean
-  IO.popen("rm #{PICNAME}.png #{PICNAME}t.png") {}
+  IO.popen("rm -i #{PICPATH}#{PICNAME}.png && rm #{PICPATH}#{PICNAME}t.png") {}
 end
 
 # Run the actual thing!
 if ARGV.empty?
   usage
 else
+  # This is fairly modular... Comment out what you don't want it to do
   printscreen
   upload
   link
