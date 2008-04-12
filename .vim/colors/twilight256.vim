@@ -41,11 +41,11 @@ hi String ctermfg=193
 hi Identifier ctermfg=69
 " Type
 hi Structure ctermfg=139
-hi Function ctermfg=185
+hi Function ctermfg=228
 " dylan: method, library, ...
-hi Statement ctermfg=228 cterm=NONE
+hi Statement ctermfg=185 cterm=NONE
 " Keywords
-hi PreProc ctermfg=228
+hi PreProc ctermfg=185
 
 hi NonText ctermfg=244 ctermbg=236
 
