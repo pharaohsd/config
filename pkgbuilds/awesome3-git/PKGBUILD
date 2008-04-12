@@ -2,14 +2,14 @@
 # Disclaimer: This PKGBUILD is simply a modified noonov <noonov@gmail.com>'s awesome-git PKGBUILD
 
 pkgname=awesome3-git
-pkgver=20080411
+pkgver=20080412
 pkgrel=1
 pkgdesc="awesome-3 git branch of the Awesome Window Manager"
 arch=('i686' 'x86_64')
 url="http://awesome.naquadah.org/"
 license=('GPL')
 depends=('xcb-util' 'confuse' 'imlib2' 'pango' 'libxinerama' 'libxrandr')
-makedepends=('asciidoc' 'docbook-xsl' 'git' 'pkgconfig' 'xmlto')
+makedepends=('asciidoc' 'autoconf' 'docbook-xsl' 'git' 'pkgconfig' 'xmlto')
 provides=('awesome')
 conflicts=('awesome' 'awesome-git' 'awesome3-git')
 source=()
