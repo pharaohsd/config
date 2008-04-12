@@ -36,7 +36,7 @@ hi Comment ctermfg=241
 hi Todo ctermfg=244 ctermbg=NONE cterm=bold
 
 hi Constant ctermfg=202
-hi String ctermfg=193
+hi String ctermfg=229
 
 hi Identifier ctermfg=69
 " Type

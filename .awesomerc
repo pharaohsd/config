@@ -61,9 +61,9 @@ screen 0
     ######
     tags
     {
-        tag t { layout = "tile" mwfact = 0.575 }
-        tag w { layout = "tilebottom" mwfact = 0.625 }
-        tag d { layout = "tilebottom" mwfact = 0.425 }
+        tag t { layout = "tile" mwfact = .675 }
+        tag w { layout = "tilebottom" mwfact = .625 }
+        tag d { layout = "tile" mwfact = .5 }
         tag 4 { layout = "floating" }
         tag 5 { layout = "tile" nmaster = 3 ncol = 3 }
         tag 6 { layout = "floating" }
@@ -104,7 +104,7 @@ screen 0
         }
 
         ######
-        textbox mpd_sep { align = "left" text = " " }
+        iconbox ib_sep { align = "left" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
         textbox mpd 
         { 
             align = "left" 
@@ -113,15 +113,13 @@ screen 0
         }
         
         
-        textbox vol_sep { align = "left" text = "   " }
+        iconbox ib_sep1 { align = "left" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
         iconbox vol_ib { align = "left" image = "/home/gig/.awesome/transicons/vol.png" y = "3" resize = "false" }
-        textbox vol_sep2 { align = "left" text = " " }
         textbox tb_vol 
         { 
             align = "left" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
         }
-        textbox vol_sep3 { align = "left" text = " " }
         progressbar pb_vol
         {
             data master { bg = "#0a0a0a" fg = "#aecf96" fg_center = "#aecf96" fg_end = "#ff5656" fg_off = "#494b4f" bordercolor = "#0a0a0a" }
@@ -133,9 +131,7 @@ screen 0
         }
 
 
-        textbox cpu_sep { align = "right" text = " " }
         iconbox cpu_ib { align = "right" image = "/home/gig/.awesome/transicons/cpu.png" y = "3" resize = "false" }
-        textbox cpu_sep2 { align = "right" text = " " }
         textbox cpu_freq 
         { 
             align = "right" 
@@ -150,15 +146,13 @@ screen 0
         }
 
 
-        textbox mem_sep { align = "right" text = "   " } 
+        iconbox ib_sep2 { align = "right" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
         iconbox mem_ib { align = "right" image = "/home/gig/.awesome/transicons/mem.png" y = "3" resize = "false" }
-        textbox mem_sep2 { align = "right" text = " " }
         textbox tb_mem 
         { 
             align = "right" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
         }
-        textbox mem_sep3 { align = "right" text = " " }
         progressbar membar
         {
             data mem { bg = "#0a0a0a" fg_center = "#aecf96" fg_end = "#ff0000" fg = "#aecf96" fg_off = "#494b4f" bordercolor = "#0a0a0a" }
@@ -166,17 +160,14 @@ screen 0
         }
 
 
-        textbox net_sep { align = "right" text = "   " }
-        iconbox down_ib { image = "/home/gig/.awesome/transicons/down3.png" y = "3" resize = "false" align="right" }
-        textbox net_sep2 { align = "right" text = " " }
+        iconbox ib_sep3 { align = "right" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
+iconbox down_ib { image = "/home/gig/.awesome/transicons/down3.png" y = "3" resize = "false" align="right" }
         textbox down 
         { 
             align = "right" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "0" } 
         }
-        textbox net_sep3 { align = "right" text = " " }
         iconbox up_ib { image = "/home/gig/.awesome/transicons/up3.png" y = "3" resize = "false" align = "right" }
-        textbox net_sep4 { align = "right" text = " " }
         textbox up 
         { 
             align = "right" 
@@ -184,7 +175,7 @@ screen 0
         }
 
 
-        textbox bat_sep { align = "right" text = "   " }
+        iconbox ib_sep4 { align = "right" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
         textbox battery 
         { 
             align = "right" 
@@ -192,14 +183,14 @@ screen 0
         } 
 
 
-        textbox mailpacmanraggle_sep { align = "right" text = "   " }
+        iconbox ib_sep5 { align = "right" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
         textbox mail 
         { 
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
             mouse { button = "1" command = "spawn" arg = "firefox3 http://www.gmail.com" } 
             align = "right" 
         } 
-        textbox mailpacmanraggle_sep2
+        textbox mailpacmanraggle_sep
         { 
             align = "right" 
             text = "/" 
@@ -212,7 +203,7 @@ screen 0
         }
 
         
-        textbox clock_sep { align = "right" text = "   " }
+        iconbox ib_sep6 { align = "right" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
         textbox clock 
         { 
             align = "right" 
