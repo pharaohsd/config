@@ -17,8 +17,7 @@ PICNAME = ARGV
 # Definitions
 def usage
   puts "Usage: screenshot [name]"
-  puts ""
-  puts "    For example   - screenshot current"
+  puts "\n    For example   - screenshot current"
   puts "                  -> would scrot a screenshot named current.png"
   exit 1
 end
@@ -36,7 +35,7 @@ end
 
 def upload
   IO.popen("ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png") {}
-  puts "Upload succesful!"
+  puts "\nUpload succesful!"
 end
 
 def clean
