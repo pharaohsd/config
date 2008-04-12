@@ -1,62 +1,48 @@
-#!/bin/zsh
-#
-# (c) Gigamo 2008
-#
-# Wrote this because I'm too lazy to upload a screenshot to ftp
-# manually all the time :P
+#!/usr/bin/env ruby
+# Author: Gigamo <gigamo@gmail.com>
+# Wrote this because I'm too lazy to upload manually all the time
+# Requires scrot, imagemagick and ncftp
 
-usage() {
-  echo "Usage: screenshot [name]"
-  echo
-  echo "     no option            - scrot default directory (~/screenshots)"
-  echo "     -d | --destination   - screenshot destination directory"
-  echo
-  echo "     For example:           screenshot current"
-  echo "                            screenshot -d ~/screenshots current"
-  exit
-}
+# Info
+FTPHOST = ""
+FTPPATH = ""
+FTPUSER = ""
+FTPPASS = ""
+PICNAME = ARGV
 
-link() {
-  echo "Link to uploaded picture and thumbnail:"
-  echo
-  echo "http://$ftphost/$ftpuser/$ftppath/${picname}.png"
-  echo "http://$ftphost/$ftpuser/$ftppath/${picname}t.png"
-}
+def usage
+  puts "Usage: screenshot [name]"
+  puts ""
+  puts "For example       - screenshot current"
+  puts "                    would scrot a screenshot named current.png"
+  exit 1
+end
 
-printscreen() {
-  `cd $destdir && scrot ${picname}.png && cp ${picname}.png ${picname}t.png && mogrify -resize 25% ${picname}t.png`
-}
+def link
+  puts "Link:"
+  puts ""
+  puts "http://#{FTPHOST}/gigamo/#{FTPPATH}/#{PICNAME}.png"
+end
 
-upload() {
-  ftphost=""
-  ftpuser="" # Probably only required for my isp's FTP
-  ftppath=""
-  ftplogin=""
-  ftppass=""
-  `ncftpput -u $ftplogin -p $ftppass -R -m $ftphost $ftppath $pic $thumb`
-}
+def printscreen
+  IO.popen("scrot #{PICNAME}.png && cp #{PICNAME}.png #{PICNAME}t.png && mogrify -resize 25% #{PICNAME}t.png") {}
+end
 
-case "$1" in
-  '-d'|'--destination')
-    picname=$3
-    destdir=$2
-    pic=$destdir/${picname}.png
-    thumb=$destdir/${picname}t.png
-    printscreen
-    upload
-    link
-  ;;
-  *)
-    if [ -z "$1" ] ; then
-      usage
-    else 
-      picname=$1
-      destdir=~/screenshots # Default destination directory
-      pic=$destdir/${picname}.png
-      thumb=$destdir/${picname}t.png
-      printscreen
-      upload
-      link
-    fi
-  ;;
-esac
+def upload
+  IO.popen("ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICNAME}.png #{PICNAME}t.png") {}
+end
+
+def clean
+  IO.popen("rm #{PICNAME}.png #{PICNAME}t.png") {}
+end
+
+# Run the actual thing!
+if ARGV.empty?
+  usage
+else
+  printscreen
+  upload
+  link
+  clean
+  exit 0
+end
