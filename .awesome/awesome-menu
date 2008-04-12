@@ -5,9 +5,9 @@
 PATH="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/home/gig/bin:/home/gig/hacks:/opt/mozilla/bin:/opt/java/jre/bin"
 #----[ dmenu ]------------------------------------------------------------------------
 
-#sh -c "$(exec `dmenu_path | dmenu -fn '-*-terminus-medium-r-normal-*-12-120-*-*-*-*-iso8859-1' -nb '#0a0a0a' -nf '#919191' -sb '#285577'` && exec $exe)"
+zsh -c "$(exec `dmenu_path | dmenu -fn '-*-terminus-medium-r-normal-*-12-120-*-*-*-*-iso8859-1' -nb '#0a0a0a' -nf '#919191' -sb '#285577'` && exec $exe)"
 
 
 #----[ awesome-menu ]-------------------------------------------------------
 
-sh -c "$(exec ls -lL `echo $PATH | sed 'y/:/ /'` | awk '$1 ~ /^[^d].*x/ && NF > 2 { print $NF }' | sort | uniq | awesome-menu -e 'exec ' 'Run:')"
+#zsh -c "(exec ls -lL `echo $PATH | sed 'y/:/ /'` | awk '$1 ~ /^[^d].*x/ && NF > 2 { print $NF }' | sort | uniq | awesome-menu -e 'exec ' 'Run:')"

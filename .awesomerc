@@ -1,6 +1,5 @@
-# By Gigamo (11/04/08)
-# Intended for awesome-3 git branch, but should (currently still)
-# work with 2.3-rc1
+# By Gigamo <gigamo@gmail.com> (12/04/08)
+# Intended for awesome-3 git branch, but should (currently still) work with 2.3-rc1
 #
 # TODO: Make use of emptybox widgets
 
@@ -46,18 +45,18 @@ screen 0
         floating_placement = smart
     }
 
-    ######
-    titlebar
-    { 
-        position = "top" 
-        text_align = "left" 
-        styles 
-        { 
-             normal { shadow = "#111111" shadow_offset = "1" } 
-             focus { bg = "#285577" shadow = "#111111" shadow_offset = "1" } 
-        }
-        height = "14" 
-    }
+#    ######
+#    titlebar
+#    { 
+#        position = "top" 
+#        text_align = "left" 
+#        styles 
+#        { 
+#             normal { shadow = "#111111" shadow_offset = "1" } 
+#             focus { bg = "#285577" shadow = "#111111" shadow_offset = "1" } 
+#        }
+#        height = "14" 
+#    }
 
     ######
     tags

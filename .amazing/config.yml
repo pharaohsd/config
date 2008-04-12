@@ -1,9 +1,7 @@
-# Configuration file for amazing (http://github.com/dag/amazing)
-# Amazing is a widget manager for the awesome window manager
-# This particular config will only work with development version of awesome 
-# (version 2.3.rc1.1 and up!)
+# By Gigamo <gigamo@gmail.com> (12/04/08)
 #
-# By Gigamo (11/04/08)
+# Configuration file for amazing (http://github.com/dag/amazing)
+# This particular config will only work with development version of awesome (version 2.3.rc1.1 and up!)
 
 # Widgets list begins here
 widgets:
@@ -84,7 +82,7 @@ widgets:
         # GMail
         top mail:
             type: GMail 
-            every: 180
+            every: 90
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #ffffff"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
