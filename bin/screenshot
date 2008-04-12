@@ -16,9 +16,7 @@ PICNAME = ARGV
 
 # Definitions
 def usage
-  puts "Usage: screenshot [name]"
-  puts "\n    For example   - screenshot current"
-  puts "                  -> would scrot a screenshot named current.png"
+  puts "Usage: screenshot [name]\n\n    For example   - screenshot current\n                  -> would scrot a screenshot named current.png"
   exit 1
 end
 
