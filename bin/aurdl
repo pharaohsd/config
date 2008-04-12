@@ -1,15 +1,16 @@
-#!/bin/bash
+#!/bin/zsh
 #
 # Supposed to be a VERY simple aur-download-script...
 # TODO: search function (maybe..)
+
 usage() {
   echo "Usage: aurdl [name]"
   echo
   echo "     no option            - download to the working directory"
   echo "     -d | --destination   - download to a specific directory"
   echo
-  echo "     For example:           aurdl -d /path/to/dir packagename"
-  echo "                            aurdl packagename"
+  echo "     For example:           aurdl packagename"
+  echo "                            aurdl -d /path/to/dir packagename"
   exit
 }
 
