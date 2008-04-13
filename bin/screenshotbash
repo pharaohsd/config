@@ -1,0 +1,58 @@
+#!/bin/zsh
+# Author: Gigamo <gigamo@gmail.com>
+# Wrote this because I'm too lazy to upload manually all the time
+# Requires scrot, imagemagick and ncftp
+FTP_USER="users.telenet.be"
+FTP_PATH="pics"
+FTP_USER=""
+FTP_PASS=""
+PICPATH="~/screenshots/" # Include trailing slash or leave blank to save in working directory
+NO_CLEAN=0
+
+PICNAME=$1
+
+usage() {
+  echo "Usage: screenshot [name]"
+  echo
+  echo "     For example:         -   screenshot current"
+  echo "                          ->  would scrot a screenshot called current.png"
+  exit 0
+}
+
+link() {
+  echo "Link to uploaded picture and thumbnail:"
+  echo
+  echo "http://$FTP_HOST/gigamo/$FTP_PATH/${PICNAME}.png"
+}
+
+printscreen() {
+  if [ -x "/usr/bin/scrot" && "/usr/bin/mogrify" ]; then
+    (scrot ${PICPATH}${PICNAME}.png && cp ${PICPATH}${PICNAME}.png ${PICPATH}${PICNAME}t.png && mogrify -resize 25% ${PICPATH}${PICNAME}t.png)
+  else
+    echo "Please install scrot and/or imagemagick"
+  fi
+}
+
+upload() {
+  if [ -x "/usr/bin/ncftp" ]; then
+    (ncftpput -u $FTP_USER -p $FTP_PASS -R -m $FTP_HOST $FTP_PATH ${PICPATH}${PICNAME}.png ${PICPATH}${PICNAME}t.png)
+  else
+    echo "Please install ncftp"
+  fi
+}
+
+clean() {
+  (rm -f ${PICPATH}${PICNAME}.png ${PICPATH}${PICNAME}t.png)
+}
+
+if [ -z "$1" ]; then
+  usage
+else 
+  printscreen
+  upload
+  link
+  if [ $NO_CLEAN -eq 0 ]; then
+    clean
+  fi
+  exit 0
+fi
