@@ -9,22 +9,19 @@ FTPHOST = ""
 FTPPATH = ""
 FTPUSER = ""
 FTPPASS = ""
-PICPATH = "" # Include trailing space or leave blank to save in working directory
+PICPATH = "~/screenshots/" # Include trailing space or leave blank to save in working directory
 
 # Probably don't change this
 PICNAME = ARGV
 
 # Definitions
 def usage
-  puts "Usage: screenshot [name]\n\n    For example   - screenshot current\n                  -> would scrot a screenshot named current.png"
-  exit 1
+  puts "No filename specified! Usage: screenshot [name]\n\n    For example   - screenshot current\n                  -> would scrot a screenshot named current.png"
+  exit 0
 end
 
 def link
-  puts ""
-  puts "Link:"
-  puts ""
-  puts "http://#{FTPHOST}/gigamo/#{FTPPATH}/#{PICNAME}.png"
+  puts "\nLink:\n\nhttp://#{FTPHOST}/gigamo/#{FTPPATH}/#{PICNAME}.png"
 end
 
 def printscreen
@@ -37,7 +34,7 @@ def upload
 end
 
 def clean
-  IO.popen("rm -i #{PICPATH}#{PICNAME}.png && rm #{PICPATH}#{PICNAME}t.png") {}
+  IO.popen("rm -i #{PICPATH}#{PICNAME}.png && rm -i #{PICPATH}#{PICNAME}t.png") {}
 end
 
 # Run the actual thing!
