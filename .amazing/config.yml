@@ -1,4 +1,4 @@
-# By Gigamo <gigamo@gmail.com> (12/04/08)
+# By Gigamo <gigamo@gmail.com> (13/04/08)
 #
 # Configuration file for amazing (http://github.com/dag/amazing)
 # This particular config will only work with development version of awesome (version 2.3.rc1.1 and up!)
@@ -39,9 +39,9 @@ widgets:
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"                
                 if @volume == 0
-                  "text #{@volume}%#{urgcol}"
+                  "text  #{@volume}% #{urgcol}"
                 else
-                  "text #{@volume}%#{normcol}"
+                  "text  #{@volume}% #{normcol}"
                 end
         # Memory progressbar
         top membar:
@@ -56,9 +56,9 @@ widgets:
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
                 if @usage.to_i >= 75
-                  "text #{@usage.to_i}%#{urgcol}"
+                  "text  #{@usage.to_i}% #{urgcol}"
                 else
-                  "text #{@usage.to_i}%#{normcol}"
+                  "text  #{@usage.to_i}% #{normcol}"
                 end
         # Clock
         top clock:
@@ -75,9 +75,9 @@ widgets:
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
                 if @speed[0] >= 1000
                   ghz = @speed[0] / 1000
-                  "text %3.2f GHz #{urgcol}" % ghz
+                  "text  %3.2f GHz #{urgcol}" % ghz
                 else
-                  "text %d MHz #{normcol}" % @speed[0]
+                  "text  %d MHz #{normcol}" % @speed[0]
                 end
         # GMail
         top mail:
@@ -119,9 +119,9 @@ widgets:
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #56ff56"
                 if @down.to_i >= 1500
-                  "text %.1f#{urgcol}" % @download_rate
+                  "text  %.1f #{urgcol}" % @download_rate
                 else
-                  "text %.1f#{normcol}" % @download_rate
+                  "text  %.1f #{normcol}" % @download_rate
                 end
             interface: wlan0
         # Upload speed
@@ -132,9 +132,9 @@ widgets:
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
                 if @up.to_i >= 50
-                  "text %.1f#{urgcol}" % @upload_rate
+                  "text  %.1f#{urgcol}" % @upload_rate
                 else
-                  "text %.1f#{normcol}" % @upload_rate
+                  "text  %.1f#{normcol}" % @upload_rate
                 end
             interface: wlan0
         # MPD
