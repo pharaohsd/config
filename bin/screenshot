@@ -34,6 +34,7 @@ def upload
     puts "\nUpload succesful!"
   else
     puts "Please install ncftp"
+  end
 end
 
 def clean
