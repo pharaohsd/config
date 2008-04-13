@@ -1,0 +1,88 @@
+#!/usr/bin/perl
+# $Id: environ 240 2005-12-10 05:37:54Z cmauch $
+#
+# Author: Charles Mauch (charles@mauch.name)
+# Description: generates Environ style passwords
+# Created: Fri 09 Dec 2005 07:31:36 AM PST
+# Legal: (c) 2005 Charles Mauch, released under the terms of the GPLv2
+#
+# This script follows the Environ standard for generating passwords, which is
+# to use six alphanumber characters (rotated between vowels and consonates)
+# followed by two random numbers.  The standard is intended to generate
+# passwords that are both safe and easy to remember.
+#
+# Feel free to tweak it.
+#
+# WARNING:  The built-in Perl rand() function uses the standard C ibrary
+# routine rand (3) to generate pseudo-random numbers. Some implementations of
+# the rand function return only 16-bit random numbers or have algorithmic
+# weaknesses and may not be sufficiently random. A further weakness is the
+# source of the seed for the generator.  The default seed is based on the time
+# and process ID, not a particularly large range of possible seeds. 
+#
+# This implementation uses /dev/random, a kernel module available on most UNIX
+# systems as the source of random data. The /dev/random driver gathers
+# environmental noise from various non-deterministic sources within the
+# operating system environment.  
+#
+# NOTE: Because I've chosen to use /dev/random, this script may appear to hang
+# if enough entropy has not been gathered.  If this happens, shake your mouse
+# around to give the system some more entropy.  If you find this annoying, you
+# can use the (slightly) less secure and much faster /dev/urandom
+#
+
+$SIZE=6;                                                # Size of alpha portion of password
+$NUMS=2;                                                # Size of numeric portion of password
+$DEVRANDOM="/dev/random";                               # Random byte device
+$timestamp = &get_timestamp;                            # Var with the date
+                                                        
+@vwl = qw(a e i o u);                                   # 5 vowels
+@con = qw(b c d f g h j k l m n p r s t v w y z);       # 19 consonants
+@num = qw(1 2 3 4 5 6 7 8 9 0);                         # 10 numbers
+
+# Get random bytes from /dev/urandom
+# Put $SIZE+1 random bytes in array @rand
+#
+open RND, "$DEVRANDOM";
+read (RND, $rand, $SIZE+1);
+@rand  = split //, $rand;
+
+open RND2, "$DEVRANDOM";
+read (RND2, $rand2, $NUMS+1);
+@rand2  = split //, $rand2;
+
+print " :  Generated : $timestamp for user $ENV{USER}\n";
+print " : Passphrase : ";
+
+# Loop for each character in password
+#   Convert random byte to number 0-255 with ord()
+#   Scale random byte to required range with % modulus operator
+#   Use last random byte to choose position of numeric component
+#
+for ($i=0; $i<$SIZE; $i++) {
+    if ($i%2)                           {print @vwl[ord(@rand[$i])%5 ]}
+    else                                {print @con[ord(@rand[$i])%19]}
+}
+
+# Now pick two numbers to hang off of the end of the passphrase
+
+for ($a=0; $a<$NUMS; $a++) {
+  print @num[ord(@rand2[$a])%10 ]; 
+}
+
+print "\n\n";
+print "WARNING: Your scrollback buffer contains this passphrase, please nuke this term\n";
+
+sub get_timestamp {
+    my ($sec, $min, $hour, $mday, $mon, $year) = localtime(time);
+    $year = $year + 1900;
+    $mon = sprintf("%.2d", $mon + 1);
+    $mday = sprintf("%.2d", $mday);
+    $hour = sprintf("%.2d", $hour);
+    $min = sprintf("%.2d", $min);
+    $sec = sprintf("%.2d", $sec);
+    $test = "$year $mon $mday $hour:$min:$sec";
+    return $test;
+}
+
+exit 0;

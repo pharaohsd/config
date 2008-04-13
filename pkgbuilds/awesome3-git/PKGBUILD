@@ -1,8 +1,8 @@
 # Contributor: Gigamo <gigamo@gmail.com>
-# Disclaimer: This PKGBUILD is simply a modified noonov <noonov@gmail.com>'s awesome-git PKGBUILD
+# Disclaimer: This PKGBUILD is simply modified from noonov <noonov@gmail.com>'s awesome-git PKGBUILD
 
 pkgname=awesome3-git
-pkgver=20080412
+pkgver=20080413
 pkgrel=1
 pkgdesc="awesome-3 git branch of the Awesome Window Manager"
 arch=('i686' 'x86_64')
@@ -20,7 +20,7 @@ _gitname="awesome"
 
 build() {
   msg "This git branch is intended for testing only, please report as many bugs as possible :)"
-  msg "Starting build"
+  msg "Connecting to GIT server..."
   cd $startdir/src
 
   if [ -d $_gitname ]; then
@@ -33,13 +33,12 @@ build() {
   cp -r $_gitname $_gitname-build
   cd $_gitname-build 
   
-  msg "Getting ready to compile..."
+  msg "Starting make..."
   ./autogen.sh || return 1
   msg "Succesfully generated configure files"
   ./configure --prefix=/usr || return 1
   make || return 1
   make DESTDIR=$startdir/pkg install || return 1
 
-  msg "Installing sample awesomerc to /usr/share/awesome"
   install -D -m644 awesomerc $startdir/pkg/usr/share/awesome/awesomerc
 }

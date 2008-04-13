@@ -1,0 +1,3 @@
+=Some scripts.. Some are mine and some are not.
+
+I put them into ~/bin, and I have that directory in my PATH environment variable.

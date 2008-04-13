@@ -2,14 +2,13 @@
 # Author: Gigamo <gigamo@gmail.com>
 # Wrote this because I'm too lazy to upload manually all the time
 # Requires scrot, imagemagick and ncftp
-# TODO: Try option parsing
 
 # Info
 FTPHOST = ""
 FTPPATH = ""
 FTPUSER = ""
 FTPPASS = ""
-PICPATH = "~/screenshots/" # Include trailing space or leave blank to save in working directory
+PICPATH = "~/screenshots/" # Include trailing slash or leave blank to save in working directory
 
 # Probably don't change this
 PICNAME = ARGV
@@ -30,21 +29,27 @@ end
 
 def upload
   IO.popen("ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png") {}
-  puts "\nUpload succesful!"
+  puts "\nUpload succesful!"    
 end
 
 def clean
   IO.popen("rm -i #{PICPATH}#{PICNAME}.png && rm -i #{PICPATH}#{PICNAME}t.png") {}
 end
 
-# Run the actual thing!
-if ARGV.empty?
-  usage
+# Check if imagemagick/scrot/ncftp are installed
+if File.executable? "/usr/bin/mogrify" and File.executable? "/usr/bin/scrot" and File.executable? "/usr/bin/ncftpput"
+  # Run the actual thing!
+  if ARGV.empty?
+    usage
+  else
+    # This is fairly modular... Comment out what you don't want it to do
+    printscreen
+    upload
+    link
+    clean
+    exit 0
+  end
 else
-  # This is fairly modular... Comment out what you don't want it to do
-  printscreen
-  upload
-  link
-  clean
-  exit 0
+  puts "Could not find either ncftp, imagemagick or scrot installed on your system"
+  exit 1
 end

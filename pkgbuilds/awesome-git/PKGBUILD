@@ -21,24 +21,23 @@ _gitname="awesome"
 build() {
   cd $srcdir
 
+  msg "Connecting to GIT server..."
   if [ -d $_gitname ]; then
     (cd $_gitname && git-pull origin)
   else
     git clone $_gitroot
   fi
  
-  msg "Starting make..."
-
   rm -rf $_gitname-build
   cp -r $_gitname $_gitname-build
   cd $_gitname-build
-
+  
+  msg "Starting make..."
   ./autogen.sh || return 1
   ./configure --prefix=/usr || return 1
   make || return 1
   make DESTDIR=$pkgdir install || return 1
 
-  msg "Installing sample awesomerc to /usr/share/awesome"
   install -D -m644 awesomerc \
     $pkgdir/usr/share/awesome/awesomerc
 }

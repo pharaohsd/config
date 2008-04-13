@@ -1,0 +1,3 @@
+#! /bin/zsh
+
+urxvtc -e zsh -c "vim $@"

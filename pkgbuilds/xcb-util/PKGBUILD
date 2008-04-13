@@ -1,7 +1,7 @@
 # Contributor: Gigamo <gigamo@gmail.com>
 
 pkgname=xcb-util
-pkgver=20080410
+pkgver=20080412
 pkgrel=1
 pkgdesc="Utility libraries for XC Binding"
 arch=('i686' 'x86_64')
@@ -25,15 +25,16 @@ build() {
     git clone $_gitroot
   fi
  
-  cd $_gitname
+  rm -rf $_gitname-build
+  cp -r $_gitname $_gitname-build
+  cd $_gitname-build
 
   #msg "Applying patch..."
-  #wget http://www.mini-dweeb.org/~arnau/coding/patches/xcb_icccm_fix_protocols.patch 
-  #patch -p1 -i xcb_icccm_fix_protocols.patch
+  #wget http://www.mini-dweeb.org/~arnau/coding/patches/xcb_icccm_fix_protocols.patch || return 1 
+  #patch -p1 -i xcb_icccm_fix_protocols.patch || return 1
 
   msg "Starting make..."
-
-  autoreconf -vis || return 1
+  ./autogen.sh || return 1
   ./configure --prefix=/usr || return 1
   make || return 1
   make DESTDIR=$pkgdir install || return 1

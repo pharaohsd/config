@@ -8,8 +8,9 @@ export MAIL=/home/gig/.mail/default
 export PACKAGER="Gigamo <gigamo@gmail.com>"
 export CVS_RSH="ssh"
 export OOO_FORCE_DESKTOP="gnome"
-export LC_ALL=en_US.utf8
-export LANG=en_US.utf8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LOCALE=en_US.UTF-8
 
 # watch for people
 watch=(notme)                   # watch for everybody but me

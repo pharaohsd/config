@@ -24,10 +24,7 @@ urxvt*urlLauncher:	      firefox3
 urxvt*matcher.button:	    1
 urxvt*matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
 urxvt*visualBell:	        true
-urxvt*tabbed.tabbar-bg:   7
-urxvt*tabbed.tabbar-fg:   0
-urxvt*tabbed.tab-bg:      #6677ff
-urxvt*tabbed.tab-fg:      #ffffff
+urxvt*keysym.C-r:         perl:matcher
 ! Colors
 
 urxvt*cursorColor:        #919191
@@ -44,13 +41,13 @@ URxvt*foreground:         #919191
 !URxvt*font:              -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-1
 !URxvt*boldFont:          -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-1
 
-urxvt.font:               -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-1
-urxvt.boldFont:           -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-1
-!urxvt.italicFont:         -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso10646-1
-!urxvt.boldItalicFont:     -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso10646-1
+!urxvt.font:               -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-*
+!urxvt.boldFont:           -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-*
+!urxvt.italicFont:         -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso10646-*
+!urxvt.boldItalicFont:     -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso10646-*
 
-!urxvt.font:               xft:Terminus:pixelsize=12
-!urxvt.boldFont:           xft:Terminus:pixelsize=12
+urxvt.font:               xft:Terminus:pixelsize=12
+urxvt.boldFont:           xft:Terminus:pixelsize=12
 !urxvt.italicFont:         xft:Terminus:pixelsize=12
 !urxvt.boldItalicFont:     xft:Terminus:pixelsize=12
 
@@ -83,11 +80,11 @@ urxvt.boldFont:           -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-1
 !*color4:                 #8833ff
 !*color12:                #aa55ff
 !blue -> violet
-*color4:                  #0066ff
+*color4:                  #285577
 *color12:                 #6677ff
 !magenta -> pink
-*color5:				          #ce5c00
-*color13:	                #f57900
+*color5:                  #ce5c00
+*color13:                 #f57900
 !cyan -> blue
 *color6:                  #3399ff
 *color14:                 #99ccff

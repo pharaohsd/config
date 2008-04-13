@@ -3,6 +3,6 @@
 * For a brief instruction on how to install the awesome-3 git-branch, take a look at my wiki.
 * For amazing readme/info, check the README.rdoc in .amazing/
 
-Picture[http://users.telenet.be/gigamo/pics/current.png] of the setup.
+Picture of my current setup: http://users.telenet.be/gigamo/pics/current.png
 
 ==Have fun!
