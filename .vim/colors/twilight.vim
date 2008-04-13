@@ -37,7 +37,7 @@ hi VertSplit guifg=#5f5a60 guibg=#5f5a60 ctermfg=60
 hi Folded guibg=#384048 guifg=#a0a8b0 ctermfg=247
 hi Comment guifg=#5f5a60 ctermfg=241
 hi Todo guifg=#808080 guibg=NONE gui=bold ctermfg=244 ctermbg=NONE cterm=bold
-hi Constant guifg=#cf6a4c ctermfg=166
+hi Constant guifg=#cf6a4c ctermfg=209
 hi String guifg=#ddf2a4 ctermfg=229
 hi Type ctermfg=83
 
