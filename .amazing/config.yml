@@ -1,5 +1,4 @@
-# By Gigamo <gigamo@gmail.com> (14/04/08)
-#
+# Gigamo <gigamo@gmail.com> (14/04/08)
 # Configuration file for amazing (http://github.com/dag/amazing)
 # This particular config will only work with development version of awesome (version 2.3.rc1.1 and up!)
 
@@ -148,5 +147,5 @@ widgets:
                 when :paused
                   "text ||: #@artist - #@title (#{@position}/#{@length})"
                 when :stopped
-                  "text []"
+                  "text []: not playing"
                 end

@@ -1,0 +1,35 @@
+#!/bin/zsh
+# Supposed to be a VERY simple aur-download-script...
+usage() {
+  echo "Usage: aurdl [name]"
+  echo
+  echo "     no option            - download to the working directory"
+  echo "     -d | --destination   - download to a specific directory"
+  echo
+  echo "     For example:           aurdl packagename"
+  echo "                            aurdl -d /path/to/dir packagename"
+  exit 0
+}
+
+download() {
+  wget -nv http://aur.archlinux.org/packages/$pacname/$pacname.tar.gz
+}
+
+if [ -z "$1" ]; then
+  usage
+else 
+  case "$1" in
+    '-d'|'--destination')
+      destdir=$2
+      pacname=$3
+      cd $destdir && download $pacname
+      echo "Package succesfully saved as $pacname.tar.gz in $destdir!"
+      ;;
+    *)
+      pacname=$1
+      download $pacname
+      echo "Package succesfully saved as $pacname.tar.gz!"
+      ;;
+  esac
+  exit 0
+fi

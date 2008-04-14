@@ -1,0 +1,26 @@
+#!/bin/zsh
+# Author: Gigamo <gigamo@gmail.com>
+# Simple script for moving config files over to local git repo
+SRCDIR="$HOME"
+GITDIR="$HOME/gitconfig/config"
+SRCFILE=$1
+
+usage() {
+  echo "No file specified! Usage: ctg [file]"
+  echo
+  echo "    For example:    ctg bin/ctg"
+  echo "                    will copy bin/ctg to $GITDIR/bin/ctg"
+  exit 0
+}
+
+ctg() {
+echo "Copying $SRCFILE to $GITDIR and adding it to GIT"
+`cp -r $SRCDIR/$SRCFILE $GITDIR/$SRCFILE && cd $GITDIR && git add $GITDIR/$SRCFILE`
+}
+
+if [ -z "$1" ]; then
+  usage
+else
+  ctg
+  exit 0
+fi

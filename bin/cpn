@@ -1,0 +1,181 @@
+#!/bin/sh
+#####################################################################
+#     CCCCC      PPPPPP      NN   NN                     ""  ""     # 
+#    CC    C     PP   PP     NNN  NN                   d (ô)(ô) b   #
+#    CC          PPPPPP      NN N NN                       \/       #
+#    CC    C     PP          NN  NNN                       --       #
+#     CCCCC      PP          NN   NN                                #
+#####################################################################
+
+AUTHOR="sacrine"
+APP="cpn"
+VERSION="v0.01"
+DESCRIPTION="file/directory permission check utility"
+
+USAGE="cpn [-hdfS:]"
+## COLORS
+RED="\033[1;31m";
+GREEN="\033[1;32m"
+END="\033[0m";
+##
+IP=`/sbin/ifconfig wlan0 2>/dev/null \
+            | grep inet | awk '{ printf("%s\n", substr($2,6)) }'`
+
+####################################################################
+ 
+versionchck()
+{
+ if [ -r /etc/*-release ] ; then 
+    distro=`cat /etc/*-release`
+    else if [ -r /etc/*version ] ; then
+        distro=`cat /etc/*version`
+    else
+        distro="not found"
+    fi
+ fi 
+}
+banner()
+{
+    versionchck;
+    printf "## $APP $VERSION ## - Check Permissions NOW! -\n  $DESCRIPTION\n";
+    printf "\t\t[`date | sed 's/.* .* .* \(.*\) .* .*/\1/'`]\n\n";
+    printf  " Distro     : $distro\n";
+    printf  " IP addr    : $IP\n";
+    printf  " OS         : `uname -s`\n";
+    printf  " System.ver : $MACHTYPE\n";
+    printf  " Kernel.rel : `uname -r`\n";
+    echo;
+}
+usage (){ echo >&2 "$APP $VERSION - $DESCRIPTION
+Usage: $USAGE
+    -h                      Usage
+    -d                      Directory check (ww)
+    -f                      File check (nouser/nogroup/ww)
+    -S <fast/full/remove>   Search for suid binaries(fast:\$PATH ; full:/ ;
+                            remove:prompt for s bit removal)";     
+    exit 1; 
+}
+suidchck_()
+{
+ opt=$OPTARG
+ printf "[$GREEN+$END] starting suidchck_() with option: $opt\n";echo;
+ 
+## (FAST SCAN): searches in $PATH, which is fast but doesn't show all suids on the fs!
+## takes only a few seconds or less!
+
+ if [ "$opt" == "fast" ] ; then
+    begin=`date +%s`
+    echo "SCANNING(suids): $PATH";echo; 
+    count=0;
+    for scan_path in $(echo $PATH|sed -e 's/:/ /g');do
+        for suid in $(find $scan_path -perm -4000 2>/dev/null -user root -exec ls {} \;);do
+                printf "\t#$RED SUID $END --> $suid\n";
+    count=`expr $count + 1`
+    done
+    done
+    echo;echo;echo "$count suid(s) found";
+    echo;
+    echo "SCANNING(sgids): $PATH";echo;
+
+    for scan_path in $(echo $PATH|sed -e 's/:/ /g');do
+        for sgid in $(find $scan_path -type f -perm -02000 2>/dev/null);do
+        printf "\t#$RED SGID $END --> $sgid";
+        echo;
+    done
+    done
+    end=`date +%s`
+    runtime=`expr $end - $begin`
+    echo;echo "suidchck_() finished in $runtime second(s)";echo;
+     
+ fi
+
+## (FULL SCAN): searches in / instead of $PATH, which is much slower but shows all with user info!
+## Load will increase dramatically! 
+
+ if [ "$opt" == "full" ] ; then
+    begin=`date +%s`
+    echo "SCANNING(suids): / (this will take a while, load will increase!)";echo;
+        find / -perm -4000 2>/dev/null -user root -exec ls -l {} \;
+    echo;echo;
+    echo "SCANNING(sgids): / ";echo;
+        find / -type f -perm -02000 2>/dev/null -exec ls -l {} \;
+    end=`date +%s`
+    runtime=`expr $end - $begin`
+    echo;echo "suidchck_() finished in $runtime second(s)";echo;
+ fi
+
+## (REMOVE): prompts for s bit removal
+## shows a description of its use!
+
+ if [ "$opt" == "remove" ] ; then
+    echo -n "are you logged in as root?..... "
+    if [ "$UID" == "0" ] ; then
+        echo "yes UID = 0";
+        echo;
+    else
+        echo "no UID = $UID";
+        echo "the remove option requires root privileges.....aborting";
+        echo;
+        exit 1;
+    fi   
+      for scan_path in $(echo $PATH|sed -e 's/:/ /g');do
+        for suid in $(find $scan_path -perm -4000 2>/dev/null -user root -exec ls {} \;);do
+        /usr/bin/whatis `basename $suid`
+        echo -n "[?] remove suid bit on $suid? (y/n): " ; read ans ;
+            if [ "$ans" == "y" ] || [ "$ans" == "Y" ] ; then
+                echo "removing +s bit: `chmod -s $suid` ......";
+                echo;
+            else if [ "$ans" == "n" ] || [ "$ans" == "N" ] ; then
+                echo "[-] skipping $suid";
+                echo;
+            fi
+            fi
+    done
+    done
+    else if [ ! "$opt" ] ; then
+            echo "unknown option , OPTARG should be either fast, full or remove";
+            echo "use -h for help";
+            echo;
+            exit 1
+         fi
+fi
+}
+dirscan_() 
+{
+    printf "[$GREEN+$END] starting dirscan_(): \n";echo;
+    begin=`date +%s`
+    echo "SCANNING: / for worldwritable directories";echo;
+        find / -type d -perm -0777 2>/dev/null
+    end=`date +%s`
+    runtime=`expr $end - $begin`
+
+    echo;echo;echo "dirscan_() finished in $runtime second(s)";echo;
+}
+filescan_() 
+{ 
+    printf "[$GREEN+$END] starting filescan_(): \n";echo; 
+    begin=`date +%s`
+    echo "SCANNING: / for worldwritable files";echo;
+        find / -type f -perm -2 ! -type l 2>/dev/null
+    echo;
+    echo "SCANNING: / for files with nouser/nogroup";echo;
+        find / -nouser -o -nogroup 2>/dev/null
+    echo;         
+    end=`date +%s`
+    runtime=`expr $end - $begin`
+    echo;echo;echo "filescan_() finished in $runtime second(s)";echo;
+}
+
+[ $# -eq 0 ] && { echo >&2 $APP needs an argument! use -h for help; exit 1; }
+    while getopts hdfS: options; do
+        case $options in
+            h) usage ;;   
+            d) banner;dirscan_ ;;
+            f) banner;filescan_ ;;
+            S) banner;suidchck_ ;;
+            \?) echo "no argument given(): use -h for help";echo;exit -1 ;;
+        esac
+    done
+shift $(( $OPTIND - 1 ))
+
+# [http://sacrine.netric.org]
