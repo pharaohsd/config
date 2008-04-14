@@ -1,81 +1,67 @@
-#!/bin/zsh
-AUTHOR="Gigamo <gigamo@gmail.com>"
-APP="screenshot"
-VERSION="v1.0"
-DESCRIPTION="Scrots a screenshot and uploads it to FTP"
+#!/usr/bin/env ruby
+# Author: Gigamo <gigamo@gmail.com>
+# Wrote this because I'm too lazy to upload manually all the time
+# Requires scrot, imagemagick and ncftp
+FTPHOST = "users.telenet.be"
+FTPPATH = "pics"
+FTPUSER = ""
+FTPPASS = ""
+PICPATH = "~/screenshots/" # Include trailing slash or leave blank to save in working directory
+NO_CLEAN = 1 # Remove the files locally afterwards or not
+NO_THUMB = 0 # Make a thumbnail or not
 
-RED="\033[1;31m"
-GREEN="\033[1;32m"
-BLUE="\033[1;34m"
-END="\033[0m"
+def usage
+  puts "Usage: screenshot [name]"
+  puts "\n    -h, --help      - Display this"
+  exit 2
+end
 
-FTP_USER="users.telenet.be"
-FTP_PATH="pics"
-FTP_USER=""
-FTP_PASS=""
-PICPATH="~/screenshots/" # Include trailing slash or leave blank to save in working directory
+def link
+  puts "\nLink:\n\nhttp://#{FTPHOST}/gigamo/#{FTPPATH}/#{PICNAME}.png"
+end
 
-NO_CLEAN=0
-NO_THUMB=0
-
-usage() { 
-echo >&2 "$RED$APP $GREEN$VERSION$BLUE by $AUTHOR$END - $DESCRIPTION
-Usage: screenshot [name]
-     For example:         -   screenshot current
-                          ->  would scrot a screenshot called current.png"
-exit 1
-}
-
-link() {
-echo >&2 "Link to uploaded picture and thumbnail:
-http://$FTP_HOST/gigamo/$FTP_PATH/${PICNAME}.png"
-}
-
-printscreen() {
-  if [ -x "/usr/bin/scrot" && "/usr/bin/mogrify" ]; then
-    if [ $NO_THUMB -eq 0 ]; then
-      (scrot ${PICPATH}${PICNAME}.png && cp ${PICPATH}${PICNAME}.png ${PICPATH}${PICNAME}t.png && mogrify -resize 25% ${PICPATH}${PICNAME}t.png)
+def printscreen
+  if File.executable? "/usr/bin/scrot" and File.executable? "/usr/bin/mogrify"
+    if NO_THUMB == 0
+      `scrot #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png`
     else
-      (scrot ${PICPATH}${PICNAME}.png)
-    fi
+      `scrot #{PICPATH}#{PICNAME}.png`
+    end
   else
-    echo "${RED}Please install scrot and/or imagemagick$END"
-  fi
-}
+    puts "\nPlease install scrot and/or imagemagick"
+  end
+end
 
-upload() {
-  if [ -x "/usr/bin/ncftp" ]; then
-    if [ $NO_THUMB -eq 0 ]; then
-      (ncftpput -u $FTP_USER -p $FTP_PASS -R -m $FTP_HOST $FTP_PATH ${PICPATH}${PICNAME}.png ${PICPATH}${PICNAME}t.png)
+def upload
+  if File.executable? "/usr/bin/ncftp"
+    if NO_THUMB == 0
+      `ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
     else
-      (ncftpput -u $FTP_USER -p $FTP_PASS -R -m $FTP_HOST $FTP_PATH ${PICPATH}${PICNAME}.png)
-    fi
-    echo "${GREEN}Upload succesful!$END"
+      `ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png`
+    end
+    puts "\nUpload succesful!"
   else
-    echo "${RED}Please install ncftp$END"
-  fi
-}
+    puts "\nPlease install ncftp"
+  end
+end
 
-clean() {
-  (rm -f ${PICPATH}${PICNAME}.png ${PICPATH}${PICNAME}t.png)
-}
+def clean
+  `rm -f #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
+end
 
-case "$1" in
-  '-h'|'--help')
-    usage
-    ;;
-  *)
-    if [ -z "$1" ]; then
-      PICNAME="current"
-    else
-      PICNAME="$1"
-    fi
-    printscreen
-    upload
-    link
-    if [ $NO_CLEAN -eq 0 ]; then
-      clean
-    fi
-    exit 0
-    ;;
-esac
+if ARGV[0] == "-h" or ARGV[0] == "--help"
+  usage
+else
+  if ARGV.empty?
+    PICNAME = "current"
+  else
+    PICNAME = ARGV[0]
+  end
+  printscreen
+  upload
+  link
+  if NO_CLEAN == 0
+    clean
+  end
+  exit 0
+end
