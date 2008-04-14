@@ -1,5 +1,7 @@
 # Gigamo <gigamo@gmail.com> (14/04/08)
 # Intended for awesome-3 git branch, but should (currently still) work with 2.3-rc1
+#
+# TODO: Make use of emptybox widgets
 
 ######
 screen 0
@@ -102,43 +104,78 @@ screen 0
         }
 
         ######
-        tasklist top
-         {
-            styles
-            {
-                focus { shadow = "#111111" shadow_offset = "1" }
-            }
-            show_icons = false
-            show = focus 
-            text_align = left
-            mouse { button = "4" command = "client_focusnext" } 
-            mouse { button = "5" command = "client_focusprev" } 
-            mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" } 
-            mouse { modkey = {"Mod1"} button = "5" command = "client_swapprev" }
-        }
-
-
-        textbox clock 
+        iconbox ib_sep { align = "left" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
+        textbox mpd 
         { 
-            align = "right" 
+            align = "left" 
+            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
+            mouse { button = "1" command = "spawn" arg = "mpc toggle" } 
+        }
+        
+        
+        iconbox ib_sep1 { align = "left" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
+        iconbox vol_ib { align = "left" image = "/home/gig/.awesome/transicons/vol.png" y = "3" resize = "false" }
+        textbox tb_vol 
+        { 
+            align = "left" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
         }
-
-
-        emptybox eb_cpu { align = "right" width = "12" }
-        textbox cpu_usage
+        progressbar pb_vol
         {
-            align = "right"
-            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" }
+            data master { bg = "#0a0a0a" fg = "#aecf96" fg_center = "#aecf96" fg_end = "#ff5656" fg_off = "#494b4f" bordercolor = "#0a0a0a" }
+            width = "10" height = "1" gap = 0 align = "left" vertical = "true"
+            mouse { button = "4" command = "spawn" arg = "exec dvol -i 2" }
+            mouse { button = "5" command = "spawn" arg = "exec dvol -d 2" }
+            mouse { button = "2" command = "spawn" arg = "exec dvol -t" }
+            ticks_count = "4" ticks_gap = "1"
         }
+
+
+        iconbox cpu_ib { align = "right" image = "/home/gig/.awesome/transicons/cpu.png" y = "3" resize = "false" }
         textbox cpu_freq 
         { 
             align = "right" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
         }
+        graph cpugraph
+        {
+            width = 60 height = "0.85"
+            bg = "#494b4f" bordercolor = "#0a0a0a"
+            data cpu0 { scale = true draw_style = bottom vertical_gradient = true fg = "#aecf96" fg_center = "#ff5656" fg_end = "#ff0000" }
+            align = "right"
+        }
 
 
-        emptybox eb_bat { align = "right" width = "12" }
+        iconbox ib_sep2 { align = "right" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
+        iconbox mem_ib { align = "right" image = "/home/gig/.awesome/transicons/mem.png" y = "3" resize = "false" }
+        textbox tb_mem 
+        { 
+            align = "right" 
+            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
+        }
+        progressbar membar
+        {
+            data mem { bg = "#0a0a0a" fg_center = "#aecf96" fg_end = "#ff0000" fg = "#aecf96" fg_off = "#494b4f" bordercolor = "#0a0a0a" }
+            width = "40" height = "0.7" gap = -1 align = "right"
+        }
+
+
+        iconbox ib_sep3 { align = "right" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
+iconbox down_ib { image = "/home/gig/.awesome/transicons/down3.png" y = "3" resize = "false" align="right" }
+        textbox down 
+        { 
+            align = "right" 
+            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "0" } 
+        }
+        iconbox up_ib { image = "/home/gig/.awesome/transicons/up3.png" y = "3" resize = "false" align = "right" }
+        textbox up 
+        { 
+            align = "right" 
+            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "0" } 
+        }
+
+
+        iconbox ib_sep4 { align = "right" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
         textbox battery 
         { 
             align = "right" 
@@ -146,26 +183,31 @@ screen 0
         } 
 
 
-        emptybox eb_mailpac { align = "right" width = "12" }
+        iconbox ib_sep5 { align = "right" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
         textbox mail 
         { 
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
             mouse { button = "1" command = "spawn" arg = "firefox3 http://www.gmail.com" } 
             align = "right" 
         } 
+        textbox mailpacmanraggle_sep
+        { 
+            align = "right" 
+            text = "/" 
+            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
+        }
         textbox pacman 
         { 
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
             align = "right" 
         }
+
         
-        
-        emptybox eb_mpd { align = "right" width = "12" }
-        textbox mpd 
+        iconbox ib_sep6 { align = "right" image = "/home/gig/.awesome/pngicons/separator.png" resize = "false" }
+        textbox clock 
         { 
             align = "right" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
-            mouse { button = "1" command = "spawn" arg = "mpc toggle" } 
         }
     }
 }
