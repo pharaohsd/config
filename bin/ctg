@@ -1,26 +1,30 @@
-#!/bin/zsh
+#!/usr/bin/env ruby
 # Author: Gigamo <gigamo@gmail.com>
 # Simple script for moving config files over to local git repo
-SRCDIR="$HOME"
-GITDIR="$HOME/gitconfig/config"
-SRCFILE=$1
+SRCDIR = ENV["HOME"]
+GITDIR = "#{SRCDIR}/gitconfig/config"
+#EDITOR = ENV["EDITOR"] # Uncomment this if you want to use your $EDITOR
+EDITOR = "tvim"
+SRCFILE = ARGV[0]
 
-usage() {
-  echo "No file specified! Usage: ctg [file]"
-  echo
-  echo "    For example:    ctg bin/ctg"
-  echo "                    will copy bin/ctg to $GITDIR/bin/ctg"
+def usage
+  puts "No file specified! Usage: ctg [file]\n    For example:    ctg bin/ctg\n                    will copy bin/ctg to #{GITDIR}/bin/ctg"
   exit 0
-}
+end
 
-ctg() {
-echo "Copying $SRCFILE to $GITDIR and adding it to GIT"
-`cp -r $SRCDIR/$SRCFILE $GITDIR/$SRCFILE && cd $GITDIR && git add $GITDIR/$SRCFILE`
-}
+def ctg
+  if ARGV[0] == ".amazing/config.yml" or ARGV[0] == ".irssi/config" or ARGV[0] == "bin/screenshot"
+    puts "\nCopying #{SRCFILE} to #{GITDIR} - You'll have to add this one to GIT manually\n\n"
+    `cp -r #{SRCDIR}/#{SRCFILE} #{GITDIR}/#{SRCFILE} && #{EDITOR} #{GITDIR}/#{SRCFILE}`
+  else
+    puts "\nCopying #{SRCFILE} to #{GITDIR} and adding it to GIT\n\n"
+    `cp -r #{SRCDIR}/#{SRCFILE} #{GITDIR}/#{SRCFILE} && cd #{GITDIR} && git add #{GITDIR}/#{SRCFILE}`
+  end
+end
 
-if [ -z "$1" ]; then
+if ARGV.empty?
   usage
 else
   ctg
   exit 0
-fi
+end

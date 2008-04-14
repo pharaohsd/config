@@ -8,12 +8,11 @@ FTPUSER = ""
 FTPPASS = ""
 PICPATH = "~/screenshots/" # Include trailing slash or leave blank to save in working directory
 NO_CLEAN = 0 # Remove the files locally afterwards or not
-
-PICNAME = ARGV
+NO_THUMB = 0 # Make a thumbnail or not
 
 def usage
-  puts "No filename specified! Usage: screenshot [name]\n\n    For example   - screenshot current\n                  -> would scrot a screenshot named current.png"
-  exit 0
+  puts "Usage: screenshot [name]\n\n    -h, --help    - Display this\n\n    For example   - screenshot desktop\n                  -> would scrot a screenshot named desktop.png"
+  exit 2
 end
 
 def link
@@ -22,18 +21,26 @@ end
 
 def printscreen
   if File.executable? "/usr/bin/scrot" and File.executable? "/usr/bin/mogrify"
-    `scrot #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png`
+    if NO_THUMB == 0
+      `scrot #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png`
+    else
+      `scrot #{PICPATH}#{PICNAME}.png`
+    end
   else
-    puts "Please install scrot and/or imagemagick"
+    puts "\nPlease install scrot and/or imagemagick"
   end
 end
 
 def upload
   if File.executable? "/usr/bin/ncftp"
-    `ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
+    if NO_THUMB == 0
+      `ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
+    else
+      `ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png`
+    end
     puts "\nUpload succesful!"
   else
-    puts "Please install ncftp"
+    puts "\nPlease install ncftp"
   end
 end
 
@@ -41,9 +48,14 @@ def clean
   `rm -f #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
 end
 
-if ARGV.empty?
+if ARGV[0] == "-h" or ARGV[0] == "--help"
   usage
 else
+  if ARGV.empty?
+    PICNAME = "current"
+  else
+    PICNAME = ARGV[0]
+  end
   printscreen
   upload
   link

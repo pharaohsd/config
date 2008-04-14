@@ -8,8 +8,8 @@ widgets:
     0:
         # Battery
         top battery: # top = statusbarname, battery = widgetname
-            type: Battery
-            every: 20
+            type: battery
+            interval: 20
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
@@ -27,13 +27,13 @@ widgets:
                 end
         # Volume progressbar
         top pb_vol:
-            type: ALSA
-            every: 4
+            type: alsa
+            interval: 4
             format: '"data master #@volume"'
         # Volume textbox
         top tb_vol:
-            type: ALSA
-            every: 4
+            type: alsa
+            interval: 4
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"                
@@ -44,13 +44,13 @@ widgets:
                 end
         # Memory progressbar
         top membar:
-            type: Memory
-            every: 10
+            type: memory
+            interval: 10
             format: '"data mem #@usage"'
         # Memory textbox
         top tb_mem:
-            type: Memory
-            every: 10
+            type: memory
+            interval: 10
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
@@ -61,14 +61,14 @@ widgets:
                 end
         # Clock
         top clock:
-            type: Clock
-            every: 1
+            type: clock
+            interval: 1
             format: '"text #@time "'
             time_format: "%A, %d.%m.%Y %H:%M:%S"
         # CPU frequency
         top cpu_freq:
-            type: CPUInfo
-            every: 3
+            type: cpu_info # Can also be cpu info or cpu-info
+            interval: 3
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
@@ -80,8 +80,8 @@ widgets:
                 end
         # GMail
         top mail:
-            type: GMail 
-            every: 90
+            type: gmail 
+            interval: 90
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #ffffff"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
@@ -94,8 +94,8 @@ widgets:
             password: password
         # Pacman updates
         top pacman:
-            type: Pacman
-            every: 3600
+            type: pacman
+            interval: 3600
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #ffffff"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
@@ -106,14 +106,14 @@ widgets:
                 end
         # CPU graph
         top cpugraph:
-            type: CPUUsage
-            every: 2
+            type: cpu_usage
+            interval: 2
             format: '"data cpu0 #{@usage[1]}"'
             cpu: 1
         # Download speed
         top down:
-            type: NetTraffic
-            every: 2
+            type: nettraffic
+            interval: 2
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #56ff56"
@@ -125,8 +125,8 @@ widgets:
             interface: wlan0
         # Upload speed
         top up:
-            type: NetTraffic
-            every: 2
+            type: nettraffic
+            interval: 2
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
@@ -138,8 +138,8 @@ widgets:
             interface: wlan0
         # MPD
         top mpd:
-            type: MPD
-            every: 1
+            type: mpd
+            interval: 1
             format: |
                 case @state
                 when :playing
