@@ -123,30 +123,22 @@ screen 0
             align = "right" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
         }
-
-
-        emptybox eb_cpu { align = "right" width = "12" }
         textbox cpu_usage
         {
             align = "right"
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" }
+            mouse { button = "1" command = "spawn" arg = "urxvtc -e htop" }
         }
         textbox cpu_freq 
         { 
             align = "right" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
         }
-
-
-        emptybox eb_bat { align = "right" width = "12" }
         textbox battery 
         { 
             align = "right" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1"} 
         } 
-
-
-        emptybox eb_mailpac { align = "right" width = "12" }
         textbox mail 
         { 
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
@@ -158,9 +150,6 @@ screen 0
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
             align = "right" 
         }
-        
-        
-        emptybox eb_mpd { align = "right" width = "12" }
         textbox mpd 
         { 
             align = "right" 

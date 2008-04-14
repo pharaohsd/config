@@ -1,30 +1,35 @@
-#!/usr/bin/env ruby
-# Author: Gigamo <gigamo@gmail.com>
-# Simple script for moving config files over to local git repo
-SRCDIR = ENV["HOME"]
-GITDIR = "#{SRCDIR}/gitconfig/config"
-#EDITOR = ENV["EDITOR"] # Uncomment this if you want to use your $EDITOR
-EDITOR = "gvim"
-SRCFILE = ARGV[0]
+#!/bin/zsh
+AUTHOR="Gigamo <gigamo@gmail.com>"
+APP="ctg"
+VERSION="v0.01"
+DESCRIPTION="Simple script for moving files over to local git repo"
 
-def usage
-  puts "No file specified! Usage: ctg [file]\n    For example:    ctg bin/ctg\n                    will copy bin/ctg to #{GITDIR}/bin/ctg"
-  exit 0
-end
+RED="\033[1;31m"
+GREEN="\033[1;32m"
+BLUE="\033[1;34m"
+END="\033[0m"
 
-def ctg
-  if SRCFILE == ".amazing/config.yml" or SRCFILE == ".irssi/config" or SRCFILE == "bin/screenshot"
-    puts "\nCopying #{SRCFILE} to #{GITDIR} - You'll have to add this one to GIT manually\n\n"
-    IO.popen("cp -r #{SRCDIR}/#{SRCFILE} #{GITDIR}/#{SRCFILE} && #{EDITOR} #{GITDIR}/#{SRCFILE}") {}
-  else
-    puts "\nCopying #{SRCFILE} to #{GITDIR} and adding it to GIT\n\n"
-    IO.popen("cp -r #{SRCDIR}/#{SRCFILE} #{GITDIR}/#{SRCFILE} && cd #{GITDIR} && git add #{SRCFILE}") {}
-  end
-end
+SRCDIR="$HOME"
+GITDIR="$HOME/gitconfig/config"
+EDITOR="$EDITOR"
+SRCFILE=$1
 
-if ARGV.empty?
+function usage() { 
+echo >&2 "$RED$APP $GREEN$VERSION ${BLUE}by $AUTHOR$END - $DESCRIPTION 
+Usage: ctg [file]
+    For example:    ctg bin/ctg
+                    will copy bin/ctg to $GITDIR/bin/ctg";
+exit 1
+}
+
+function ctg() {
+  echo "Copying $SRCFILE to $GITDIR and adding it to GIT"
+  `cp -r $SRCDIR/$SRCFILE $GITDIR/$SRCFILE && cd $GITDIR && git add $SRCFILE`
+}
+
+if [ -z "$1" ]; then
   usage
 else
   ctg
   exit 0
-end
+fi

@@ -1,10 +1,7 @@
 # Gigamo <gigamo@gmail.com> (14/04/08)
 # Configuration file for amazing (http://github.com/dag/amazing)
 # This particular config will only work with development version of awesome (version 2.3.rc1.1 and up!)
-
-# Widgets list begins here
 awesome:
-    # Screen
     0:
         # Battery
         top battery: # top = statusbarid, battery = widgetid
@@ -29,7 +26,7 @@ awesome:
         top clock:
             type: clock
             interval: 1
-            format: '"text  #@time"'
+            format: '"text  #@time  "'
             time_format: "%H:%M:%S %d.%m.%Y"
         # CPU usage
         top cpu_usage:
@@ -52,9 +49,9 @@ awesome:
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
                 if @speed[0] >= 1000
                   ghz = @speed[0] / 1000
-                  "text  @ %3.2fGHz#{urgcol}" % ghz
+                  "text  @ %3.2fGHz  #{urgcol}" % ghz
                 else
-                  "text  @ %dMHz#{normcol}" % @speed[0]
+                  "text  @ %dMHz  #{normcol}" % @speed[0]
                 end
         # GMail
         top mail:
@@ -64,9 +61,9 @@ awesome:
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
                 if @count == 0
-                  "text #@count #{normcol}"
+                  "text   #@count #{normcol}"
                 else
-                  "text #@count #{urgcol}"
+                  "text   #@count #{urgcol}"
                 end
             username: username
             password: password
@@ -78,9 +75,9 @@ awesome:
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
                 if @count == 0
-                  "text #@count#{normcol}"
+                  "text #@count  #{normcol}"
                 else
-                  "text #@count#{urgcol}"
+                  "text #@count  #{urgcol}"
                 end
         # MPD
         top mpd:
@@ -89,9 +86,9 @@ awesome:
             format: |
                 case @state
                 when :playing
-                  "text >>: #@artist - #@title (#{@position}/#{@length})"
+                  "text >>: #@artist - #@title (#{@position}/#{@length}) "
                 when :paused
-                  "text ||: #@artist - #@title (#{@position}/#{@length})"
+                  "text ||: #@artist - #@title (#{@position}/#{@length}) "
                 when :stopped
-                  "text []: not playing"
+                  "text []: not playing "
                 end
