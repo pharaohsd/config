@@ -7,11 +7,12 @@ FTPPATH = "pics"
 FTPUSER = ""
 FTPPASS = ""
 PICPATH = "~/screenshots/" # Include trailing slash or leave blank to save in working directory
-NO_CLEAN = 0 # Remove the files locally afterwards or not
+NO_CLEAN = 1 # Remove the files locally afterwards or not
 NO_THUMB = 0 # Make a thumbnail or not
 
 def usage
-  puts "Usage: screenshot [name]\n\n    -h, --help    - Display this\n\n    For example   - screenshot desktop\n                  -> would scrot a screenshot named desktop.png"
+  puts "Usage: screenshot [name]"
+  puts "\n    -h, --help      - Display this"
   exit 2
 end
 

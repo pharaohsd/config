@@ -3,11 +3,11 @@
 # This particular config will only work with development version of awesome (version 2.3.rc1.1 and up!)
 
 # Widgets list begins here
-widgets:
+awesome:
     # Screen
     0:
         # Battery
-        top battery: # top = statusbarname, battery = widgetname
+        top battery: # top = statusbarid, battery = widgetid
             type: battery
             interval: 20
             format: |

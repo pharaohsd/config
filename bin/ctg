@@ -4,7 +4,7 @@
 SRCDIR = ENV["HOME"]
 GITDIR = "#{SRCDIR}/gitconfig/config"
 #EDITOR = ENV["EDITOR"] # Uncomment this if you want to use your $EDITOR
-EDITOR = "tvim"
+EDITOR = "gvim"
 SRCFILE = ARGV[0]
 
 def usage
@@ -13,12 +13,12 @@ def usage
 end
 
 def ctg
-  if ARGV[0] == ".amazing/config.yml" or ARGV[0] == ".irssi/config" or ARGV[0] == "bin/screenshot"
+  if SRCFILE == ".amazing/config.yml" or SRCFILE == ".irssi/config" or SRCFILE == "bin/screenshot"
     puts "\nCopying #{SRCFILE} to #{GITDIR} - You'll have to add this one to GIT manually\n\n"
-    `cp -r #{SRCDIR}/#{SRCFILE} #{GITDIR}/#{SRCFILE} && #{EDITOR} #{GITDIR}/#{SRCFILE}`
+    IO.popen("cp -r #{SRCDIR}/#{SRCFILE} #{GITDIR}/#{SRCFILE} && #{EDITOR} #{GITDIR}/#{SRCFILE}") {}
   else
     puts "\nCopying #{SRCFILE} to #{GITDIR} and adding it to GIT\n\n"
-    `cp -r #{SRCDIR}/#{SRCFILE} #{GITDIR}/#{SRCFILE} && cd #{GITDIR} && git add #{GITDIR}/#{SRCFILE}`
+    IO.popen("cp -r #{SRCDIR}/#{SRCFILE} #{GITDIR}/#{SRCFILE} && cd #{GITDIR} && git add #{SRCFILE}") {}
   end
 end
 

@@ -168,6 +168,11 @@ $WM eq "Dwm" && do {
     goto ICON;
 };
 
+$WM eq "Awesome" && do {
+    undef $theme;
+    goto ICON;
+};
+
 ICON:
 if( $theme ne "" ) {
     print "::$colors[0] $WM Theme found as $colors[1]$theme$nocolor\n" 
