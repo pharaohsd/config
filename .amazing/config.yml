@@ -112,7 +112,7 @@ awesome:
             cpu: 1
         # Download speed
         top down:
-            type: nettraffic
+            type: net_traffic
             interval: 2
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
@@ -125,7 +125,7 @@ awesome:
             interface: wlan0
         # Upload speed
         top up:
-            type: nettraffic
+            type: net_traffic
             interval: 2
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
