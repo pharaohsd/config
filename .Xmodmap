@@ -1,11 +1,9 @@
 pointer = 1 2 3 4 5 8 9 6 7 10 11 12 13
 
-!remove Lock = Caps_Lock
-!remove Control = Control_R
+remove Lock = Caps_Lock
+remove Control = Control_R
 
-!keysym Caps_Lock = Escape 
-!keysym Control_R = Caps_Lock
+keysym Caps_Lock = Escape 
+keysym Control_R = Caps_Lock
 
-!add Lock = Caps_Lock
-
-!keycode 209 = XF86Sleep
+add Lock = Caps_Lock

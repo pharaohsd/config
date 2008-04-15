@@ -21,14 +21,14 @@ def link
 end
 
 def printscreen
-  if File.executable? "/usr/bin/scrot" and File.executable? "/usr/bin/mogrify"
-    if NO_THUMB == 0
+  if File.executable? "/usr/bin/scrot"
+    if NO_THUMB == 0 and File.executable? "/usr/bin/mogrify"
       `scrot #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png`
     else
       `scrot #{PICPATH}#{PICNAME}.png`
     end
   else
-    puts "\nPlease install scrot and/or imagemagick"
+    puts "\nPlease install scrot"
   end
 end
 

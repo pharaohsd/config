@@ -1,4 +1,4 @@
-# Gigamo <gigamo@gmail.com> (14/04/08)
+# Gigamo <gigamo@gmail.com> (15/04/08)
 # Configuration file for amazing (http://github.com/dag/amazing)
 # This particular config will only work with development version of awesome (version 2.3.rc1.1 and up!)
 awesome:
@@ -35,10 +35,10 @@ awesome:
             format: |
                 normcol = "%\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "%\n0 widget_tell #@identifier fg #ff5656"
-                if @usage[1].to_i >= 75
-                  "text %.1f#{urgcol}" % @usage[1]
+                if @usage[1].to_i >= 75 or @usage[2].to_i >= 75
+                  "text #{@usage[1].to_i}%/#{@usage[2].to_i}#{urgcol}"
                 else
-                  "text %.1f#{normcol}" % @usage[1]
+                  "text #{@usage[1].to_i}%/#{@usage[2].to_i}#{normcol}"
                 end
         # CPU frequency
         top cpu_freq:
@@ -56,7 +56,7 @@ awesome:
         # GMail
         top mail:
             type: gmail 
-            interval: 90
+            interval: 300
             format: |
                 normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"

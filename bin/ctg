@@ -12,7 +12,7 @@ END="\033[0m"
 SRCDIR="$HOME"
 GITDIR="$HOME/gitconfig/config"
 EDITOR="$EDITOR"
-SRCFILE=$1
+SRCFILE=$*
 
 function usage() { 
 echo >&2 "$RED$APP $GREEN$VERSION ${BLUE}by $AUTHOR$END - $DESCRIPTION 
@@ -23,8 +23,10 @@ exit 1
 }
 
 function ctg() {
-  echo "Copying $SRCFILE to $GITDIR and adding it to GIT"
-  `cp -r $SRCDIR/$SRCFILE $GITDIR/$SRCFILE && cd $GITDIR && git add $SRCFILE`
+  for i in $SRCFILE; do
+    echo "Copying $i to $GITDIR and adding it to GIT"
+    `cp -r $SRCDIR/$i $GITDIR/$i && cd $GITDIR && git add $i`
+  done
 }
 
 if [ -z "$1" ]; then

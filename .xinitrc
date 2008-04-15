@@ -14,8 +14,14 @@ urxvtd -o -q -f &
 nitrogen --restore & # Wallpaper
 mpd &
 xbindkeys &
-xmodmap ~/.Xmodmap &
-xrdb ~/.Xdefaults &
+
+if [ -f ~/.Xmodmap ]; then
+  xmodmap ~/.Xmodmap &
+fi
+if [ -f ~/.Xdefaults ]; then
+  xrdb ~/.Xdefaults &
+fi
+
 (sleep 2 && urxvtc -e screen -RR && pidgin) &
 (sleep 3 && urxvtc -e ncmpc) &
 (sleep 4 && urxvtc) &
