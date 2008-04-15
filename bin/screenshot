@@ -60,5 +60,6 @@ else
     end
   else
     puts "Please make sure you have scrot, ncftp and imagemagick installed, and that #{PICPATH} is a directory"
+  end
   exit 0
 end
