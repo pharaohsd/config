@@ -2,7 +2,7 @@
 AUTHOR="Gigamo <gigamo@gmail.com>"
 APP="ctg"
 VERSION="v0.01"
-DESCRIPTION="Simple script for moving files over to local git repo"
+DESCRIPTION="simple script for moving files over to local git repo"
 
 RED="\033[1;31m"
 GREEN="\033[1;32m"
@@ -10,21 +10,18 @@ BLUE="\033[1;34m"
 END="\033[0m"
 
 SRCDIR="$HOME"
-GITDIR="$HOME/gitconfig/config"
-EDITOR="$EDITOR"
+GITDIR="$SRCDIR/gitconfig/config"
 SRCFILE=$*
 
 function usage() { 
-echo >&2 "$RED$APP $GREEN$VERSION ${BLUE}by $AUTHOR$END - $DESCRIPTION 
-Usage: ctg [file]
-    For example:    ctg bin/ctg
-                    will copy bin/ctg to $GITDIR/bin/ctg";
-exit 1
+  echo >&2 "  $RED$APP $BLUE$VERSION$END - $DESCRIPTION 
+  Usage: ctg [${GREEN}file${END}]";
+  exit 1
 }
 
 function ctg() {
   for i in $SRCFILE; do
-    echo "Copying $i to $GITDIR and adding it to GIT"
+    echo "Copying $GREEN$i$END to $RED$GITDIR$END and adding it to GIT"
     `cp -r $SRCDIR/$i $GITDIR/$i && cd $GITDIR && git add $i`
   done
 }
