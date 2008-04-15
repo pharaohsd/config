@@ -106,7 +106,7 @@ screen 0
          {
             styles
             {
-                focus { shadow = "#111111" shadow_offset = "1" }
+                focus { bg = "#0a0a0a" shadow = "#111111" shadow_offset = "1" }
             }
             show_icons = false
             show = focus 
@@ -118,11 +118,13 @@ screen 0
         }
 
 
+        iconbox ib_start { align = "right" image = "/home/gig/.awesome/separators/left.png" resize = "false" }
         textbox clock 
         { 
             align = "right" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
         }
+        iconbox ib_cc { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
         textbox cpu_usage
         {
             align = "right"
@@ -134,11 +136,13 @@ screen 0
             align = "right" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
         }
+        iconbox ib_cb { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
         textbox battery 
         { 
             align = "right" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1"} 
-        } 
+        }
+        iconbox ib_bm { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
         textbox mail 
         { 
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
@@ -150,12 +154,14 @@ screen 0
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
             align = "right" 
         }
+        iconbox ib_pm { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
         textbox mpd 
         { 
             align = "right" 
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
             mouse { button = "1" command = "spawn" arg = "mpc toggle" } 
         }
+        iconbox ib_end { align = "right" image = "/home/gig/.awesome/separators/right.png" resize = "false" }
     }
 }
 
@@ -168,7 +174,7 @@ menu Run:
         focus { bg = "#285577" fg ="#ffffff" }
     } 
     y = "0"
-    x = "180"
+    x = "178"
     height = "14"
 }
 
@@ -181,7 +187,7 @@ menu Manual:
         focus { bg = "#285577" fg ="#ffffff" }
     }
     y = "0"
-    x = "180"
+    x = "178"
     height = "14"
 }
 
@@ -194,7 +200,7 @@ menu SSH:
         focus { bg = "#285577" fg ="#ffffff" }
     }
     y = "0"
-    x = "180"
+    x = "178"
     height = "14"
 }
 
@@ -293,9 +299,6 @@ keys
     key { modkey = {"Mod4"}             key = "x"           command = "spawn" arg = "urxvtc" }
     key { modkey = {"Mod4"}             key = "f"           command = "spawn" arg = "firefox3" }
     key { modkey = {"Mod4"}             key = "t"           command = "spawn" arg = "thunar" }
-    key { modkey = {"Mod4", "Mod1"}     key = "Space"       command = "spawn" arg = "mpc toggle" }
-    key { modkey = {"Mod4", "Mod1"}     key = "Up"          command = "spawn" arg = "mpc next" }
-    key { modkey = {"Mod4", "Mod1"}     key = "Down"        command = "spawn" arg = "mpc prev" }
     key { modkey = {"Mod4"}             key = "r"           command = "spawn" arg = "/home/gig/.awesome/awesome-menu" }
     key { modkey = {"Mod4"}             key = "F1"          command = "spawn" arg = "for i in /usr/share/man/man?;do ls $i; done | cut -d. -f1 | awesome-menu -e 'urxvtc -e man ' 'Manual:'" }
     key { modkey = {"Mod4"}             key = "F2"          command = "spawn" arg = "find /usr/bin -type f -executable ! -empty | awesome-menu -e 'exec ' Run:" }

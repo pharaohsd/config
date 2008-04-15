@@ -12,33 +12,33 @@ awesome:
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
                 case @state
                 when :charging
-                  "text ^#{@percentage.to_i}^#{normcol}"
+                  "text  ^#{@percentage.to_i}^ #{normcol}"
                 when :discharging
                   if @percentage <= 25
-                    "text v#{@percentage.to_i}v#{urgcol}"
+                    "text  v#{@percentage.to_i}v #{urgcol}"
                   else
-                    "text v#{@percentage.to_i}v#{normcol}"
+                    "text  v#{@percentage.to_i}v #{normcol}"
                   end
                 when :charged
-                  "text =#{@percentage.to_i}=#{normcol}"
+                  "text  =#{@percentage.to_i}= #{normcol}"
                 end
         # Clock
         top clock:
             type: clock
             interval: 1
-            format: '"text  #@time  "'
+            format: '"text  #@time "'
             time_format: "%H:%M:%S %d.%m.%Y"
         # CPU usage
         top cpu_usage:
             type: cpu_usage
             interval: 2
             format: |
-                normcol = "%\n0 widget_tell #@identifier fg #a0a0a0"
+                normcol = "%\n0 widget_tell #@identifier fg #ffffff"
                 urgcol = "%\n0 widget_tell #@identifier fg #ff5656"
                 if @usage[1].to_i >= 75 or @usage[2].to_i >= 75
-                  "text #{@usage[1].to_i}%/#{@usage[2].to_i}#{urgcol}"
+                  "text  #{@usage[1].to_i}%/#{@usage[2].to_i}#{urgcol}"
                 else
-                  "text #{@usage[1].to_i}%/#{@usage[2].to_i}#{normcol}"
+                  "text  #{@usage[1].to_i}%/#{@usage[2].to_i}#{normcol}"
                 end
         # CPU frequency
         top cpu_freq:
@@ -49,21 +49,21 @@ awesome:
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
                 if @speed[0] >= 1000
                   ghz = @speed[0] / 1000
-                  "text  @ %3.2fGHz  #{urgcol}" % ghz
+                  "text  @ %3.2fGHz #{urgcol}" % ghz
                 else
-                  "text  @ %dMHz  #{normcol}" % @speed[0]
+                  "text  @ %dMHz #{normcol}" % @speed[0]
                 end
         # GMail
         top mail:
             type: gmail 
             interval: 300
             format: |
-                normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
+                normcol = "\n0 widget_tell #@identifier fg #ffffff"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
                 if @count == 0
-                  "text   #@count #{normcol}"
+                  "text  #@count #{normcol}"
                 else
-                  "text   #@count #{urgcol}"
+                  "text  #@count #{urgcol}"
                 end
             username: username
             password: password
@@ -72,12 +72,12 @@ awesome:
             type: pacman
             interval: 3600
             format: |
-                normcol = "\n0 widget_tell #@identifier fg #a0a0a0"
+                normcol = "\n0 widget_tell #@identifier fg #ffffff"
                 urgcol = "\n0 widget_tell #@identifier fg #ff5656"
                 if @count == 0
-                  "text #@count  #{normcol}"
+                  "text #@count #{normcol}"
                 else
-                  "text #@count  #{urgcol}"
+                  "text #@count #{urgcol}"
                 end
         # MPD
         top mpd:
@@ -86,9 +86,9 @@ awesome:
             format: |
                 case @state
                 when :playing
-                  "text >>: #@artist - #@title (#{@position}/#{@length}) "
+                  "text  >>: #@artist - #@title (#{@position}/#{@length}) "
                 when :paused
-                  "text ||: #@artist - #@title (#{@position}/#{@length}) "
+                  "text  ||: #@artist - #@title (#{@position}/#{@length}) "
                 when :stopped
-                  "text []: not playing "
+                  "text  []: not playing "
                 end
