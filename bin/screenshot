@@ -1,18 +1,20 @@
 #!/usr/bin/env ruby
 # Author: Gigamo <gigamo@gmail.com>
-# Wrote this because I'm too lazy to upload manually all the time
 # Requires scrot, imagemagick and ncftp
+require '/home/gig/.passwords.rb'
+
 HOME = ENV["HOME"]
 FTPHOST = "users.telenet.be"
 FTPPATH = "pics"
-FTPUSER = ""
-FTPPASS = ""
+FTPUSER = "t363435"
+FTPPASS = FTP_PWD
 PICPATH = "#{HOME}/screenshots/" # Include trailing slash or leave blank to save in working directory
 NO_CLEAN = 1 # Remove the files locally afterwards or not
 NO_THUMB = 0 # Make a thumbnail or not
+DELAY = 0 # Screenshot delay in seconds
 
 def usage
-  puts "Usage: screenshot [name]
+  puts "Usage: screenshot [name] <default name: current>
       -h, --help      - Display this"
   exit 1
 end
@@ -23,9 +25,9 @@ end
 
 def printscreen
   if NO_THUMB == 0
-    `scrot #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png`
+    `scrot -d#{DELAY} #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png`
   else
-    `scrot #{PICPATH}#{PICNAME}.png`
+    `scrot -d#{DELAY} #{PICPATH}#{PICNAME}.png`
     puts "No thumbnail created. Either imagemagick is not installed on your system or NO_THUMB was set to 1"
   end
 end
@@ -60,6 +62,7 @@ else
     end
   else
     puts "Please make sure you have scrot, ncftp and imagemagick installed, and that #{PICPATH} is a directory"
+    exit 1
   end
   exit 0
 end

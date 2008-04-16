@@ -1,10 +1,10 @@
-# Gigamo <gigamo@gmail.com> (15/04/08)
-# Intended for awesome-3 git branch, but should (currently still) work with 2.3-rc1
+# Gigamo <gigamo@gmail.com> (16/04/08)
+# {{{ Intended for awesome-3 git branch, but should (currently still) work with 2.3-rc1
 
-######
+###### {{{
 screen 0
 {
-    ######
+    ###### {{{
     styles
     {
         normal 
@@ -30,7 +30,6 @@ screen 0
             #bg="#8ba574" green , "#285577" blue
     }
 
-    ######
     general
     {
         border = 1
@@ -43,7 +42,6 @@ screen 0
         floating_placement = smart
     }
 
-#    ######
 #    titlebar
 #    { 
 #        position = "top" 
@@ -56,7 +54,6 @@ screen 0
 #        height = "14" 
 #    }
 
-    ######
     tags
     {
         tag t { layout = "tile" mwfact = .675 }
@@ -70,7 +67,6 @@ screen 0
         tag 9 { layout = "tile" nmaster = 3 ncol = 3 }
     }
 
-    ######
     layouts
     {
         layout tile { image = "/home/gig/.awesome/layouts/tileb.png" }
@@ -79,20 +75,18 @@ screen 0
         layout floating { image = "/home/gig/.awesome/layouts/floatb.png" }
     }
 
-    ######
     statusbar top
     {
         position = "top"
         height = "14"
   
-        ######
+        ###### {{{
         taglist tl
         {
             mouse { button = "1" command = "tag_view" }
             mouse { button = "3" command = "tag_toggleview" }
         }
 
-        ######
         layoutinfo li
         {
             mouse { button = "1" command = "tag_setlayout" arg = "+1" }
@@ -101,28 +95,27 @@ screen 0
             mouse { button = "5" command = "tag_setlayout" arg = "-1" }
         }
 
-        ######
         tasklist top
-         {
+        {
             styles
             {
                 focus { bg = "#0a0a0a" shadow = "#111111" shadow_offset = "1" }
             }
             show_icons = false
-            show = focus 
+            show = focus
             text_align = left
-            mouse { button = "4" command = "client_focusnext" } 
-            mouse { button = "5" command = "client_focusprev" } 
-            mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" } 
+            mouse { button = "4" command = "client_focusnext" }
+            mouse { button = "5" command = "client_focusprev" }
+            mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
             mouse { modkey = {"Mod1"} button = "5" command = "client_swapprev" }
         }
 
 
         iconbox ib_start { align = "right" image = "/home/gig/.awesome/separators/left.png" resize = "false" }
-        textbox clock 
+        textbox clock
         { 
-            align = "right" 
-            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
+            align = "right"
+            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" }
         }
         iconbox ib_cc { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
         textbox cpu_usage
@@ -165,7 +158,7 @@ screen 0
     }
 }
 
-######
+###### {{{
 menu Run:  
 {
     styles
@@ -204,7 +197,7 @@ menu SSH:
     height = "14"
 }
 
-######
+###### {{{
 rules
 {
     rule { name = "Gimp" tags = "6" float = "true" }
@@ -216,7 +209,6 @@ rules
     rule { name = "urxvt" icon = "/home/gig/.icons/Somatic-0.2/32x32/apps/gnome-monitor.png" }
 }
 
-######
 mouse
 {
     root { button = "4" command = "tag_viewnext" }
@@ -229,7 +221,7 @@ mouse
     titlebar { button = "3" command = "client_kill" }
 }
 
-######
+###### {{{
 keys
 {
     key { modkey = {"Mod4"}             key = "Return"      command = "spawn" arg = "exec xterm" }
@@ -295,7 +287,7 @@ keys
         arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
     }
 
-    ###### Custom app launching binds
+    ###### {{{ Custom app launching binds
     key { modkey = {"Mod4"}             key = "x"           command = "spawn" arg = "urxvtc" }
     key { modkey = {"Mod4"}             key = "f"           command = "spawn" arg = "firefox3" }
     key { modkey = {"Mod4"}             key = "t"           command = "spawn" arg = "thunar" }

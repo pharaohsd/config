@@ -1,21 +1,26 @@
 #!/bin/zsh
+# TODO: Make it work for multiple files/dirs at once
 AUTHOR="Gigamo <gigamo@gmail.com>"
 APP="ctg"
-VERSION="v0.01"
+VERSION="v0.02"
 DESCRIPTION="simple script for moving files over to local git repo"
 
+# {{{ Colors
 RED="\033[1;31m"
 GREEN="\033[1;32m"
 BLUE="\033[1;34m"
 END="\033[0m"
 
+# {{{ Source/Target dirs
 SRCDIR="$HOME"
 GITDIR="$SRCDIR/gitconfig/config"
+
+# {{{ Probably don't change this
 SRCFILE=$*
 
 function usage() { 
-  echo >&2 "  $RED$APP $BLUE$VERSION$END - $DESCRIPTION 
-  Usage: ctg [${GREEN}file${END}]";
+  echo >&2 "  $RED$APP $GREEN$VERSION$END - $DESCRIPTION 
+  Usage: ctg [${BLUE}file${END}]";
   exit 1
 }
 
