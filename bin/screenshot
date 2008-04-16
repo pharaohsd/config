@@ -6,9 +6,8 @@ require '/home/gig/.passwords.rb' # My FTP pw and username in there
 HOME = ENV["HOME"]
 FTPHOST = "users.telenet.be"
 FTPPATH = "pics"
-FTPUSER = FTP_USER
-FTPPASS = FTP_PWD
 PICPATH = "#{HOME}/screenshots/" # Include trailing slash or leave blank to save in working directory
+
 NO_CLEAN = 1 # Remove the files locally afterwards or not
 NO_THUMB = 0 # Make a thumbnail or not
 DELAY = 0 # Screenshot delay in seconds
@@ -34,9 +33,9 @@ end
 
 def upload
     if NO_THUMB == 0
-      `ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
+      `ncftpput -u #{FTP_USER} -p #{FTP_PASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
     else
-      `ncftpput -u #{FTPUSER} -p #{FTPPASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png`
+      `ncftpput -u #{FTP_USER} -p #{FTP_PASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png`
     end
     puts "\nUpload succesful!"
 end
