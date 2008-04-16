@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 # Author: Gigamo <gigamo@gmail.com>
 # Requires scrot, imagemagick and ncftp
-require '/home/gig/.passwords.rb'
+require '/home/gig/.passwords.rb' # My FTP pw and username in there
 
 HOME = ENV["HOME"]
 FTPHOST = "users.telenet.be"
 FTPPATH = "pics"
-FTPUSER = "t363435"
+FTPUSER = FTP_USER
 FTPPASS = FTP_PWD
 PICPATH = "#{HOME}/screenshots/" # Include trailing slash or leave blank to save in working directory
 NO_CLEAN = 1 # Remove the files locally afterwards or not
