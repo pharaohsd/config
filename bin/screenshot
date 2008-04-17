@@ -4,18 +4,20 @@
 require '/home/gig/.passwords.rb' # My FTP pw and username in there
 
 HOME = ENV["HOME"]
+
 FTPHOST = "users.telenet.be"
 FTPPATH = "pics"
 PICPATH = "#{HOME}/screenshots/" # Include trailing slash or leave blank to save in working directory
 
 NO_CLEAN = 1 # Remove the files locally afterwards or not
-NO_THUMB = 0 # Make a thumbnail or not
 DELAY = 0 # Screenshot delay in seconds
 
 def usage
   puts "Usage: screenshot [name] <default name: current>
-      -h, --help      - Display this"
-  exit 1
+      -h, --help      - Display this
+      -d, --delay     - Delay in seconds
+                        E.g. screenshot -d 3 test"
+  exit 0
 end
 
 def link
@@ -23,45 +25,45 @@ def link
 end
 
 def printscreen
-  if NO_THUMB == 0
-    `scrot -d#{DELAY} #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png`
+  unless File.executable? "/usr/bin/scrot" and File.executable? "/usr/bin/mogrify"
+    puts "Error: scrot and/or imagemagick are not installed on your system!\nAborting printscreen"
   else
-    `scrot -d#{DELAY} #{PICPATH}#{PICNAME}.png`
-    puts "No thumbnail created. Either imagemagick is not installed on your system or NO_THUMB was set to 1"
+    `scrot -d#{DELAY} #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png`
   end
 end
 
 def upload
-    if NO_THUMB == 0
-      `ncftpput -u #{FTP_USER} -p #{FTP_PASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
-    else
-      `ncftpput -u #{FTP_USER} -p #{FTP_PASS} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png`
-    end
+  unless File.executable? "/usr/bin/ncftp"
+    puts "Error: ncftp is not installed on your system!\nAborting upload"
+  else
+      `ncftpput -u #{FTP_USER} -p #{FTP_PWD} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
     puts "\nUpload succesful!"
+  end
 end
 
 def clean
   `rm -f #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
 end
 
-if ARGV[0] == "-h" or ARGV[0] == "--help"
-  usage
-else
-  if ARGV.empty?
-    PICNAME = "current"
-  else
-    PICNAME = ARGV[0]
-  end
-  if File.directory? "#{PICPATH}" and File.executable? "/usr/bin/scrot" and File.executable? "/usr/bin/ncftp" and File.executable? "/usr/bin/mogrify"
-    printscreen
-    upload
-    link
-    if NO_CLEAN == 0
-      clean
-    end
-  else
-    puts "Please make sure you have scrot, ncftp and imagemagick installed, and that #{PICPATH} is a directory"
-    exit 1
+def run
+  printscreen
+  upload
+  link
+  if NO_CLEAN == 0
+    clean
   end
   exit 0
 end
+
+if ARGV[0] == "-h" or ARGV[0] == "--help"
+  usage
+elsif ARGV[0] == "-d" or ARGV[0] == "--delay"
+  DELAY = ARGV[1]
+  PICNAME = ARGV[2]
+elsif ARGV.empty?
+  PICNAME = "current"
+else
+  PICNAME = ARGV[0]
+end
+
+run
