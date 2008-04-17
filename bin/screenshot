@@ -10,7 +10,6 @@ FTPPATH = "pics"
 PICPATH = "#{HOME}/screenshots/" # Include trailing slash or leave blank to save in working directory
 
 NO_CLEAN = 1 # Remove the files locally afterwards or not
-DELAY = 0 # Screenshot delay in seconds
 
 def usage
   puts "Usage: screenshot [name] <default name: current>
@@ -28,7 +27,7 @@ def printscreen
   unless File.executable? "/usr/bin/scrot" and File.executable? "/usr/bin/mogrify"
     puts "Error: scrot and/or imagemagick are not installed on your system!\nAborting printscreen"
   else
-    `scrot -d#{DELAY} #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png`
+    IO.popen("scrot -d#{DELAY} #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png") {}
   end
 end
 
@@ -36,13 +35,13 @@ def upload
   unless File.executable? "/usr/bin/ncftp"
     puts "Error: ncftp is not installed on your system!\nAborting upload"
   else
-      `ncftpput -u #{FTP_USER} -p #{FTP_PWD} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
+    IO.popen("ncftpput -u #{FTP_USER} -p #{FTP_PWD} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png") {}
     puts "\nUpload succesful!"
   end
 end
 
 def clean
-  `rm -f #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png`
+  IO.popen("rm -f #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png") {}
 end
 
 def run

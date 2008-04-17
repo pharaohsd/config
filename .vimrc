@@ -7,10 +7,9 @@ set mouse=a             " make sure mouse is used in all cases.
 map <F12> :browse confirm e<CR>
 
 "colorscheme calmar256  " define syntax color scheme
-colorscheme vividchalk " define syntax color scheme
+"colorscheme vividchalk " define syntax color scheme
 "colorscheme zenburn    " define syntax color scheme
-"colorscheme navajo-night " (codemac scheme, needs 16colors)
-"colorscheme gardener
+colorscheme twilight
 "colorscheme darktango
 
 " tabs and indenting
@@ -92,9 +91,9 @@ if has("gui_running")
   set guioptions-=r
   set guioptions-=m" Disable menu bar
   set guioptions-=T" Disable toolbar icons
-  "set guifont=DejaVu\ Sans\ Mono\ 8 " backslash spaces (e.g. Bitstream\ Vera\ Sans\ 8)
+  set guifont=DejaVu\ Sans\ Mono\ 8 " backslash spaces (e.g. Bitstream\ Vera\ Sans\ 8)
   "set guifont=Dina\ 8
-  set guifont=Terminus\ 8
+  "set guifont=Terminus\ 8
   "set guifont=smoothansi 
 endif
 
@@ -211,6 +210,9 @@ imap <C-l> <Right>
 " Do Toggle Commentify
 map <M-c> :call ToggleCommentify()<CR>j
 imap <M-c> <ESC>:call ToggleCommentify()<CR>j
+
+" VTreeExplorer
+map <F12> :VSTreeExplore <CR>
 
 set makeprg=jikes\ %
 "set makeprg=javac\ %
