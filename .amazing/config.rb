@@ -14,11 +14,11 @@ awesome {
       
       case @state
       when :charged
-        text "=#{@percentage.to_i}="
+        " =#{@percentage.to_i}= "
       when :charging
-        text "^#{@percentage.to_i}^"
+        " ^#{@percentage.to_i}^ "
       when :discharging
-        text "v#{@percentage.to_i}v"
+        " v#{@percentage.to_i}v "
       end
 
     }
@@ -42,11 +42,11 @@ awesome {
 
       case @state
       when :playing
-        text ">>: #@artist - #@title (#@position/#@length)"
+        " >>: #@artist - #@title (#@position/#@length) "
       when :paused
-        text "||: #@artist - #@title (#@position/#@length)"
+        " ||: #@artist - #@title (#@position/#@length) "
       when :stopped
-        text "[]: not playing"
+        " []: not playing "
       end
 
     }
