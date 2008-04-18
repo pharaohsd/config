@@ -1,10 +1,7 @@
 # Gigamo <gigamo@gmail.com> (18/04/08)
 # {{{ Intended for awesome-3 git branch, but should (currently still) work with 2.3-rc1
-
-###### {{{
 screen 0
 {
-    ###### {{{
     styles
     {
         normal 
@@ -80,7 +77,6 @@ screen 0
         position = "top"
         height = "14"
   
-        ###### {{{
         taglist tl
         {
             mouse { button = "1" command = "tag_view" }
@@ -158,7 +154,6 @@ screen 0
     }
 }
 
-###### {{{
 menu Run:  
 {
     styles
@@ -171,7 +166,6 @@ menu Run:
     height = "14"
 }
 
-######
 menu Manual:
 {
     styles
@@ -184,7 +178,6 @@ menu Manual:
     height = "14"
 }
 
-######
 menu SSH:
 {
     styles
@@ -197,7 +190,6 @@ menu SSH:
     height = "14"
 }
 
-###### {{{
 rules
 {
     rule { name = "Gimp" tags = "6" float = "true" }
@@ -221,7 +213,6 @@ mouse
     titlebar { button = "3" command = "client_kill" }
 }
 
-###### {{{
 keys
 {
     key { modkey = {"Mod4"}             key = "Return"      command = "spawn" arg = "exec xterm" }
