@@ -1,9 +1,12 @@
 # Gigamo <gigamo@gmail.com> (18/04/08)
 # Configuration file for amazing (http://github.com/dag/amazing)
+require 'ostruct'
 import "../.passwords.rb" # GMAIL_PWD in there
 
-urgent_color = "#ff5656"
-normal_color = "#a0a0a0"
+colors = OpenStruct.new(
+  :urgent => "#ff5656",
+  :normal => "#a0a0a0"
+)
 
 awesome {
   set :statusbar => "top"
@@ -21,9 +24,9 @@ awesome {
     }
     property("fg") {
       if @percentage <= 25
-        urgent_color
+        colors.urgent
       else
-        normal_color
+        colors.normal
       end
     }
   }
@@ -51,9 +54,9 @@ awesome {
     }
     property("fg") {
       if @count > 0
-        urgent_color
+        colors.urgent
       else
-        normal_color
+        colors.normal
       end
     }
   }
@@ -64,9 +67,9 @@ awesome {
     }
     property("fg") {
       if @count > 0
-        urgent_color
+        colors.urgent
       else
-        normal_color
+        colors.normal
       end
     }
   }
@@ -83,7 +86,7 @@ awesome {
     }
     property("fg") {
       if @usage[0] >= 75
-        urgent_color
+        colors.urgent
       else
         "#ffffff"
       end
@@ -103,9 +106,9 @@ awesome {
     }
     property("fg") {
       if @speed[0] >= 1000
-        urgent_color
+        colors.urgent
       else
-        normal_color
+        colors.normal
       end
     }
   }
