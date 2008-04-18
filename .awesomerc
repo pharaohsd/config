@@ -295,4 +295,4 @@ keys
     key { modkey = {"Mod4"}             key = "F2"          command = "spawn" arg = "find /usr/bin -type f -executable ! -empty | awesome-menu -e 'exec ' Run:" }
     key { modkey = {"Mod4"}             key = "F3"          command = "spawn" arg = "cut -d' ' -f1 ~/.ssh/known_hosts | cut -d, -f1 | awesome-menu -e 'urxvtc -e ssh ' 'SSH:'" 
 }
-# vim: filetype=conf
+# vim: filetype=conf shiftwidth=2 expandtab cindent

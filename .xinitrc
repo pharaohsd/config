@@ -22,7 +22,8 @@ fi
 
 (sleep 2 && urxvtc -e screen -RR && pidgin) &
 
-(amazing -s && amazing) & # Feeds awesome widgets
+mkdir -p ~/.amazing/logs
+amazing >> ~/.amazing/logs/amazing.log 2>> ~/.amazing/logs/error.log &
 
 exec /usr/bin/awesome
 #ruby /home/gig/hacks/dwm.rb | /usr/bin/dwm
