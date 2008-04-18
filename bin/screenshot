@@ -1,13 +1,11 @@
 #!/usr/bin/env ruby
 # Author: Gigamo <gigamo@gmail.com>
 # Requires scrot, imagemagick and ncftp
-require '/home/gig/.passwords.rb' # My FTP pw and username in there
+require '/home/gig/.passwords.rb' # My ftp pw and username in there
 
-HOME = ENV["HOME"]
-
-FTPHOST = "users.telenet.be"
-FTPPATH = "pics"
-PICPATH = "#{HOME}/screenshots/" # Include trailing slash or leave blank to save in working directory
+FTP_HOST = "users.telenet.be"
+FTP_PATH = "pics"
+PIC_PATH = "#{ENV["HOME"]}/screenshots/" # Include trailing slash or leave blank to save in working directory
 
 NO_CLEAN = 1 # Remove the files locally afterwards or not
 
@@ -20,28 +18,30 @@ def usage
 end
 
 def link
-  puts "\nLink:\n\nhttp://#{FTPHOST}/gigamo/#{FTPPATH}/#{PICNAME}.png"
+  puts "\nLink:\n\nhttp://#{FTP_HOST}/gigamo/#{FTP_PATH}/#{PIC_NAME}.png"
 end
 
 def printscreen
   unless File.executable? "/usr/bin/scrot" and File.executable? "/usr/bin/mogrify"
     puts "Error: scrot and/or imagemagick are not installed on your system!\nAborting printscreen"
+    exit 1
   else
-    IO.popen("scrot -d#{DELAY} #{PICPATH}#{PICNAME}.png && cp #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png && mogrify -resize 25% #{PICPATH}#{PICNAME}t.png") {}
+    IO.popen("scrot -d#{DELAY} #{PIC_PATH}#{PIC_NAME}.png && cp #{PIC_PATH}#{PIC_NAME}.png #{PIC_PATH}#{PIC_NAME}t.png && mogrify -resize 25% #{PIC_PATH}#{PIC_NAME}t.png") {}
   end
 end
 
 def upload
   unless File.executable? "/usr/bin/ncftp"
     puts "Error: ncftp is not installed on your system!\nAborting upload"
+    exit 1
   else
-    IO.popen("ncftpput -u #{FTP_USER} -p #{FTP_PWD} -R -m #{FTPHOST} #{FTPPATH} #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png") {}
+    IO.popen("ncftpput -u #{FTP_USER} -p #{FTP_PWD} -R -m #{FTP_HOST} #{FTP_PATH} #{PIC_PATH}#{PIC_NAME}.png #{PIC_PATH}#{PIC_NAME}t.png") {}
     puts "\nUpload succesful!"
   end
 end
 
 def clean
-  IO.popen("rm -f #{PICPATH}#{PICNAME}.png #{PICPATH}#{PICNAME}t.png") {}
+  IO.popen("rm -f #{PIC_PATH}#{PIC_NAME}.png #{PIC_PATH}#{PIC_NAME}t.png") {}
 end
 
 def run
@@ -58,11 +58,11 @@ if ARGV[0] == "-h" or ARGV[0] == "--help"
   usage
 elsif ARGV[0] == "-d" or ARGV[0] == "--delay"
   DELAY = ARGV[1]
-  PICNAME = ARGV[2]
+  PIC_NAME = ARGV[2]
 elsif ARGV.empty?
-  PICNAME = "current"
+  PIC_NAME = "current"
 else
-  PICNAME = ARGV[0]
+  PIC_NAME = ARGV[0]
 end
 
 run
