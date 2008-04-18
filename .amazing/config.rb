@@ -1,6 +1,6 @@
 # Gigamo <gigamo@gmail.com> (18/04/08)
 # Configuration file for amazing (http://github.com/dag/amazing)
-import "/home/gig/.passwords.rb" # GMAIL_PWD in there
+import "../.passwords.rb" # GMAIL_PWD in there
 
 awesome {
 
@@ -100,13 +100,8 @@ awesome {
   widget("clock") {
 
     set :interval => 1
-    set :format => "%H:%M:%S %d.%m.%Y"
+    set :format => " %H:%M:%S %d.%m.%Y "
 
-    property("text") {
-
-      " #@time "
-
-    }
   }
 
   widget("cpu_usage") {
@@ -156,5 +151,4 @@ awesome {
 
     }
   }
-
 }
