@@ -10,8 +10,10 @@ colors = OpenStruct.new(
 
 awesome {
   set :statusbar => "top"
+
   widget("battery") {
     set :interval => 25
+
     property("text") {
       case @state
       when :charged
@@ -22,6 +24,7 @@ awesome {
         " v#{@percentage.to_i}v "
       end
     }
+
     property("fg") {
       if @percentage <= 25
         colors.urgent
@@ -33,6 +36,7 @@ awesome {
 
   widget("mpd") {
     set :interval => 1
+
     property("text") {
       case @state
       when :playing
@@ -49,9 +53,11 @@ awesome {
     set :module => :gmail
     set :username => "gigamo"
     set :password => GMAIL_PWD
+
     property("text") {
       " #@count"
     }
+
     property("fg") {
       if @count > 0
         colors.urgent
@@ -62,9 +68,11 @@ awesome {
   }
 
   widget("pacman") {
+
     property("text") {
       " #@count "
     }
+
     property("fg") {
       if @count > 0
         colors.urgent
@@ -81,9 +89,11 @@ awesome {
 
   widget("cpu_usage") {
     set :interval => 3
+
     property("text") {
       " #{@usage[1].to_i}%/#{@usage[2].to_i}% "
     }
+
     property("fg") {
       if @usage[0] >= 75
         colors.urgent
@@ -96,6 +106,7 @@ awesome {
   widget("cpu_freq") {
     set :module => :cpu_info
     set :interval => 3
+
     property ("text") {
       if @speed[0] >= 1000
         ghz = @speed[0] / 1000
@@ -104,6 +115,7 @@ awesome {
         "@ #{@speed[0].to_i}MHz "
       end
     }
+
     property("fg") {
       if @speed[0] >= 1000
         colors.urgent
