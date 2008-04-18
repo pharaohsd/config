@@ -60,8 +60,10 @@ elsif ARGV[0] == "-d" or ARGV[0] == "--delay"
   DELAY = ARGV[1]
   PIC_NAME = ARGV[2]
 elsif ARGV.empty?
+  DELAY = 0
   PIC_NAME = "current"
 else
+  DELAY = 0
   PIC_NAME = ARGV[0]
 end
 

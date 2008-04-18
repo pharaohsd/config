@@ -2,6 +2,9 @@
 # Configuration file for amazing (http://github.com/dag/amazing)
 import "../.passwords.rb" # GMAIL_PWD in there
 
+urgent_color = "#ff5656"
+normal_color = "#a0a0a0"
+
 awesome {
   set :statusbar => "top"
   widget("battery") {
@@ -17,10 +20,10 @@ awesome {
       end
     }
     property("fg") {
-      if @percentage.to_i <= 25
-        "#ff5656"
+      if @percentage <= 25
+        urgent_color
       else
-        "#a0a0a0"
+        normal_color
       end
     }
   }
@@ -41,7 +44,6 @@ awesome {
 
   widget("mail") {
     set :module => :gmail
-    set :interval => 5.minutes
     set :username => "gigamo"
     set :password => GMAIL_PWD
     property("text") {
@@ -49,23 +51,22 @@ awesome {
     }
     property("fg") {
       if @count > 0
-        "#ff5656"
+        urgent_color
       else
-        "#ffffff"
+        normal_color
       end
     }
   }
 
   widget("pacman") {
-    set :interval => 1.hours
     property("text") {
       " #@count "
     }
     property("fg") {
       if @count > 0
-        "#ff5656"
+        urgent_color
       else
-        "#ffffff"
+        normal_color
       end
     }
   }
@@ -82,7 +83,7 @@ awesome {
     }
     property("fg") {
       if @usage[0] >= 75
-        "#ff5656"
+        urgent_color
       else
         "#ffffff"
       end
@@ -102,9 +103,9 @@ awesome {
     }
     property("fg") {
       if @speed[0] >= 1000
-        "#ff5656"
+        urgent_color
       else
-        "#a0a0a0"
+        normal_color
       end
     }
   }
