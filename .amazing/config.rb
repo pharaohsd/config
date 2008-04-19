@@ -12,7 +12,7 @@ awesome {
   set :statusbar => "top"
 
   widget("battery") {
-    set :interval => 25
+    set :interval => 10
 
     property("text") {
       case @state
@@ -26,7 +26,7 @@ awesome {
     }
 
     property("fg") {
-      if @percentage <= 25
+      if @percentage <= 20 && @iteration % 2 == 0
         colors.urgent
       else
         colors.normal
@@ -50,6 +50,7 @@ awesome {
   }
 
   widget("gmail") {
+    set :interval => 1.hours
     set :username => "gigamo"
     set :password => GMAIL_PWD
 
@@ -58,7 +59,7 @@ awesome {
     }
 
     property("fg") {
-      if @count > 0
+      if @count > 0 && @iteration % 2 == 0
         colors.urgent
       else
         colors.normal
@@ -67,13 +68,14 @@ awesome {
   }
 
   widget("pacman") {
+    set :interval => 1.hours
 
     property("text") {
       " #@count "
     }
 
     property("fg") {
-      if @count > 0
+      if @count > 0 && @iteration % 2 == 0
         colors.urgent
       else
         colors.normal
@@ -94,7 +96,7 @@ awesome {
     }
 
     property("fg") {
-      if @usage[0] >= 75
+      if @usage[1] >= 50 || @usage[2] >= 50 && @iteration % 2 == 0
         colors.urgent
       else
         "#ffffff"
