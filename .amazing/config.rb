@@ -49,8 +49,7 @@ awesome {
     }
   }
 
-  widget("mail") {
-    set :module => :gmail
+  widget("gmail") {
     set :username => "gigamo"
     set :password => GMAIL_PWD
 

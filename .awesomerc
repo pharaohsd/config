@@ -132,10 +132,10 @@ screen 0
             style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1"} 
         }
         iconbox ib_bm { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
-        textbox mail 
+        textbox gmail 
         { 
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
-            mouse { button = "1" command = "spawn" arg = "amazing -u mail/top/0" } 
+            mouse { button = "1" command = "spawn" arg = "amazing -u gmail/top/0" } 
             align = "right" 
         } 
         textbox pacman 
@@ -283,7 +283,7 @@ keys
     key { modkey = {"Mod4"}             key = "f"           command = "spawn" arg = "firefox3" }
     key { modkey = {"Mod4"}             key = "t"           command = "spawn" arg = "thunar" }
     key { modkey = {"Mod4"}             key = "r"           command = "spawn" arg = "/home/gig/.awesome/awesome-menu" }
-    key { modkey = {"Mod4"}             key = "F1"          command = "spawn" arg = "for i in /usr/share/man/man?;do ls $i; done | cut -d. -f1 | awesome-menu -e 'urxvtc -e man ' 'Manual:'" }
+    key { modkey = {"Mod4"}             key = "F1"          command = "spawn" arg = "for i in /usr/share/man/man?;do ls $i; done | cut -d. -f1 | awesome-menu -e 'urxvtc -e zsh -c man ' 'Manual:'" }
     key { modkey = {"Mod4"}             key = "F2"          command = "spawn" arg = "find /usr/bin -type f -executable ! -empty | awesome-menu -e 'exec ' Run:" }
     key { modkey = {"Mod4"}             key = "F3"          command = "spawn" arg = "cut -d' ' -f1 ~/.ssh/known_hosts | cut -d, -f1 | awesome-menu -e 'urxvtc -e ssh ' 'SSH:'" 
 }
