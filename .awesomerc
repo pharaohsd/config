@@ -105,6 +105,16 @@ screen 0
 #            mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
 #            mouse { modkey = {"Mod1"} button = "5" command = "client_swapprev" }
 #        }
+        emptybox a { width = 12 }
+        iconbox alsa_icon { image = "/home/gig/.awesome/transicons/vol.png" resize = false y = 3 }
+        emptybox aa { width = 6 }
+        progressbar alsa 
+        {
+            data master { fg = "#f8cc00" fg_center = "#f8cc00" fg_end = "#ff0000" bg = "#101010" bordercolor = "#282c28" }
+            ticks_count = 5
+            width = 25
+            height = 0.5
+        }
 
 
         iconbox ib_start { align = "right" image = "/home/gig/.awesome/separators/left.png" resize = "false" }
