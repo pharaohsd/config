@@ -1,8 +1,8 @@
 # Gigamo <gigamo@gmail.com> (19/04/08)
 # Configuration file for amazing (http://github.com/dag/amazing)
-require 'ostruct'
-import "../.passwords.rb" # GMAIL_PWD in there
+import "#{ENV["HOME"]}/.passwords.rb" # GMAIL_PWD in there
 
+require 'ostruct'
 colors = OpenStruct.new(
   :urgent => "#ff5656",
   :normal => "#a0a0a0"
@@ -88,7 +88,7 @@ awesome {
   }
 
   widget("cpu_usage") {
-    set :interval => 3
+    set :interval => 2
 
     property("text") {
       " #{@usage[1].to_i}%/#{@usage[2].to_i}% "
