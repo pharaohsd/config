@@ -63,7 +63,7 @@ awesome {
     }
 
     property("fg") {
-      if @count > 0 && @iteration % 2 == 0
+      if @count > 0
         color[:urgent]
       else
         color[:normal]
@@ -79,7 +79,7 @@ awesome {
     }
 
     property("fg") {
-      if @count > 0 && @iteration % 2 == 0
+      if @count > 0
         color[:urgent]
       else
         color[:normal]
