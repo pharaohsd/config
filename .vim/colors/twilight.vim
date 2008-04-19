@@ -25,7 +25,10 @@ if version >= 700
   "PmenuThumb
 endif
 
-hi Cursor guifg=NONE guibg=#586068 ctermfg=NONE
+hi Cursor guifg=NONE guibg=#586068 ctermfg=none cterm=none
+hi CursorColumn	cterm=none			ctermbg=238
+hi CursorLine	cterm=none			ctermbg=235
+hi lCursor	cterm=none	ctermfg=0	ctermbg=40
 
 hi Normal guifg=#f8f8f8 guibg=#141414 ctermfg=255 ctermbg=NONE
 "hi LineNr guifg=#808080 guibg=#e0e0e0

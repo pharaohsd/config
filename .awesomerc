@@ -1,4 +1,4 @@
-# Gigamo <gigamo@gmail.com> (18/04/08)
+# Gigamo <gigamo@gmail.com> (19/04/08)
 # {{{ Intended for awesome-3 git branch, but should (currently still) work with 2.3-rc1
 screen 0
 {
@@ -39,21 +39,21 @@ screen 0
         floating_placement = smart
     }
 
-#    titlebar
-#    { 
-#        position = "top" 
-#        text_align = "left" 
-#        styles 
-#        { 
-#             normal { shadow = "#111111" shadow_offset = "1" } 
-#             focus { bg = "#285577" shadow = "#111111" shadow_offset = "1" } 
-#        }
-#        height = "14" 
-#    }
+    titlebar
+    { 
+        position = "top"
+        text_align = "left"
+        styles
+        {
+             normal { shadow = "#111111" shadow_offset = "1" }
+             focus { shadow = "#111111" shadow_offset = "1" }
+        }
+        height = "14"
+    }
 
     tags
     {
-        tag t { layout = "tile" mwfact = .675 }
+        tag t { layout = "tile" mwfact = .6 }
         tag w { layout = "tilebottom" mwfact = .625 }
         tag d { layout = "tile" mwfact = .5 }
         tag 4 { layout = "floating" }
@@ -91,20 +91,20 @@ screen 0
             mouse { button = "5" command = "tag_setlayout" arg = "-1" }
         }
 
-        tasklist top
-        {
-            styles
-            {
-                focus { bg = "#0a0a0a" shadow = "#111111" shadow_offset = "1" }
-            }
-            show_icons = false
-            show = focus
-            text_align = left
-            mouse { button = "4" command = "client_focusnext" }
-            mouse { button = "5" command = "client_focusprev" }
-            mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
-            mouse { modkey = {"Mod1"} button = "5" command = "client_swapprev" }
-        }
+#        tasklist top
+#        {
+#            styles
+#            {
+#                focus { bg = "#0a0a0a" shadow = "#111111" shadow_offset = "1" }
+#            }
+#            show_icons = false
+#            show = focus
+#            text_align = left
+#            mouse { button = "4" command = "client_focusnext" }
+#            mouse { button = "5" command = "client_focusprev" }
+#            mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
+#            mouse { modkey = {"Mod1"} button = "5" command = "client_swapprev" }
+#        }
 
 
         iconbox ib_start { align = "right" image = "/home/gig/.awesome/separators/left.png" resize = "false" }
@@ -135,13 +135,14 @@ screen 0
         textbox mail 
         { 
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
-            mouse { button = "1" command = "spawn" arg = "firefox3 http://www.gmail.com" } 
+            mouse { button = "1" command = "spawn" arg = "amazing -u mail/top/0" } 
             align = "right" 
         } 
         textbox pacman 
         { 
             style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
-            align = "right" 
+            align = "right"
+            mouse { button = "1" command = "spawn" arg = "amazing -u pacman/top/0" }
         }
         iconbox ib_pm { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
         textbox mpd 

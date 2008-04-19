@@ -14,7 +14,7 @@ urxvt*loginShell:	        true
 urxvt*borderLess:         true
 urxvt*tintColor:          #666666
 urxvt*shading:            30
-urxvt*termName:		        rxvt-unicode
+urxvt*termName:		        rxvt-256color
 urxvt*inheritPixmap:	    true
 urxvt*cutchars:		        "()*,<>[]{}|'
 urxvt*secondaryScroll:	  true
@@ -24,7 +24,7 @@ urxvt*urlLauncher:	      firefox3
 urxvt*matcher.button:	    1
 urxvt*matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
 urxvt*visualBell:	        true
-urxvt*keysym.C-r:         perl:matcher
+urxvt*keysym.C-u:         perl:matcher
 ! Colors
 
 urxvt*cursorColor:        #919191
@@ -34,34 +34,23 @@ urxvt*pointerColor:       #919191
 URxvt*background:         rgba:1111/1111/1111/cccc
 URxvt*foreground:         #919191
  
-!urxvt.font:              -*-proggyoptis-medium-r-normal-*-10-80-96-96-c-60-iso8859-1
-!urxvt.boldFont:          -*-proggyoptis-medium-r-normal-*-10-80-96-96-c-60-iso8859-1
-!urxvt.font:               -*-proggyclean-medium-r-normal-*-13-80-96-96-c-70-iso8859-1
+!URxvt*font:              -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
+!URxvt*boldFont:          -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
 
-!URxvt*font:              -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-1
-!URxvt*boldFont:          -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-1
+!URxvt*font:               -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
+!URxvt*boldFont:           -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-* 
 
 !urxvt.font:               -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-*
 !urxvt.boldFont:           -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-*
-!urxvt.italicFont:         -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso10646-*
-!urxvt.boldItalicFont:     -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso10646-*
 
 urxvt.font:               xft:Terminus:pixelsize=12
 urxvt.boldFont:           xft:Terminus:pixelsize=12
-!urxvt.italicFont:         xft:Terminus:pixelsize=12
-!urxvt.boldItalicFont:     xft:Terminus:pixelsize=12
 
 !urxvt.font:               xft:smoothansi:pixelsize=12
 !urxvt.boldFont:           xft:smoothansi:pixelsize=12
-!urxvt.italicFont:         xft:smoothansi:pixelsize=12
-!urxvt.boldItalicFont:     xft:smoothansi:pixelsize=12
 
-!urxvt.font:              -*-dina-medium-r-normal-*-13-80-96-96-c-70-iso8859-1
-!urxvt.boldFont:          -*-dina-bold-r-normal-*-13-80-96-96-c-70-iso8859-1
-!urxvt.italicFont         -*-dina-medium-i-normal-*-13-80-96-96-c-70-iso8859-1
-!urxvt.boldItalicFont:    -*-dina-bold-i-normal-*-13-80-96-96-c-70-iso8859-1
-
-!URxvt.font:		          xft:DejaVu Sans Mono:size=7
+!urxvt.font:               -*-dina-medium-r-normal-*-*-*-*-*-*-*-*-*
+!urxvt.boldFont:           -*-dina-bold-r-normal-*-*-*-*-*-*-*-*-*
 
 ! ---| thayer bright |--- {{{
 !black
@@ -89,8 +78,8 @@ urxvt.boldFont:           xft:Terminus:pixelsize=12
 *color6:                  #3399ff
 *color14:                 #99ccff
 !white
-*color7:                  #999999
-*color15:                 #cccccc
+*color7:                  #cccccc
+*color15:                 #ffffff
 !}}}
 
 ! ---| Colorful Obsolescence |--- {{{

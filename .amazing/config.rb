@@ -1,4 +1,4 @@
-# Gigamo <gigamo@gmail.com> (18/04/08)
+# Gigamo <gigamo@gmail.com> (19/04/08)
 # Configuration file for amazing (http://github.com/dag/amazing)
 require 'ostruct'
 import "../.passwords.rb" # GMAIL_PWD in there

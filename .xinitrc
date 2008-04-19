@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # ~/.xinitrc
-#
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LOCALE=en_US.UTF-8
@@ -12,14 +11,7 @@ urxvtd -o -q -f &
 nitrogen --restore & # Wallpaper
 mpd &
 xbindkeys &
-
-if [ -f ~/.Xmodmap ]; then
-  xmodmap ~/.Xmodmap &
-fi
-if [ -f ~/.Xdefaults ]; then
-  xrdb ~/.Xdefaults &
-fi
-
+xrdb ~/.Xdefaults &
 (sleep 2 && urxvtc -e screen -RR && pidgin) &
 
 mkdir -p ~/.amazing/logs

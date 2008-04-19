@@ -29,11 +29,6 @@ alias ex=extract_archive
 
 # abreviations
 
-# todos!
-alias t="/home/notes/todo.py"
-alias tl="t ls"
-alias ta="t add"
-
 # basics
 alias c="clear"
 alias l="cd ."
@@ -42,14 +37,8 @@ alias ll='ls -ahl --color | more; echo "\e[1;32m --[\e[1;34m Dirs:\e[1;36m `ls -
 alias v="vim"
 alias wh="when ci --past=0 --future=3"
 alias cdc="cd; clear"
-alias ciq="centericq"
 
 # more interesting aliases :D
-#alias themini="ssh 192.168.1.2"
-#alias nsl='netstat -alnp --protocol=inet | grep -v CLOSE_WAIT'
-#alias cslab="rdesktop -u codemac -p - -K -a 16 -g 1150x767  rlogin.cs.vt.edu"
-#alias cdwav="cdrecord -v -eject -pad speed=48 dev=/dev/cdrom -dao -audio -swab"
-#alias rchem="rdesktop -u jbm -p - -K -a 16 -g 1280x667 chemad1"
 alias boggle='echo "No no no, Mr. Brian Braun-Duin"'
 alias conngig='sudo iwlist wlan0 scan && sudo netcfg2 wireless-gigamo'
 alias connmarina='sudo iwlist wlan0 scan && sudo netcfg2 wireless-marina'
@@ -78,19 +67,16 @@ alias -g S="| sed -r -e"
 
 alias wcat='wget -q -O -'
 alias pacup='sudo pacman -Syu'
-#alias pacs='sudo pacman -Ss'
-alias startx='dbus-launch startx'
+alias start='dbus-launch startx'
 alias install='sudo pacman -S'
 alias remove='sudo pacman -Rscn'
 alias yaoup='sudo yaourt -Syu --aur'
 alias yaous='sudo yaourt -Ss'
 alias yinstall='sudo yaourt -S'
 alias yremove='sudo yaourt -Rsn'
-alias cp="cp -v"
-alias grep="grep --color=auto -n"
-alias ls="ls -hF -a --color=auto"
 alias zetaf="sudo shutdown -h now"
 alias reboot="sudo reboot"
 alias svim="sudo vim"
 alias netcfg="netcfg2"
 alias battery="/home/gig/bin/battery.pl"
+alias ls="ls -hF -a --color=auto"

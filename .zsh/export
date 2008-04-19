@@ -1,6 +1,6 @@
 #!/bin/zsh
 #
-export PATH=$PATH
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin/:/home/gig/bin:/home/gig/hacks:/opt/mozilla/bin:/opt/java/jre/bin
 export MOZILLA_FIVE_HOME=/opt/mozilla/bin/mozilla
 export EDITOR=vim
 #export MANPAGER="col -b | vim -c 'set ft=man nonu nomod nolist' -"
