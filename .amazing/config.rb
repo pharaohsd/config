@@ -2,7 +2,8 @@
 # Configuration file for amazing (http://github.com/dag/amazing)
 import "#{ENV["HOME"]}/.passwords.rb" # GMAIL_PWD in there
 
-color = {
+BLINK = {}
+COLOR = {
   :urgent => "#ff5656",
   :normal => "#a0a0a0"
 }
@@ -25,10 +26,10 @@ awesome {
     }
 
     property("fg") {
-      if @percentage <= 20 && @iteration % 2 == 0
-        color[:urgent]
+      if @percentage <= 20
+        COLOR[:urgent]
       else
-        color[:normal]
+        COLOR[:normal]
       end
     }
   }
@@ -64,9 +65,9 @@ awesome {
 
     property("fg") {
       if @count > 0
-        color[:urgent]
+        COLOR[:urgent]
       else
-        color[:normal]
+        COLOR[:normal]
       end
     }
   }
@@ -80,9 +81,9 @@ awesome {
 
     property("fg") {
       if @count > 0
-        color[:urgent]
+        COLOR[:urgent]
       else
-        color[:normal]
+        COLOR[:normal]
       end
     }
   }
@@ -101,7 +102,7 @@ awesome {
 
     property("fg") {
       if @usage[0].to_i >= 50
-        color[:urgent]
+        COLOR[:urgent]
       else
         "#ffffff"
       end
@@ -123,9 +124,9 @@ awesome {
 
     property("fg") {
       if @speed[0] >= 1000
-        color[:urgent]
+        COLOR[:urgent]
       else
-        color[:normal]
+        COLOR[:normal]
       end
     }
   }
