@@ -11,11 +11,13 @@ urxvtd -o -q -f &
 nitrogen --restore & # Wallpaper
 mpd &
 xbindkeys &
+unclutter -root -idle 5 &
 xrdb ~/.Xdefaults &
-(sleep 2 && urxvtc -e screen -RR && pidgin) &
 
 mkdir -p ~/.amazing/logs
 amazing >> ~/.amazing/logs/amazing.log 2>> ~/.amazing/logs/error.log &
+
+urxvtc -e screen -RR &
 
 exec /usr/bin/awesome
 #ruby /home/gig/hacks/dwm.rb | /usr/bin/dwm
