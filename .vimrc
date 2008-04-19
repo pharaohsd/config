@@ -4,13 +4,10 @@
 set t_Co=256            " set 256 colors (needs 256 color terminal)
 set nocompatible        " use gVim defaults
 set mouse=a             " make sure mouse is used in all cases.
-map <F12> :browse confirm e<CR>
-
 "colorscheme calmar256  " define syntax color scheme
 "colorscheme vividchalk " define syntax color scheme
-"colorscheme zenburn    " define syntax color scheme
+"colorscheme xoria256
 colorscheme twilight
-"colorscheme darktango
 
 " tabs and indenting
 set expandtab           " insert spaces instead of tab chars
@@ -19,21 +16,12 @@ set shiftwidth=2        " allows the use of < and > for VISUAL indenting
 set softtabstop=2       " counts n spaces when DELETE or BCKSPCE is used
 set autoindent          " auto indents next new line
 set nosmartindent       " intelligent indenting -- DEPRECATED by cindent
-set nocindent           " set C style indenting off, I don't write C!
 
 " searching
 set hlsearch            " highlight all search results
 set incsearch           " increment search
 set ignorecase          " case-insensitive search
 set smartcase           " upper-case sensitive search
-
-" Add timestamp to rc files
-fun! <SID>UpdateRcHeader()
-    let l:c=col(".")
-    let l:l=line(".")
-    1,10s-\(Most recent update:\).*-\="Most recent update: ".strftime("%c")-
-    call cursor(l:l, l:c)
-endfun
 
 " Set up the status line
 fun! <SID>SetStatusLine()
@@ -59,11 +47,10 @@ if v:version >= 700
 endif
 
 " Encoding
-if ($TERM == "rxvt-unicode") && (&termencoding == "")
+if ($TERM == "rxvt-*") && (&termencoding == "")
     set termencoding=utf-8
 endif
 set encoding=utf-8
-
 
 set backspace=2         " full backspacing capabilities
 set history=100         " 100 lines of command line history
@@ -92,52 +79,22 @@ if has("gui_running")
   set guioptions-=m" Disable menu bar
   set guioptions-=T" Disable toolbar icons
   set guifont=DejaVu\ Sans\ Mono\ 8 " backslash spaces (e.g. Bitstream\ Vera\ Sans\ 8)
-  "set guifont=Dina\ 8
   "set guifont=Terminus\ 8
-  "set guifont=smoothansi 
 endif
 
 " common save shortcuts
 inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<cr>
 
-" enter ex mode with semi-colon
-nnoremap ; :
-vnoremap ; :
-
 " mutt rules
 au BufRead /tmp/mutt-* set tw=72 spell
 
 " drupal rules
 if has("autocmd")
-	  " Drupal *.module files.
 	  augroup module
 	    autocmd BufRead *.module set filetype=php
 	  augroup END
 endif
-
-" mangels cool block quoting function
-function! VBlockquote(...) range
-    " put `| ' at beginning of line
-    exe a:firstline.",".a:lastline."s/^/| /"
-    " remove trailing whitespaces
-    exe a:firstline.",".a:lastline.'s/^| $/|/e'
-    " generate tail
-    exe a:lastline."put ='`----'"
-    " set mark
-    normal m'
-    " generate title
-    let @z = ',----'
-    if (a:0 != 0)
-        " -> extra argument a:1
-        let @z = @z."[ ".a:1." ]"
-    endif
-    exe a:firstline."put! z"
-    " jump back to mark
-    normal ''
-endfunction
-
-vmap bq :call VBlockquote("
 
 " Set taglist plugin options
 let Tlist_Use_Right_Window = 1
