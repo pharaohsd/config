@@ -2,11 +2,10 @@
 # Configuration file for amazing (http://github.com/dag/amazing)
 import "#{ENV["HOME"]}/.passwords.rb" # GMAIL_PWD in there
 
-require 'ostruct'
-colors = OpenStruct.new(
+color = {
   :urgent => "#ff5656",
   :normal => "#a0a0a0"
-)
+}
 
 awesome {
   set :statusbar => "top"
@@ -27,11 +26,16 @@ awesome {
 
     property("fg") {
       if @percentage <= 20 && @iteration % 2 == 0
-        colors.urgent
+        color[:urgent]
       else
-        colors.normal
+        color[:normal]
       end
     }
+  }
+
+  widget("alsa") {
+    set :property => "data master"
+    set :interval => 1.minutes
   }
 
   widget("mpd") {
@@ -50,7 +54,7 @@ awesome {
   }
 
   widget("gmail") {
-    set :interval => 1.hours
+    set :interval => 5.minutes
     set :username => "gigamo"
     set :password => GMAIL_PWD
 
@@ -60,9 +64,9 @@ awesome {
 
     property("fg") {
       if @count > 0 && @iteration % 2 == 0
-        colors.urgent
+        color[:urgent]
       else
-        colors.normal
+        color[:normal]
       end
     }
   }
@@ -76,9 +80,9 @@ awesome {
 
     property("fg") {
       if @count > 0 && @iteration % 2 == 0
-        colors.urgent
+        color[:urgent]
       else
-        colors.normal
+        color[:normal]
       end
     }
   }
@@ -96,8 +100,8 @@ awesome {
     }
 
     property("fg") {
-      if @usage[1] >= 50 || @usage[2] >= 50 && @iteration % 2 == 0
-        colors.urgent
+      if @usage[0].to_i >= 50
+        color[:urgent]
       else
         "#ffffff"
       end
@@ -119,9 +123,9 @@ awesome {
 
     property("fg") {
       if @speed[0] >= 1000
-        colors.urgent
+        color[:urgent]
       else
-        colors.normal
+        color[:normal]
       end
     }
   }
