@@ -9,7 +9,7 @@ screen 0
             font = "terminus 8" 
             fg = "#a0a0a0"
             bg = "#0a0a0a"
-            border = "#0a0a0a"
+            border = "#282c28"
             shadow = "#111111"
             shadow_offset = "1"
         }
