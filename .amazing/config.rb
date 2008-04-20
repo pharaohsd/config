@@ -24,10 +24,8 @@ awesome {
     }
 
     property("fg") {
-      if @percentage <= 20
-        COLOR[:urgent]
-      else
-        COLOR[:normal]
+      if @percentage <= 20 : COLOR[:urgent]
+      else COLOR[:normal]
       end
     }
   }
@@ -77,15 +75,11 @@ awesome {
   widget("pacman") {
     set :interval => 1.hours
 
-    property("text") {
-      " #@count "
-    }
+    property("text") { " #@count " }
 
     property("fg") {
-      if @count > 0
-        COLOR[:urgent]
-      else
-        COLOR[:normal]
+      if @count > 0 : COLOR[:urgent]
+      else COLOR[:normal]
       end
     }
   }
@@ -98,15 +92,11 @@ awesome {
   widget("cpu_usage") {
     set :interval => 2
 
-    property("text") {
-      " #{@usage[1].to_i}%/#{@usage[2].to_i}% "
-    }
+    property("text") { " #{@usage[1].to_i}%/#{@usage[2].to_i}% " }
 
     property("fg") {
-      if @usage[0].to_i >= 50
-        COLOR[:urgent]
-      else
-        "#ffffff"
+      if @usage[0].to_i >= 50 : COLOR[:urgent]
+      else "#ffffff"
       end
     }
   }
@@ -125,10 +115,8 @@ awesome {
     }
 
     property("fg") {
-      if @speed[0] >= 1000
-        COLOR[:urgent]
-      else
-        COLOR[:normal]
+      if @speed[0] >= 1000 : COLOR[:urgent]
+      else COLOR[:normal]
       end
     }
   }
