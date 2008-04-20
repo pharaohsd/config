@@ -60,24 +60,15 @@ awesome {
     set :password => GMAIL_PWD
 
     property("text") {
+      BLINK[@identifier] ||= []
       if @count > 0
-        BLINK[@identifier]
+        BLINK[@identifier] << IO.popen("#{ENV["HOME"]}/bin/blink.rb 1.0 0 top #@identifier fg #{COLOR[:urgent]} #{COLOR[:normal]}")
+      else
+        BLINK[@identifier].each do |blinker|
+          Process.kill("SIGINT", blinker.pid)
+        end
       end
       " #@count"
-    }
-  }
-
-  # Make our gmail widget blink on new mails...
-  widget("gmail") {
-    set :module => :noop
-    set :interval => 3
- 
-    property("fg") {
-      if BLINK[@identifier] && @iteration % 2 == 0
-        COLOR[:urgent]
-      else
-        COLOR[:normal]
-      end
     }
   }
 
