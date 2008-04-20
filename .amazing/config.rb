@@ -14,12 +14,10 @@ awesome {
     set :interval => 10
 
     property("text") {
-      if @state == :charging
-        DIR = "^"
-      elsif @state == :discharging
-        DIR = "v"
-      else
-        DIR = "="
+      case  @state 
+        when :charging : DIR = "^"
+        when :discharging : DIR = "v"
+      else DIR = "="
       end
       " #{DIR}#{@percentage.to_i}#{DIR} "
     }
