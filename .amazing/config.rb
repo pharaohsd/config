@@ -16,11 +16,11 @@ awesome {
 
     property("text") {
       case @state 
-        when :charging : DIR = "^"
-        when :discharging : DIR = "v"
-        else DIR = "="
+        when :charging : dir = "^"
+        when :discharging : dir = "v"
+        else dir = "="
       end
-      " #{DIR}#{@percentage.to_i}#{DIR} "
+      " #{dir}#{@percentage.to_i}#{dir} "
     }
 
     property("fg") {
@@ -42,12 +42,12 @@ awesome {
 
     property("text") {
       case @state
-        when :playing : TEXT = ">>:"; show_info = true
-        when :paused : TEXT = "||:"; show_info = true
+        when :playing : txt = ">>:"; show_info = true
+        when :paused : txt = "||:"; show_info = true
         else show_info = false
       end
       if show_info
-        " #{TEXT} #@artist - #@title (#@position/#@length) "
+        " #{txt} #@artist - #@title (#@position/#@length) "
       else # Player is stopped or connection not initialized
         " []: not playing "
       end
