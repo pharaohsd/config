@@ -1,12 +1,10 @@
-# Gigamo <gigamo@gmail.com> (19/04/08)
+# Gigamo <gigamo@gmail.com> (20/04/08)
 # Configuration file for amazing (http://github.com/dag/amazing)
 import "#{ENV["HOME"]}/.passwords.rb" # GMAIL_PWD in there
 
 BLINK = {}
-COLOR = {
-  :urgent => "#ff5656",
-  :normal => "#a0a0a0"
-}
+COLOR = { :urgent => "#ff5656",
+          :normal => "#a0a0a0" }
 
 awesome {
   set :statusbar => "top"
@@ -17,12 +15,13 @@ awesome {
     property("text") {
       case @state
       when :charged
-        " =#{@percentage.to_i}= "
+        DIR = "="
       when :charging
-        " ^#{@percentage.to_i}^ "
+        DIR = "^"
       when :discharging
-        " v#{@percentage.to_i}v "
+        DIR = "v"
       end
+      " #{DIR}#{@percentage.to_i}#{DIR} "
     }
 
     property("fg") {
@@ -60,11 +59,19 @@ awesome {
     set :password => GMAIL_PWD
 
     property("text") {
+      if @count > 0
+        BLINK[@identifier]
+      end
       " #@count"
     }
+  }
 
+  widget("gmail") {
+    set :module => :noop
+    set :interval => 3
+ 
     property("fg") {
-      if @count > 0
+      if BLINK[@identifier] && @iteration % 2 == 0
         COLOR[:urgent]
       else
         COLOR[:normal]

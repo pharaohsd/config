@@ -255,36 +255,36 @@ keys
     key { modkey = {"Mod1"}             key = "k"           command = "client_kill" }
     key { modkey = {"Mod4", "Shift"}    key = "q"           command = "quit" }
     key { modkey = {"Mod4", "Control"}  key = "r"           command = "exec" arg = "awesome" }
-    key { modkey = {"Mod4"}             key = "0"           command = "tag_view" }   
+    key { modkey = {"Mod4"}             key = "agrave"      command = "tag_view" }
     keylist 
     { 
         modkey = {"Mod4"}                             
         command = "tag_view" 
-        keylist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
+        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, underscore, ccedilla }
         arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
     }
-    key { modkey = {"Mod4", "Control"}  key = "0"           command = "tag_toggleview" }
+    key { modkey = {"Mod4", "Control"}  key = "agrave"      command = "tag_toggleview" }
     keylist 
     { 
         modkey = {"Mod4", "Control"}                  
-        command = "tag_toggleview" 
-        keylist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
+        command = "tag_toggleview"
+        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, underscore, ccedilla }
         arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
     }
-    key { modkey = {"Mod4", "Shift"}    key = "0"           command = "client_tag" }
+    key { modkey = {"Mod4", "Shift"}    key = "agrave"      command = "client_tag" }
     keylist 
     { 
         modkey = {"Mod4", "Shift"}                    
-        command = "client_tag" 
-        keylist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
+        command = "client_tag"
+        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, underscore, ccedilla }
         arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
     }
-    key { modkey = {"Mod4", "Shift", "Control"} key = "0"   command = "client_toggletag" }
+    key { modkey = {"Mod4", "Shift", "Control"} key = "agrave"    command = "client_toggletag" }
     keylist 
     { 
         modkey = {"Mod4", "Shift", "Control"}         
         command = "client_toggletag" 
-        keylist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
+        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, underscore, ccedilla }
         arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
     }
 

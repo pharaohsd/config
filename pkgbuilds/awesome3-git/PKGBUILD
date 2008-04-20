@@ -2,7 +2,7 @@
 # Disclaimer: This PKGBUILD is simply modified from noonov <noonov@gmail.com>'s awesome-git PKGBUILD
 
 pkgname=awesome3-git
-pkgver=20080413
+pkgver=20080419
 pkgrel=1
 pkgdesc="awesome-3 git branch of the Awesome Window Manager"
 arch=('i686' 'x86_64')
@@ -11,7 +11,7 @@ license=('GPL')
 depends=('xcb-util' 'confuse' 'imlib2' 'pango' 'libxinerama' 'libxrandr')
 makedepends=('asciidoc' 'autoconf' 'docbook-xsl' 'git' 'pkgconfig' 'xmlto')
 provides=('awesome')
-conflicts=('awesome' 'awesome-git' 'awesome3-git')
+conflicts=('awesome' 'awesome-git')
 source=()
 md5sums=('')
 
@@ -24,7 +24,7 @@ build() {
   cd $startdir/src
 
   if [ -d $_gitname ]; then
-    (cd $_gitname && git-fetch origin && git-reset --hard origin/awesome-3)
+    (cd $_gitname && git fetch origin && git rebase origin/awesome-3)
   else
     (git clone $_gitroot && cd $_gitname && git checkout -b awesome-3 origin/awesome-3) 
   fi
