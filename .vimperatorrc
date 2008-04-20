@@ -2,13 +2,13 @@ set activate=quickmark,paste
 set visualbell
 set complete=sbfh
 set defsearch=google
-set guioptions-=mTb
+set guioptions-=mT
 set maxhints=1000
 set preload
 set previewheight=20
 set showmode
 set showstatuslinks
-set showtabline=2
+set showtabline=1
 set titlestring=Vimperator
 set verbose=9
 set wildmode=list:full
