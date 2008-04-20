@@ -1,4 +1,4 @@
-# Gigamo <gigamo@gmail.com> (19/04/08)
+# Gigamo <gigamo@gmail.com> (20/04/08)
 # {{{ Intended for awesome-3 git branch, but should (currently still) work with 2.3-rc1
 screen 0
 {
@@ -17,7 +17,6 @@ screen 0
         { 
             fg = "#ffffff"
             bg = "#285577" 
-            border = "#285577"
         }
         urgent 
         { 
@@ -45,8 +44,8 @@ screen 0
         text_align = "left"
         styles
         {
-             normal { shadow = "#111111" shadow_offset = "1" }
-             focus { shadow = "#111111" shadow_offset = "1" }
+             normal { border = "#282c28" shadow = "#111111" shadow_offset = "1" }
+             focus { border = "#282c28" shadow = "#111111" shadow_offset = "1" }
         }
         height = "14"
     }
