@@ -28,10 +28,6 @@ test -f "/etc/profile.$shell" &&  . "/etc/profile.$shell"
 #Set our umask
 umask 022
 
-# Set our default path
-PATH="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/home/gig/bin:/home/gig/hacks:/opt/mozilla/bin:/opt/java/jre/bin"
-export PATH
-
 # Some readline stuff that is fairly common
 HISTSIZE=1000
 HISTCONTROL="erasedups"
@@ -49,6 +45,10 @@ if test -d /etc/profile.d/; then
     done
     unset profile
 fi
+
+# Set our default path
+PATH="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/home/gig/bin:/home/gig/hacks:/opt/mozilla/bin:/opt/java/jre/bin"
+export PATH
 
 # Termcap is outdated, old, and crusty, kill it.
 unset TERMCAP
