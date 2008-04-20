@@ -60,6 +60,7 @@ awesome {
     set :password => GMAIL_PWD
 
     property("text") {
+      # Make the widget blink upon new mail!
       BLINK[@identifier] ||= []
       if @count > 0
         BLINK[@identifier] << IO.popen("#{ENV["HOME"]}/bin/blink.rb 1.0 0 top #@identifier fg #{COLOR[:urgent]} #{COLOR[:normal]}")
@@ -68,6 +69,7 @@ awesome {
           Process.kill("SIGINT", blinker.pid)
         end
       end
+      # The actual string that's displayed
       " #@count"
     }
   }
@@ -90,7 +92,7 @@ awesome {
 
   widget("clock") {
     set :interval => 1
-    set :format => " %H:%M:%S %d.%m.%Y "
+    set :format => " %T %d.%m.%Y "
   }
 
   widget("cpu_usage") {
