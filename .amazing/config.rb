@@ -1,6 +1,7 @@
 # Gigamo <gigamo@gmail.com> (20/04/08)
 #
 # Configuration file for amazing (http://github.com/dag/amazing)
+# Only works with amazing's 'config' branch.
 import "#{ENV["HOME"]}/.passwords.rb" # GMAIL_PWD
 
 BLINK = {}
@@ -14,10 +15,10 @@ awesome {
     set :interval => 10
 
     property("text") {
-      case  @state 
+      case @state 
         when :charging : DIR = "^"
         when :discharging : DIR = "v"
-      else DIR = "="
+        else DIR = "="
       end
       " #{DIR}#{@percentage.to_i}#{DIR} "
     }
