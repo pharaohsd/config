@@ -1,6 +1,7 @@
 # Gigamo <gigamo@gmail.com> (20/04/08)
+#
 # Configuration file for amazing (http://github.com/dag/amazing)
-import "#{ENV["HOME"]}/.passwords.rb" # GMAIL_PWD in there
+import "#{ENV["HOME"]}/.passwords.rb" # GMAIL_PWD
 
 BLINK = {}
 COLOR = { :urgent => "#ff5656",
@@ -13,13 +14,12 @@ awesome {
     set :interval => 10
 
     property("text") {
-      case @state
-      when :charged
-        DIR = "="
-      when :charging
+      if @state == :charging
         DIR = "^"
-      when :discharging
+      elsif @state == :discharging
         DIR = "v"
+      else
+        DIR = "="
       end
       " #{DIR}#{@percentage.to_i}#{DIR} "
     }
@@ -43,11 +43,13 @@ awesome {
 
     property("text") {
       case @state
-      when :playing
-        " >>: #@artist - #@title (#@position/#@length) "
-      when :paused
-        " ||: #@artist - #@title (#@position/#@length) "
-      when :stopped
+        when :playing : TEXT = ">>:"; show_info = true
+        when :paused : TEXT = "||:"; show_info = true
+        else show_info = false
+      end
+      if show_info
+        " #{TEXT} #@artist - #@title (#@position/#@length) "
+      else # Player is stopped or connection not initialized
         " []: not playing "
       end
     }
@@ -66,6 +68,7 @@ awesome {
     }
   }
 
+  # Make our gmail widget blink on new mails...
   widget("gmail") {
     set :module => :noop
     set :interval => 3
