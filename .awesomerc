@@ -257,9 +257,9 @@ keys
     key { modkey = {"Mod4"}             key = "agrave"      command = "tag_view" }
     keylist 
     { 
-        modkey = {"Mod4"}                             
+        modkey = {"Mod4"} 
         command = "tag_view" 
-        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, underscore, ccedilla }
+        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, exclam, ccedilla }
         arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
     }
     key { modkey = {"Mod4", "Control"}  key = "agrave"      command = "tag_toggleview" }
@@ -267,7 +267,7 @@ keys
     { 
         modkey = {"Mod4", "Control"}                  
         command = "tag_toggleview"
-        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, underscore, ccedilla }
+        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, exclam, ccedilla }
         arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
     }
     key { modkey = {"Mod4", "Shift"}    key = "agrave"      command = "client_tag" }
@@ -275,7 +275,7 @@ keys
     { 
         modkey = {"Mod4", "Shift"}                    
         command = "client_tag"
-        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, underscore, ccedilla }
+        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, exclam, ccedilla }
         arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
     }
     key { modkey = {"Mod4", "Shift", "Control"} key = "agrave"    command = "client_toggletag" }
@@ -283,7 +283,7 @@ keys
     { 
         modkey = {"Mod4", "Shift", "Control"}         
         command = "client_toggletag" 
-        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, underscore, ccedilla }
+        keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, exclam, ccedilla }
         arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
     }
 
