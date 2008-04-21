@@ -1,4 +1,4 @@
-# Gigamo <gigamo@gmail.com> (20/04/08)
+# Gigamo <gigamo@gmail.com> (21/04/08)
 #
 # Configuration file for amazing (http://github.com/dag/amazing)
 # Only works with amazing's 'config' branch.
@@ -15,6 +15,7 @@ awesome {
     set :interval => 10
 
     property("text") {
+      # Set some hacky direction 'symbols'
       case @state 
         when :charging : dir = "^"
         when :discharging : dir = "v"
