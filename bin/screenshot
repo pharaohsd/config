@@ -36,7 +36,7 @@ def upload
     exit 1
   else
     IO.popen("ncftpput -u #{FTP_USER} -p #{FTP_PWD} -R -m #{FTP_HOST} #{FTP_PATH} #{PIC_PATH}#{PIC_NAME}.png #{PIC_PATH}#{PIC_NAME}t.png") {}
-    puts "\nUpload succesful!"
+    puts "\nUpload successful!"
   end
 end
 
