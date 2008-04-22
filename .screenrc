@@ -15,17 +15,16 @@ vbell off
 startup_message off
 defutf8 on
 
-termcapinfo xterm|xterms|xterm-color|screen|xs|rxvt|urxvt|rxvt-unicode|rxvt-256color ti@:te@
+termcapinfo xterm|xterms|xterm-color|screen|xs|rxvt ti@:te@
 
-caption always "%{= kb}[ %{kB}$USER@%H %{b}][ %=%{w}%?%-Lw%?%{b}(%{W}%n*%f %t%?(%u)%?%{b})%{w}%?%+Lw%?%= %{b}][%{kB} %d.%m.%Y %{kW}%0c %{kb}]"
+caption always "%{= kb}[ %{kW}$USER%{kB}@%H %{b}][ %=%{w}%?%-Lw%?%{b}(%{W}%n*%f %t%?(%u)%?%{b})%{w}%?%+Lw%?%= %{b}][%{kB} %d.%m.%Y %{kW}%0c %{kb}]"
 #hardstatus alwayslastline "%{=b W}%{k} %= %w %=" 
 sorendition +b kG
 
 # Default apps
 screen -t torrent rtorrent
 screen -t irc weechat-curses
-screen -t
-screen -t
+screen zsh
 #screen -t log sudo tail -f /var/log/messages.log
 
 bindkey -k k1 prev
