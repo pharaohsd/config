@@ -1,4 +1,4 @@
-# Gigamo <gigamo@gmail.com> (21/04/08)
+# Gigamo <gigamo@gmail.com> (22/04/08)
 #
 # Configuration file for amazing (http://github.com/dag/amazing)
 # Only works with amazing's 'config' branch.
@@ -62,7 +62,9 @@ awesome {
       # Make the widget blink upon new mail!
       BLINK[@identifier] ||= []
       if @count > 0
-        BLINK[@identifier] << IO.popen("#{ENV["HOME"]}/bin/blink.rb 1.0 0 top #@identifier fg #{COLOR[:urgent]} #{COLOR[:normal]}")
+        if BLINK[@identifier].empty?
+          BLINK[@identifier] << IO.popen("#{ENV["HOME"]}/bin/blink.rb 1.0 0 top #@identifier fg #{COLOR[:urgent]} #{COLOR[:normal]}")
+        end
       else
         BLINK[@identifier].each do |blinker|
           Process.kill("SIGINT", blinker.pid)
