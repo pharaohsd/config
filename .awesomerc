@@ -251,7 +251,7 @@ keys
     key { modkey = {"Mod1", "Control"}  key = "s"           command = "client_setscratch" }
     key { modkey = {"Mod4", "Control"}  key = "Return"      command = "client_zoom" }
     key { modkey = {"Mod4", "Control"}  key = "space"       command = "client_togglefloating" }
-    key { modkey = {"Mod1"}             key = "k"           command = "client_kill" }
+    key { modkey = {"Mod4"}             key = "k"           command = "client_kill" }
     key { modkey = {"Mod4", "Shift"}    key = "q"           command = "quit" }
     key { modkey = {"Mod4", "Control"}  key = "r"           command = "exec" arg = "awesome" }
     key { modkey = {"Mod4"}             key = "agrave"      command = "tag_view" }
@@ -286,6 +286,12 @@ keys
         keylist = { ampersand, eacute, quotedbl, apostrophe, parenleft, section, egrave, exclam, ccedilla }
         arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
     }
+
+    ###### {{{ Move and resize windows with vim keybinds
+    key { modkey = {"Mod4", "Control"}  key = "j"           command = "client_moveresize" arg = "+0 +20 +0 +0" }
+    key { modkey = {"Mod4", "Control"}  key = "k"           command = "client_moveresize" arg = "+0 -20 +0 +0" }
+    key { modkey = {"Mod4", "Control"}  key = "h"           command = "client_moveresize" arg = "-20 +0 +0 +0" }
+    key { modkey = {"Mod4", "Control"}  key = "l"           command = "client_moveresize" arg = "+20 +0 +0 +0" }
 
     ###### {{{ Custom app launching binds
     key { modkey = {"Mod4"}             key = "x"           command = "spawn" arg = "urxvtc" }
