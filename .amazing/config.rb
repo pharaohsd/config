@@ -1,4 +1,4 @@
-# Gigamo <gigamo@gmail.com> (22/04/08)
+# Gigamo <gigamo@gmail.com> (23/04/08)
 #
 # Configuration file for amazing (http://github.com/dag/amazing)
 # Only works with amazing's 'config' branch.
@@ -29,11 +29,6 @@ awesome {
       else COLOR[:normal]
       end
     }
-  }
-
-  widget("alsa") {
-    set :property => "data master"
-    set :interval => 1.minutes
   }
 
   widget("mpd") {

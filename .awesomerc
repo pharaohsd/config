@@ -1,4 +1,4 @@
-# Gigamo <gigamo@gmail.com> (22/04/08)
+# Gigamo <gigamo@gmail.com> (23/04/08)
 # {{{ Intended for awesome-3 git branch, but should (currently still) work with 2.3-rc1
 screen 0
 {
@@ -16,7 +16,7 @@ screen 0
         focus 
         { 
             fg = "#ffffff"
-            bg = "#285577" 
+            bg = "#282c28"
         }
         urgent 
         { 
@@ -90,31 +90,16 @@ screen 0
             mouse { button = "5" command = "tag_setlayout" arg = "-1" }
         }
 
-#        tasklist top
-#        {
-#            styles
-#            {
-#                focus { bg = "#0a0a0a" shadow = "#111111" shadow_offset = "1" }
-#            }
-#            show_icons = false
-#            show = focus
-#            text_align = left
-#            mouse { button = "4" command = "client_focusnext" }
-#            mouse { button = "5" command = "client_focusprev" }
-#            mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
-#            mouse { modkey = {"Mod1"} button = "5" command = "client_swapprev" }
-#        }
-        emptybox a { width = 12 }
-        iconbox alsa_icon { image = "/home/gig/.awesome/transicons/vol.png" resize = false y = 3 }
-        emptybox aa { width = 6 }
-        progressbar alsa 
+        tasklist top
         {
-            data master { fg = "#f8cc00" fg_center = "#f8cc00" fg_end = "#ff0000" bg = "#101010" bordercolor = "#282c28" }
-            ticks_count = 5
-            width = 25
-            height = 0.5
+            show_icons = false
+            show = focus
+            text_align = left
+            mouse { button = "4" command = "client_focusnext" }
+            mouse { button = "5" command = "client_focusprev" }
+            mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
+            mouse { modkey = {"Mod1"} button = "5" command = "client_swapprev" }
         }
-
 
         iconbox ib_start { align = "right" image = "/home/gig/.awesome/separators/left.png" resize = "false" }
         textbox clock
