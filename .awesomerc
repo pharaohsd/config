@@ -236,7 +236,7 @@ keys
     key { modkey = {"Mod1", "Control"}  key = "s"           command = "client_setscratch" }
     key { modkey = {"Mod4", "Control"}  key = "Return"      command = "client_zoom" }
     key { modkey = {"Mod4", "Control"}  key = "space"       command = "client_togglefloating" }
-    key { modkey = {"Mod4"}             key = "k"           command = "client_kill" }
+    key { modkey = {"Mod4"}             key = "c"           command = "client_kill" }
     key { modkey = {"Mod4", "Shift"}    key = "q"           command = "quit" }
     key { modkey = {"Mod4", "Control"}  key = "r"           command = "exec" arg = "awesome" }
     key { modkey = {"Mod4"}             key = "agrave"      command = "tag_view" }
