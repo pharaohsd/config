@@ -1,5 +1,7 @@
 xft.dpi:	                96
 xft.antialias:            true
+Xft.lcdfilter:            lcdfilterlegacy
+Xft.hintstyle:            hintfull
 
 Xcursor.theme:            Vanilla-DMZ-AA
 Xcursor.size:             22
@@ -8,7 +10,7 @@ Xcursor.size:             22
 !URxvt*boldFont:          -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
 
 !URxvt*font:               -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
-!URxvt*boldFont:           -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-* 
+!URxvt*boldFont:           -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
 
 !URxvt*font:               -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-*
 !URxvt*boldFont:           -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-*
@@ -16,11 +18,7 @@ Xcursor.size:             22
 URxvt*font:               xft:Terminus:pixelsize=12
 URxvt*boldFont:           xft:Terminus:pixelsize=12
 
-!URxvt*font:               xft:smoothansi:pixelsize=12
-!URxvt*boldFont:           xft:smoothansi:pixelsize=12
-
-!URxvt*font:               -*-dina-medium-r-normal-*-*-*-*-*-*-*-*-*
-!URxvt*boldFont:           -*-dina-bold-r-normal-*-*-*-*-*-*-*-*-*
+!URxvt*font:               xft:DejaVu Sans Mono:size=7:VL Gothic:size=7:
 
 URxvt*geometry:           80x25
 URxvt*saveLines:          16384
@@ -48,29 +46,48 @@ URxvt*foreground:         #B4B4B4
 
 ! ---| thayer bright |--- {{{
 !black
-*color0:                  #181c18
-*color8:                  #555555
+!*color0:                  #181c18
+!*color8:                  #555555
 !red
-*color1:                  #ff3300
-*color9:                  #ff6655
+!*color1:                  #ff3300
+!*color9:                  #ff6655
 !green
-*color2:                  #99cc33
-*color10:                 #ccff66
+!*color2:                  #75cc2b
+!*color10:                 #95ff58
 !yellow
-*color3:                  #ffe975
-*color11:                 #ffef9c
+!*color3:                  #ffe975
+!*color11:                 #ffef9c
 !blue -> violet
-*color4:                  #285577
-*color12:                 #6677ff
+!*color4:                  #285577
+!*color12:                 #6677ff
 !magenta -> pink
-*color5:                  #ce5c00
-*color13:                 #f57900
+!*color5:                  #ce5c00
+!*color13:                 #f57900
 !cyan -> blue
-*color6:                  #3399ff
-*color14:                 #99ccff
+!*color6:                  #3399ff
+!*color14:                 #99ccff
 !white
-*color7:                  #c4c4c4
-*color15:                 #ffffff
+!*color7:                  #c4c4c4
+!*color15:                 #ffffff
+!}}}
+
+! ---| Donri |--- {{{
+URxvt*color0: #000000
+URxvt*color1: #9e1828
+URxvt*color2: #aece92
+URxvt*color3: #968a38
+URxvt*color4: #414171
+URxvt*color5: #963c59
+URxvt*color6: #418179
+URxvt*color7: #bebebe
+URxvt*color8: #666666
+URxvt*color9: #cf6171
+URxvt*color10: #c5f779
+URxvt*color11: #fff796
+URxvt*color12: #4186be
+URxvt*color13: #cf9ebe
+URxvt*color14: #71bebe
+URxvt*color15: #ffffff
 !}}}
 
 ! ---| Colorful Obsolescence |--- {{{
