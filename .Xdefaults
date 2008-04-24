@@ -6,43 +6,40 @@ Xft.hintstyle:            hintfull
 Xcursor.theme:            Vanilla-DMZ-AA
 Xcursor.size:             22
 
-!URxvt*font:              -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
-!URxvt*boldFont:          -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
+!urxvt*font:              -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
+!urxvt*boldFont:          -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
 
-!URxvt*font:               -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
-!URxvt*boldFont:           -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
+!urxvt*font:               -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
+!urxvt*boldFont:           -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
 
-!URxvt*font:               -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-*
-!URxvt*boldFont:           -*-terminus-medium-r-normal-*-*-*-*-*-*-*-iso10646-*
+urxvt*font:               xft:Terminus:pixelsize=12
+urxvt*boldFont:           xft:Terminus:pixelsize=12
 
-URxvt*font:               xft:Terminus:pixelsize=12
-URxvt*boldFont:           xft:Terminus:pixelsize=12
+!urxvt*font:               xft:DejaVu Sans Mono:size=7:VL Gothic:size=7:
 
-!URxvt*font:               xft:DejaVu Sans Mono:size=7:VL Gothic:size=7:
-
-URxvt*geometry:           80x25
-URxvt*saveLines:          16384
-URxvt*scrollBar:	        false
-URxvt*scrollBar_right:	  true
-URxvt*loginShell:	        true
-URxvt*borderLess:         true
-URxvt*tintColor:          #666666
-URxvt*shading:            30
-URxvt*termName:		        rxvt-256color
-URxvt*inheritPixmap:	    true
-URxvt*cutchars:		        "()*,<>[]{}|'
-URxvt*secondaryScroll:	  true
-URxvt*perl-lib:		        /usr/lib/urxvt/perl/
-URxvt*perl-ext-common:	  default,matcher
-URxvt*urlLauncher:	      firefox3
-URxvt*matcher.button:	    1
-URxvt*matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
-URxvt*visualBell:	        true
-URxvt*keysym.C-u:         perl:matcher
+urxvt*geometry:           80x25
+urxvt*saveLines:          32767
+urxvt*scrollBar:	        false
+urxvt*scrollBar_right:	  true
+urxvt*loginShell:	        true
+urxvt*borderLess:         true
+urxvt*tintColor:          #FFFFFF
+urxvt*shading:            30
+urxvt*termName:		        rxvt-unicode
+urxvt*inheritPixmap:	    true
+urxvt*cutchars:		        "()*,<>[]{}|'
+urxvt*secondaryScroll:	  true
+urxvt*perl-lib:		        /usr/lib/urxvt/perl/
+urxvt*perl-ext-common:	  default,matcher
+urxvt*urlLauncher:	      firefox3
+urxvt*matcher.button:	    1
+urxvt*matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+urxvt*visualBell:	        true
+urxvt*keysym.C-u:         perl:matcher
 
 
-URxvt*background:         #1C1C1C
-URxvt*foreground:         #B4B4B4 
+urxvt*background:         #1C1C1C
+urxvt*foreground:         #B4B4B4 
 
 ! ---| thayer bright |--- {{{
 !black
@@ -72,22 +69,22 @@ URxvt*foreground:         #B4B4B4
 !}}}
 
 ! ---| Donri |--- {{{
-URxvt*color0: #000000
-URxvt*color1: #9e1828
-URxvt*color2: #aece92
-URxvt*color3: #968a38
-URxvt*color4: #414171
-URxvt*color5: #963c59
-URxvt*color6: #418179
-URxvt*color7: #bebebe
-URxvt*color8: #666666
-URxvt*color9: #cf6171
-URxvt*color10: #c5f779
-URxvt*color11: #fff796
-URxvt*color12: #4186be
-URxvt*color13: #cf9ebe
-URxvt*color14: #71bebe
-URxvt*color15: #ffffff
+urxvt*color0: #000000
+urxvt*color1: #9e1828
+urxvt*color2: #aece92
+urxvt*color3: #968a38
+urxvt*color4: #414171
+urxvt*color5: #963c59
+urxvt*color6: #418179
+urxvt*color7: #bebebe
+urxvt*color8: #666666
+urxvt*color9: #cf6171
+urxvt*color10: #c5f779
+urxvt*color11: #fff796
+urxvt*color12: #4186be
+urxvt*color13: #cf9ebe
+urxvt*color14: #71bebe
+urxvt*color15: #ffffff
 !}}}
 
 ! ---| Colorful Obsolescence |--- {{{
@@ -133,56 +130,56 @@ URxvt*color15: #ffffff
 
 ! ---| codemac old |--- {{{
 ! Black (not tango) + DarkGrey
-!URxvt*color0:             #303430
-!URxvt*color8:             #8989A9
+!urxvt*color0:             #303430
+!urxvt*color8:             #8989A9
 ! DarkRed + Red
-!URxvt*color1:             #bf7979
-!URxvt*color9:             #f4a45f
+!urxvt*color1:             #bf7979
+!urxvt*color9:             #f4a45f
 ! DarkGreen + Green
-!URxvt*color2:             #97b22b
-!URxvt*color10:            #c5f779
+!urxvt*color2:             #97b22b
+!urxvt*color10:            #c5f779
 ! DarkYellow + Yellow
-!URxvt*color3:             #b6aa58
-!URxvt*color11:            #fff796
+!urxvt*color3:             #b6aa58
+!urxvt*color11:            #fff796
 ! DarkBlue + Blue
-!URxvt*color4:             #86a2be
-!URxvt*color12:            #98afd9
+!urxvt*color4:             #86a2be
+!urxvt*color12:            #98afd9
 ! DarkMangenta + Mangenta
-!URxvt*color5:             #d9b798
-!URxvt*color13:            #d7d998
+!urxvt*color5:             #d9b798
+!urxvt*color13:            #d7d998
 !DarkCyan + Cyan (both not tango)
-!URxvt*color6:             #a1d5cd
-!URxvt*color14:            #a1d5cd
+!urxvt*color6:             #a1d5cd
+!urxvt*color14:            #a1d5cd
 ! LightGrey + White
-!URxvt*color7:             #cccccc
-!URxvt*color15:            #aeaeae
+!urxvt*color7:             #cccccc
+!urxvt*color15:            #aeaeae
 !}}}
 
 ! ---| thayer (tango) |--- {{{
 ! Black (not tango) + DarkGrey
-!URxvt*color0:             #000000
-!URxvt*color8:             #555753
+!urxvt*color0:             #000000
+!urxvt*color8:             #555753
 ! DarkRed + Red
-!URxvt*color1:             #ff6565
-!URxvt*color9:             #ff8d8d
+!urxvt*color1:             #ff6565
+!urxvt*color9:             #ff8d8d
 ! DarkGreen + Green
-!URxvt*color2:             #93d44f
-!URxvt*color10:            #78e758
+!urxvt*color2:             #93d44f
+!urxvt*color10:            #78e758
 ! DarkYellow + Yellow
-!URxvt*color3:             #eab93d
-!URxvt*color11:            #ffc123
+!urxvt*color3:             #eab93d
+!urxvt*color11:            #ffc123
 ! DarkBlue + Blue
-!URxvt*color4:             #204a87
-!URxvt*color12:            #3465a4
+!urxvt*color4:             #204a87
+!urxvt*color12:            #3465a4
 ! DarkMangenta + Mangenta
-!URxvt*color5:             #ce5c00
-!URxvt*color13:            #f57900
+!urxvt*color5:             #ce5c00
+!urxvt*color13:            #f57900
 !DarkCyan + Cyan (both not tango)
-!URxvt*color6:             #89b6e2
-!URxvt*color14:            #46a4ff
+!urxvt*color6:             #89b6e2
+!urxvt*color14:            #46a4ff
 ! LightGrey + White
-!URxvt*color7:             #cccccc
-!URxvt*color15:            #ffffff
+!urxvt*color7:             #cccccc
+!urxvt*color15:            #ffffff
 !}}}
 
 ! ---| phrakture |--- {{{
