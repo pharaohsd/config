@@ -1,4 +1,4 @@
-# Gigamo <gigamo@gmail.com> (23/04/08)
+# Gigamo <gigamo@gmail.com> (24/04/08)
 #
 # Configuration file for amazing (http://github.com/dag/amazing)
 # Only works with amazing's 'config' branch.
@@ -67,6 +67,7 @@ awesome {
       end
       # The actual string that's displayed
       " #@count"
+      #%{<span fgcolor="<%= COLOR[:normal] %>"> <%=h @count %></span>}
     }
   }
 
