@@ -1,0 +1,15 @@
+post_install() {
+  echo " Please remember this is a development version, alot of things are subject to change and any bugs encountered should be reported."
+  echo " Make sure to run \"awesome -k\" to check if your config still works."
+}
+
+post_upgrade() {
+  post_install $1
+}
+
+post_remove() {
+  echo " If you don't use \"xcb-util\" for anything else, it is safe to remove as well."
+}
+op=$1
+shift
+$op $*
