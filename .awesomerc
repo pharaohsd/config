@@ -1,5 +1,5 @@
 # Gigamo <gigamo@gmail.com> (25/04/08)
-# Intended for awesome-3 git branch, but should <currently still> work with 2.3-rc3
+# Only works with awesome-3 git branch as of 25/04/08
 screen 0
 {
     styles
@@ -102,36 +102,30 @@ screen 0
         textbox clock
         { 
             align = "right"
-            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" }
         }
         iconbox ib_cc { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
         textbox cpu_usage
         {
             align = "right"
-            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" }
             mouse { button = "1" command = "spawn" arg = "urxvtc -e htop" }
         }
         textbox cpu_freq 
         { 
             align = "right" 
-            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
         }
         iconbox ib_cb { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
         textbox battery 
         { 
             align = "right" 
-            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1"} 
         }
         iconbox ib_bm { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
         textbox gmail 
         { 
-            style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
             mouse { button = "1" command = "spawn" arg = "amazing -u gmail/top/0" } 
             align = "right" 
         } 
         textbox pacman 
         { 
-            style { fg = "#ffffff" shadow = "#111111" shadow_offset = "1" } 
             align = "right"
             mouse { button = "1" command = "spawn" arg = "amazing -u pacman/top/0" }
         }
@@ -139,7 +133,6 @@ screen 0
         textbox mpd 
         { 
             align = "right" 
-            style { fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" } 
             mouse { button = "1" command = "spawn" arg = "mpc toggle" } 
         }
         iconbox ib_end { align = "right" image = "/home/gig/.awesome/separators/right.png" resize = "false" }
