@@ -1,12 +1,22 @@
-# Gigamo <gigamo@gmail.com> (25/04/08)
+# Gigamo <gigamo@gmail.com> (26/04/08)
 #
 # Configuration file for amazing (http://github.com/dag/amazing)
-# Only works with amazing's 'config' branch.
+# Only works with amazing's 'config' branch and awesome's awesome-3 branch.
 import "#{ENV["HOME"]}/.passwords.rb" # GMAIL_PWD
 
 BLINK = {}
 COLOR = { :urgent => "#ff5656",
           :normal => "#888888" }
+
+module Helpers::PangoMarkup
+  def urgent(text)
+    foreground(COLOR[:urgent], text)
+  end
+
+  def normal(text)
+    foreground(COLOR[:normal], text)
+  end
+end
 
 awesome {
   set :statusbar => "top"
@@ -21,8 +31,9 @@ awesome {
         when :discharging : dir = "v"
         else dir = "="
       end
-      if @percentage <= 20 : " <span foreground=\"#{COLOR[:urgent]}\">#{dir}#{@percentage.to_i}#{dir}</span> "
-      else " <span foreground=\"#{COLOR[:normal]}\">#{dir}#{@percentage.to_i}#{dir}</span> "
+
+      if @percentage <= 20 : urgent(" #{dir}#{@percentage.to_i}#{dir} ")
+      else normal(" #{dir}#{@percentage.to_i}#{dir} ")
       end
     }
   }
@@ -51,20 +62,21 @@ awesome {
 
     property("text") {
       # Make the widget blink upon new mail!
-#      BLINK[@identifier] ||= []
-#      if @count > 0
-#        if BLINK[@identifier].empty?
-#          BLINK[@identifier] << IO.popen("#{ENV["HOME"]}/bin/blink.rb 1.0 0 top #@identifier fg #{COLOR[:urgent]} #{COLOR[:normal]}")
-#        end
-#      else
-#        BLINK[@identifier].each do |blinker|
-#          Process.kill("SIGINT", blinker.pid)
-#        end
-#      end
-      # The actual string that's displayed
-      if @count > 0 : " <span foreground=\"#{COLOR[:urgent]}\">#@count</span>"
-      else " <span foreground=\"#{COLOR[:normal]}\">#@count</span>"
+      BLINK[@identifier] ||= []
+      if @count > 0
+        if BLINK[@identifier].empty?
+          BLINK[@identifier] << IO.popen("#{ENV["HOME"]}/bin/blink.rb 1.0 0 top #@identifier text '#{urgent(" #@count")}' '#{normal(" #@count")}'")
+        end
+      else
+        BLINK[@identifier].each do |blinker|
+          Process.kill("SIGINT", blinker.pid)
+        end
       end
+
+      normal(" #@count")
+#      if @count > 0 : urgent(" #@count")
+#      else normal(" #@count")
+#      end
     }
   }
 
@@ -72,8 +84,8 @@ awesome {
     set :interval => 1.hours
 
     property("text") { 
-      if @count > 0 : " <span foreground=\"#{COLOR[:urgent]}\">#@count</span> "
-      else " <span foreground=\"#{COLOR[:normal]}\">#@count</span> "
+      if @count > 0 : urgent(" #@count ")
+      else normal(" #@count ")
       end
     }
   }
@@ -87,8 +99,8 @@ awesome {
     set :interval => 2
 
     property("text") { 
-      if @usage[0].to_i >= 50 : " <span foreground=\"#{COLOR[:urgent]}\">#{@usage[1].to_i}%/#{@usage[2].to_i}%</span> "
-      else " <span foreground=\"#ffffff\">#{@usage[1].to_i}%/#{@usage[2].to_i}%</span> "
+      if @usage[0].to_i >= 50 : urgent(" #{@usage[1].to_i}%/#{@usage[2].to_i}% ")
+      else normal(" #{@usage[1].to_i}%/#{@usage[2].to_i}% ")
       end
     }
   }
@@ -100,9 +112,8 @@ awesome {
     property ("text") {
       if @speed[0] >= 1000
         ghz = @speed[0] / 1000
-        "<span foreground=\"#{COLOR[:urgent]}\">@ %3.2fGHz</span> " % ghz
-      else
-        "<span foreground=\"#{COLOR[:normal]}\">@ #{@speed[0].to_i}MHz</span> "
+          urgent("@ %3.2fGHz " % ghz)
+      else normal("@ #{@speed[0].to_i}MHz ")
       end
     }
   }
