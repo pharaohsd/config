@@ -3,6 +3,8 @@
 " License: public domain
 " Maintainer: Gigamo <gigamo@gmail.com>
 " Credit: calmar <mac@calmar.ws> - Configuration heavily inspired by his
+"         twilight.vim - Actually this is twilight.vim made to work with
+"         256 color terminals
 "
 " 256 color terminals or gvim only
 " set t_Co=256
@@ -17,7 +19,6 @@ if &t_Co != 256 && ! has("gui_running")
     finish
 endif
 " }}}
-
 " {{{ Reset colors and set colors_name and store cpo setting
 set background=dark
 hi clear
@@ -30,7 +31,6 @@ let g:colors_name = "gigamo"
 "let s:²save_cpo = &cpo
 set cpo&vim
 " }}}
-
 " FORMAT:"{{{
 "
 " \ ["color-group", "term-style", "foreground-color", "background-color", "gui-style", "under-curl-color" ],
