@@ -1,59 +1,51 @@
-" custom (g)vim settings
-
-" basics
-set t_Co=256            " set 256 colors (needs 256 color terminal)
+set cmdheight=1
 set nocompatible        " use gVim defaults
-set mouse=a             " make sure mouse is used in all cases.
-"colorscheme calmar256  " define syntax color scheme
-"colorscheme vividchalk " define syntax color scheme
-"colorscheme xoria256
-colorscheme twilight
-"colorscheme rubyblue
+set encoding=utf-8
 
-" tabs and indenting
+if has("gui_running")
+  set guioptions-=e
+  set guioptions-=T
+  set guioptions-=m
+  set guioptions-=r
+  set guioptions+=a
+  set guioptions+=c
+  set guifont=DejaVu\ Sans\ Mono\ 8
+  colorscheme zenburn
+elseif (&term =~ 'screen')
+  set t_Co=16
+  set mouse=a
+  set termencoding=utf-8
+  colorscheme desert
+else
+  set t_Co=256
+  set mouse=a
+  set ttymouse=xterm
+  set termencoding=utf-8
+  colorscheme gigamo
+  "let g:gvim_background=1
+endif
+
+if v:version >= 700
+	set cursorline
+	set listchars+=tab:»·,trail:·,extends:~,nbsp:.
+endif
+
+syntax on               " enable syntax highlighting
+set shell=/bin/sh
+set vb
+set t_vb=
 set expandtab           " insert spaces instead of tab chars
-set tabstop=2           " a n-space tab width
-set shiftwidth=2        " allows the use of < and > for VISUAL indenting
-set softtabstop=2       " counts n spaces when DELETE or BCKSPCE is used
+set tabstop=4           " a n-space tab width
+set shiftwidth=4        " allows the use of < and > for VISUAL indenting
+set softtabstop=4       " counts n spaces when DELETE or BCKSPCE is used
+set textwidth=80
 set autoindent          " auto indents next new line
 set nosmartindent       " intelligent indenting -- DEPRECATED by cindent
-
-" searching
 set hlsearch            " highlight all search results
 set incsearch           " increment search
 set ignorecase          " case-insensitive search
 set smartcase           " upper-case sensitive search
-
-" Set up the status line
-fun! <SID>SetStatusLine()
-    let l:s1="%-3.3n\\ %f\\ %h%m%r%w"
-    let l:s2="[%{strlen(&filetype)?&filetype:'?'},%{&encoding},%{&fileformat}]"
-    let l:s3="%=\\ 0x%-8B\\ \\ %-14.(%l,%c%V%)\\ %<%P"
-    execute "set statusline=" . l:s1 . l:s2 . l:s3
-endfun
-
-" Setup a funky statusline
-set laststatus=2
-call <SID>SetStatusLine()
-
-" Vim7 only settings
-if v:version >= 700
-    try
-        setlocal numberwidth=3
-    catch
-    endtry
-	set cursorline
-	" Set special characters
-	set listchars+=tab:»·,trail:·,extends:~,nbsp:.
-endif
-
-" Encoding
-if ($TERM == "rxvt-*") && (&termencoding == "")
-    set termencoding=utf-8
-endif
-set encoding=utf-8
-
-set backspace=2         " full backspacing capabilities
+set backspace=indent,eol,start
 set history=100         " 100 lines of command line history
 set cmdheight=1         " command line height
 set laststatus=2        " occasions to show status line, 2=always.
@@ -62,26 +54,26 @@ set showmode            " show mode at bottom of screen
 set number              " show line numbers
 set nobackup            " disable backup files (filename~)
 set showmatch           " show matching brackets (),{},[]
-set ww=<,>,[,]          " whichwrap -- left/right keys can traverse up/down
+set whichwrap=h,l,<,>,[,]          " whichwrap -- left/right keys can traverse up/down
 set showcmd
 set modeline
 set wildmenu
+set splitbelow
+set formatoptions+=l
+set selection=inclusive
+set autowrite
+set writebackup
+set backup backupdir=$HOME/.vim/backup
 
-" syntax highlighting
-syntax on               " enable syntax highlighting
-
-" highlight redundant whitespaces and tabs.
-"highlight RedundantSpaces ctermbg=red guibg=red
-"match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
-
-" gvim settings
-if has("gui_running")
-  set guioptions-=r
-  set guioptions-=m" Disable menu bar
-  set guioptions-=T" Disable toolbar icons
-  "set guifont=DejaVu\ Sans\ Mono\ 8 " backslash spaces (e.g. Bitstream\ Vera\ Sans\ 8)
-  set guifont=Terminus\ 10
-endif
+" Set up the status line
+fun! <SID>SetStatusLine()
+    let l:s1="%-3.3n\\ %f\\ %h%m%r%w"
+    let l:s2="[%{strlen(&filetype)?&filetype:'?'},%{&encoding},%{&fileformat}]"
+    let l:s3="%=\\ 0x%-8B\\ \\ %-14.(%l,%c%V%)\\ %<%P"
+    execute "set statusline=" . l:s1 . l:s2 . l:s3
+endfun
+set laststatus=2
+call <SID>SetStatusLine()
 
 " common save shortcuts
 inoremap <C-s> <esc>:w<cr>a
@@ -164,6 +156,9 @@ imap <C-h> <Left>
 imap <C-j> <Down>
 imap <C-k> <Up>
 imap <C-l> <Right>
+
+" Prevent annoying typo
+imap <F1> <esc>
 
 " Do Toggle Commentify
 map <M-c> :call ToggleCommentify()<CR>j
