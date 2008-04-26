@@ -8,7 +8,7 @@ post_upgrade() {
 }
 
 post_remove() {
-  echo " If you don't use \"xcb-util\" for anything else, it is safe to remove as well."
+  echo " If you don't use \"xcb-util-git\" for anything else, it is safe to remove as well."
 }
 op=$1
 shift
