@@ -8,6 +8,7 @@ set mouse=a             " make sure mouse is used in all cases.
 "colorscheme vividchalk " define syntax color scheme
 "colorscheme xoria256
 colorscheme twilight
+"colorscheme rubyblue
 
 " tabs and indenting
 set expandtab           " insert spaces instead of tab chars
@@ -78,8 +79,8 @@ if has("gui_running")
   set guioptions-=r
   set guioptions-=m" Disable menu bar
   set guioptions-=T" Disable toolbar icons
-  set guifont=DejaVu\ Sans\ Mono\ 8 " backslash spaces (e.g. Bitstream\ Vera\ Sans\ 8)
-  "set guifont=Terminus\ 8
+  "set guifont=DejaVu\ Sans\ Mono\ 8 " backslash spaces (e.g. Bitstream\ Vera\ Sans\ 8)
+  set guifont=Terminus\ 10
 endif
 
 " common save shortcuts
