@@ -1,12 +1,14 @@
-" Vim colortheme: twilight.vim
+" Vim colortheme: gigamo.vim
 " Last Change: 26. April 2008
 " License: public domain
 " Maintainer: Gigamo <gigamo@gmail.com>
+" Credit: calmar <mac@calmar.ws> - Configuration heavily inspired by his
 "
 " 256 color terminals or gvim only
 " set t_Co=256
 " in your vimrc
-"
+" TODO make gvim look good (use regular twilight.vim for now)
+" 
 " {{{ Check if it is set
 if &t_Co != 256 && ! has("gui_running")
     echomsg ""
