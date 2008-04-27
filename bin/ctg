@@ -31,10 +31,10 @@ function ctg() {
   for i in $SRCFILE; do
     echo "Copying $GREEN$i$END to $RED$GITDIR$END and adding it to GIT"
     `cp -r $SRCDIR/$i $GITDIR/$i && cd $GITDIR && git add $i`
-    echo "Please enter your commit message"
-    read CM
-    `cd $GITDIR && git commit -m '$CM'`
   done
+  echo "Please enter your commit message"
+  read CM
+  `cd $GITDIR && git commit -m '$CM'`
 }
 
 if [ -z "$1" ]; then
