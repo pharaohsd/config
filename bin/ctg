@@ -34,7 +34,7 @@ function ctg() {
   done
   echo "Please enter your commit message"
   read CM
-  `cd $GITDIR && git commit -m '$CM'`
+  `cd $GITDIR && git commit -m "$CM"`
 }
 
 if [ -z "$1" ]; then
