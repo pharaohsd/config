@@ -33,7 +33,7 @@ function ctg() {
     `cp -r $SRCDIR/$i $GITDIR/$i && cd $GITDIR && git add $i`
     echo "Please enter your commit message"
     read $CM
-    `cd $GITDIR && git commit -m \"$CM\"`
+    `cd $GITDIR && git commit -m '$CM'`
   done
 }
 
