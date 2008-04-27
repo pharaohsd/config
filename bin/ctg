@@ -13,8 +13,7 @@ END="\033[0m"
 #}}}
 
 # {{{ Source/Target dirs
-SRCDIR="$HOME"
-GITDIR="$SRCDIR/gitconfig/config"
+GITDIR="$HOME/gitconfig/config"
 #}}}
 
 # {{{ Probably don't change this
@@ -30,9 +29,10 @@ function usage() {
 function ctg() {
   for i in $SRCFILE; do
     echo "Copying $GREEN$i$END to $RED$GITDIR$END and adding it to GIT"
-    `cp -r $SRCDIR/$i $GITDIR/$i && cd $GITDIR && git add $i`
+    `cp -r $i $GITDIR/$i && cd $GITDIR && git add $i`
   done
-  echo "Please enter your commit message"
+  # Commit message
+  echo "Please enter commit message"
   read CM
   `cd $GITDIR && git commit -m "$CM"`
 }
