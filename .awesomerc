@@ -1,7 +1,10 @@
-# Gigamo <gigamo@gmail.com> (26/04/08)
+# Gigamo <gigamo@gmail.com> (27/04/08)
 # Only works with awesome-3 git branch as of 25/04/08
+# The braces are meant for vim's "marker" foldmethod.
+# Screen 0 {{{
 screen 0
 {
+# Styles {{{
     styles
     {
         normal 
@@ -24,7 +27,8 @@ screen 0
         }
             #bg="#8ba574" green , "#285577" blue
     }
-
+#}}}
+# General {{{
     general
     {
         border = 1
@@ -36,17 +40,19 @@ screen 0
         new_become_master = false
         floating_placement = smart
     }
-
+#}}}
+# Titlebar {{{
     titlebar
     {
         position = "top"
         text_align = "center"
         height = "14"
-        text_normal = "<bg color=\"#0a0a0a\"/><span foreground=\"#888888\">%t</span>"
-        text_focus = "<bg color=\"#285577\"/><span foreground=\"#ffffff\">%t</span>"
-        text_urgent = "<bg color=\"#ff5656\"/><span foreground=\"#ffffff\">%t</span>"
+#        text_normal = "<bg color=\"#0a0a0a\"/><span foreground=\"#888888\">%t</span>"
+#        text_focus = "<bg color=\"#285577\"/><span foreground=\"#ffffff\">%t</span>"
+#        text_urgent = "<bg color=\"#ff5656\"/><span foreground=\"#ffffff\">%t</span>"
     }
-
+#}}}
+# Tags {{{
     tags
     {
         tag t { layout = "tile" mwfact = .6 }
@@ -59,7 +65,8 @@ screen 0
         tag 8 { layout = "floating" }
         tag 9 { layout = "tile" nmaster = 3 ncol = 3 }
     }
-
+#}}}
+# Layouts {{{
     layouts
     {
         layout tile { image = "/home/gig/.awesome/layouts/tileb.png" }
@@ -67,12 +74,13 @@ screen 0
         layout max { image = "/home/gig/.awesome/layouts/tabb.png" }
         layout floating { image = "/home/gig/.awesome/layouts/floatb.png" }
     }
-
+#}}}
+# Statusbar {{{
     statusbar top
     {
         position = "top"
         height = "14"
-  
+# Taglist and layoutinfo {{{  
         taglist tl
         {
             mouse { button = "1" command = "tag_view" }
@@ -86,7 +94,8 @@ screen 0
             mouse { button = "3" command = "tag_setlayout" arg = "-1" }
             mouse { button = "5" command = "tag_setlayout" arg = "-1" }
         }
-
+#}}}
+# Tasklist {{{
 #        tasklist top
 #        {
 #            show_icons = false
@@ -97,7 +106,8 @@ screen 0
 #            mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
 #            mouse { modkey = {"Mod1"} button = "5" command = "client_swapprev" }
 #        }
-
+#}}}
+# Widgets {{{
         iconbox ib_start { align = "right" image = "/home/gig/.awesome/separators/left.png" resize = "false" }
         textbox clock
         { 
@@ -136,9 +146,13 @@ screen 0
             mouse { button = "1" command = "spawn" arg = "mpc toggle" } 
         }
         iconbox ib_end { align = "right" image = "/home/gig/.awesome/separators/right.png" resize = "false" }
+#}}}
     }
+#}}}
 }
+#}}}
 
+# Menu's {{{
 menu Run:  
 {
     styles
@@ -174,7 +188,8 @@ menu SSH:
     x = "178"
     height = "14"
 }
-
+#}}}
+# Rules {{{
 rules
 {
     rule { name = "Gimp" tags = "6" float = "true" }
@@ -185,7 +200,8 @@ rules
     rule { name = "Minefield" tags = "w" titlebar { position = off} }
     rule { name = "urxvt" icon = "/home/gig/.icons/Somatic-0.2/32x32/apps/gnome-monitor.png" }
 }
-
+#}}}
+# Mouse {{{
 mouse
 {
     root { button = "4" command = "tag_viewnext" }
@@ -197,7 +213,8 @@ mouse
     titlebar { button = "1" command = "client_movemouse" }
     titlebar { button = "3" command = "client_kill" }
 }
-
+#}}}
+# Keys {{{
 keys
 {
     key { modkey = {"Mod4"}             key = "Return"      command = "spawn" arg = "exec xterm" }
@@ -262,13 +279,13 @@ keys
         arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 } 
     }
 
-    ###### {{{ Move and resize windows with vim keybinds
+    ###### Move and resize windows with vim keybinds
     key { modkey = {"Mod4", "Control"}  key = "j"           command = "client_moveresize" arg = "+0 +20 +0 +0" }
     key { modkey = {"Mod4", "Control"}  key = "k"           command = "client_moveresize" arg = "+0 -20 +0 +0" }
     key { modkey = {"Mod4", "Control"}  key = "h"           command = "client_moveresize" arg = "-20 +0 +0 +0" }
     key { modkey = {"Mod4", "Control"}  key = "l"           command = "client_moveresize" arg = "+20 +0 +0 +0" }
 
-    ###### {{{ Custom app launching binds
+    ###### Custom app launching binds
     key { modkey = {"Mod4"}             key = "x"           command = "spawn" arg = "urxvtc" }
     key { modkey = {"Mod4"}             key = "f"           command = "spawn" arg = "firefox3" }
     key { modkey = {"Mod4"}             key = "t"           command = "spawn" arg = "thunar" }
@@ -277,4 +294,5 @@ keys
     key { modkey = {"Mod4"}             key = "F2"          command = "spawn" arg = "find /usr/bin -type f -executable ! -empty | awesome-menu -e 'exec ' Run:" }
     key { modkey = {"Mod4"}             key = "F3"          command = "spawn" arg = "cut -d' ' -f1 ~/.ssh/known_hosts | cut -d, -f1 | awesome-menu -e 'urxvtc -e ssh ' 'SSH:'" 
 }
-# vim: filetype=conf shiftwidth=2 expandtab cindent
+#}}}
+# vim: filetype=conf foldenable shiftwidth=2 expandtab cindent

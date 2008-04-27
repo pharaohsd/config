@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # Author: Gigamo <gigamo@gmail.com>
-# Requires scrot, imagemagick and ncftp
+# Requires imagemagick and ncftp
 require '/home/gig/.passwords.rb' # My ftp pw and username in there
 
 FTP_HOST = "users.telenet.be"
@@ -11,9 +11,7 @@ NO_CLEAN = 1 # Remove the files locally afterwards or not
 
 def usage
   puts "Usage: screenshot [name] <default name: current>
-      -h, --help      - Display this
-      -d, --delay     - Delay in seconds
-                        E.g. screenshot -d 3 test"
+      -h, --help      - Display this"
   exit 0
 end
 
@@ -22,11 +20,11 @@ def link
 end
 
 def printscreen
-  unless File.executable? "/usr/bin/scrot" and File.executable? "/usr/bin/mogrify"
-    puts "Error: scrot and/or imagemagick are not installed on your system!\nAborting printscreen"
+  unless File.executable? "/usr/bin/mogrify"
+    puts "Error: imagemagick is not installed on your system!\nAborting printscreen"
     exit 1
   else
-    IO.popen("scrot -d#{DELAY} #{PIC_PATH}#{PIC_NAME}.png && cp #{PIC_PATH}#{PIC_NAME}.png #{PIC_PATH}#{PIC_NAME}t.png && mogrify -resize 25% #{PIC_PATH}#{PIC_NAME}t.png") {}
+    IO.popen("import -window root #{PIC_PATH}#{PIC_NAME}.png && cp #{PIC_PATH}#{PIC_NAME}.png #{PIC_PATH}#{PIC_NAME}t.png && mogrify -resize 25% #{PIC_PATH}#{PIC_NAME}t.png") {}
   end
 end
 
@@ -56,14 +54,9 @@ end
 
 if ARGV[0] == "-h" or ARGV[0] == "--help"
   usage
-elsif ARGV[0] == "-d" or ARGV[0] == "--delay"
-  DELAY = ARGV[1]
-  PIC_NAME = ARGV[2]
 elsif ARGV.empty?
-  DELAY = 0
   PIC_NAME = "current"
 else
-  DELAY = 0
   PIC_NAME = ARGV[0]
 end
 

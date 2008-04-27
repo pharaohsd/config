@@ -1,28 +1,37 @@
 set cmdheight=1
 set nocompatible        " use gVim defaults
 set encoding=utf-8
+syntax on               " enable syntax highlighting
 
 if has("gui_running")
-  set guioptions-=e
-  set guioptions-=T
-  set guioptions-=m
-  set guioptions-=r
-  set guioptions+=a
-  set guioptions+=c
-  set guifont=DejaVu\ Sans\ Mono\ 8
-  colorscheme zenburn
+    let &guicursor = &guicursor . ",a:blinkon0"
+    set guioptions-=e
+    set guioptions-=T
+    set guioptions-=m
+    set guioptions-=r
+    set guioptions+=a
+    set guioptions+=c
+    colorscheme zenburn
+    if has ('win32')
+        set columns=120
+        set lines=60
+        set guifont=Bitstream_Vera_Sans_Mono:h8:cANSI
+    else
+        set guifont=Bitstream\ Vera\ Sans\ Mono\ 8
+    endif
 elseif (&term =~ 'screen')
-  set t_Co=16
-  set mouse=a
-  set termencoding=utf-8
-  colorscheme desert
+    set t_Co=16
+    set mouse=a
+    set termencoding=utf-8
+    colorscheme desert
 else
-  set t_Co=256
-  set mouse=a
-  set ttymouse=xterm
-  set termencoding=utf-8
-  colorscheme gigamo
-  "let g:gvim_background=1
+    set t_Co=256
+    set mouse=a
+    set ttymouse=xterm
+    set termencoding=utf-8
+    colorscheme 256-jungle
+    "colorscheme gigamo
+    "let g:gvim_background=1
 endif
 
 if v:version >= 700
@@ -30,14 +39,13 @@ if v:version >= 700
 	set listchars+=tab:»·,trail:·,extends:~,nbsp:.
 endif
 
-syntax on               " enable syntax highlighting
 set shell=/bin/sh
 set vb
 set t_vb=
 set expandtab           " insert spaces instead of tab chars
-set tabstop=4           " a n-space tab width
-set shiftwidth=4        " allows the use of < and > for VISUAL indenting
-set softtabstop=4       " counts n spaces when DELETE or BCKSPCE is used
+set tabstop=2           " a n-space tab width
+set shiftwidth=2        " allows the use of < and > for VISUAL indenting
+set softtabstop=2       " counts n spaces when DELETE or BCKSPCE is used
 set textwidth=80
 set autoindent          " auto indents next new line
 set nosmartindent       " intelligent indenting -- DEPRECATED by cindent
@@ -46,7 +54,7 @@ set incsearch           " increment search
 set ignorecase          " case-insensitive search
 set smartcase           " upper-case sensitive search
 set backspace=indent,eol,start
-set history=100         " 100 lines of command line history
+set history=500         " 100 lines of command line history
 set cmdheight=1         " command line height
 set laststatus=2        " occasions to show status line, 2=always.
 set ruler               " ruler display in status line
@@ -54,7 +62,7 @@ set showmode            " show mode at bottom of screen
 set number              " show line numbers
 set nobackup            " disable backup files (filename~)
 set showmatch           " show matching brackets (),{},[]
-set whichwrap=h,l,<,>,[,]          " whichwrap -- left/right keys can traverse up/down
+set whichwrap=h,l,<,>,[,]
 set showcmd
 set modeline
 set wildmenu
@@ -64,6 +72,13 @@ set selection=inclusive
 set autowrite
 set writebackup
 set backup backupdir=$HOME/.vim/backup
+set cinoptions=g0,:0,l1,(0,t0
+set shortmess=a
+set complete=.,t,i,b,w,k
+set wildchar=<tab>
+set wildmenu
+set wildmode=longest:full,full
+set previewheight=5
 
 " Set up the status line
 fun! <SID>SetStatusLine()
@@ -74,6 +89,12 @@ fun! <SID>SetStatusLine()
 endfun
 set laststatus=2
 call <SID>SetStatusLine()
+
+if has ("folding")
+    set foldenable
+    set foldmethod=marker
+    set foldlevel=100
+endif
 
 " common save shortcuts
 inoremap <C-s> <esc>:w<cr>a
@@ -159,6 +180,7 @@ imap <C-l> <Right>
 
 " Prevent annoying typo
 imap <F1> <esc>
+nmap q: :q<cr>
 
 " Do Toggle Commentify
 map <M-c> :call ToggleCommentify()<CR>j
@@ -166,6 +188,9 @@ imap <M-c> <ESC>:call ToggleCommentify()<CR>j
 
 " VTreeExplorer
 map <F12> :VSTreeExplore <CR>
+let g:treeExplVertical=1
+let g:treeExplWinSize=35
+let g:treeExplDirSort=1
 
 set makeprg=jikes\ %
 "set makeprg=javac\ %
