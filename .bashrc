@@ -94,28 +94,6 @@ alias boggle='echo "No no no, Mr. Brian Braun-Duin"'
 alias conngig='sudo iwlist wlan0 scan && sudo netcfg2 wireless-gigamo'
 alias connmarina='sudo iwlist wlan0 scan && sudo netcfg2 wireless-marina'
 
-# auto open images
-alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}="mirage"
-
-# auto open movies
-alias -s {mpg,mpeg,avi,ogm,wmv,m4v,mp4,mov}="mplayer -idx"
-
-# auto open audio
-alias -s {mp3,ogg,wav,flac}="cplay"
-
-# auto open web addresses
-alias -s {html,php,com,net,org,gov}="firefox3"
-
-# auto open regular files
-alias -s txt="vim"
-alias -s pdf="xpdf"
-
-## global pipe aliases
-alias -g M="| most" #	<< most is the best pager evar.
-alias -g G="| grep"
-alias -g E="| egrep"
-alias -g S="| sed -r -e"
-
 alias wcat='wget -q -O -'
 alias pacup='sudo pacman -Syu'
 alias start='dbus-launch startx'
@@ -170,22 +148,6 @@ function todo {
   fi
 }
 
-# reload zshrc
-function src()
-{
-        autoload -U zrecompile
-                [[ -f ~/.zshrc ]] && zrecompile -p ~/.zshrc
-				for i in "$(find ~/.zsh/ -type f)"; do
-					[[ -f $i ]] && zrecompile -p $i
-					[[ -f $i.zwc.old ]] && rm -f $i.zwc.old
-				done
-                [[ -f ~/.zcompdump ]] && zrecompile -p ~/.zcompdump
-                [[ -f ~/.zcompdump ]] && zrecompile -p ~/.zcompdump
-                [[ -f ~/.zshrc.zwc.old ]] && rm -f ~/.zshrc.zwc.old
-                [[ -f ~/.zcompdump.zwc.old ]] && rm -f ~/.zcompdump.zwc.old
-                source ~/.zshrc
-}
-
 # hg rcs functions
 function hgs() { hg status $* }
 function hgl() { hg log $* }
@@ -199,30 +161,6 @@ function gl() { git log $* }
 function gs() { git status $* }
 function gp() { git push $* }
 function gc() { git commit -m "$*" }
-
-# Found in the mailinglistarchive from Zsh (IIRC ~1996)
-# MISC: Search in the $HISTFILE and select result to execute
-function selhist()
-{
-	emulate -L zsh
-	local TAB=$'\t';
-	(( $# < 1 )) && {
-		echo "Usage: $0 command"
-		return 1
-	};
-	cmd=(${(f)"$(grep -w $1 $HISTFILE | sort | uniq | pr -tn)"})
-	print -l $cmd | less -F
-	echo -n "enter number of desired command [1 - $(( ${#cmd[@]} - 1 ))]: "
-	local answer
-	read answer
-	print -z "${cmd[$answer]#*$TAB}"
-}
-
-# query extended file attributes
-fattr() {
-	local val=$(getfattr -n user.$1 --only-values $REPLY 2>/dev/null) 
-	[[ -n $val && (( -z $2 || $val = $~2 )) ]]
-}
 
 # SEARCH: summarized google, ggogle, mggogle, agoogle and fm
 function search()
