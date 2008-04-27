@@ -32,7 +32,7 @@ function ctg() {
     echo "Copying $GREEN$i$END to $RED$GITDIR$END and adding it to GIT"
     `cp -r $SRCDIR/$i $GITDIR/$i && cd $GITDIR && git add $i`
     echo "Please enter your commit message"
-    read $CM
+    read CM
     `cd $GITDIR && git commit -m '$CM'`
   done
 }
