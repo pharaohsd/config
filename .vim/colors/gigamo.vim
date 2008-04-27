@@ -23,8 +23,12 @@
 "           :unlet g:gvim_background
 "       To  disable the  feature permanently,  simply remove
 "       the line from your .vimrc file.
+"       Lastly you can also just uncomment the line below here.        
+
+"let g:gvim_background=1
 
 set background=dark
+let python_highlight_all = 1
 hi clear
 if exists("syntax_on")
   syntax reset

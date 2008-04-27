@@ -29,9 +29,8 @@ else
     set mouse=a
     set ttymouse=xterm
     set termencoding=utf-8
-    colorscheme 256-jungle
-    "colorscheme gigamo
-    "let g:gvim_background=1
+    "colorscheme 256-jungle
+    colorscheme gigamo
 endif
 
 if v:version >= 700
@@ -42,6 +41,8 @@ endif
 set shell=/bin/sh
 set vb
 set t_vb=
+set foldenable
+set foldmethod=marker
 set expandtab           " insert spaces instead of tab chars
 set tabstop=2           " a n-space tab width
 set shiftwidth=2        " allows the use of < and > for VISUAL indenting
@@ -89,12 +90,6 @@ fun! <SID>SetStatusLine()
 endfun
 set laststatus=2
 call <SID>SetStatusLine()
-
-if has ("folding")
-    set foldenable
-    set foldmethod=marker
-    set foldlevel=100
-endif
 
 " common save shortcuts
 inoremap <C-s> <esc>:w<cr>a
