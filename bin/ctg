@@ -31,10 +31,6 @@ function ctg() {
     echo "Copying $GREEN$i$END to $RED$GITDIR$END and adding it to GIT"
     `cp -r $i $GITDIR/$i && cd $GITDIR && git add $i`
   done
-  # Commit message
-  echo "Please enter commit message"
-  read CM
-  `cd $GITDIR && git commit -m "$CM"`
 }
 
 if [ -z "$1" ]; then
