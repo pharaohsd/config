@@ -1,7 +1,7 @@
-#-------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------
 # .screenrc by Gigamo <gigamo@gmail.com>
 # Last modified 21/04/2008 18:17
-#-------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------
 
 defscrollback 10000
 deflogin on
@@ -15,10 +15,15 @@ vbell off
 startup_message off
 defutf8 on
 
-termcapinfo xterm|xterms|xterm-color|screen|xs|rxvt ti@:te@
+termcapinfo rxvt|rxvt-unicode|urxvt|rxvt-256color|screen|xs|rxvt ti@:te@
 
-caption always "%{= kb}[ %{kW}$USER%{kB}@%H %{b}][ %=%{w}%?%-Lw%?%{b}(%{W}%n*%f %t%?(%u)%?%{b})%{w}%?%+Lw%?%= %{b}][%{kB} %d.%m.%Y %{kW}%0c %{kb}]"
-#hardstatus alwayslastline "%{=b W}%{k} %= %w %=" 
+backtick 1 0 0 $HOME/.screen/netinfo 3 wlan0
+backtick 2 5 5 $HOME/.screen/batinfo -n
+backtick 3 5 5 $HOME/.screen/meminfo
+backtick 4 5 5 $HOME/.screen/mpdinfo
+caption always "%{=bu kb} %=< %?%-Lw%?%{kc}[:%n %t:]%{kb}%?%+Lw%? >%= "
+hardstatus alwayslastline "%{+b bw}[%H :: $USER]%{=b kw} %=[[ %1` | %2` | %3` | %4` ]]%=%{=b bw}[%d.%m.%y %0c]"
+#caption always "%{= kb}[ %{kG}$USER%{kW}@%{kG}%H %{b}][ %=%{w}%?%-Lw%?%{b}(%{W}%n*%f %t%?(%u)%?%{b})%{w}%?%+Lw%?%= %{b}][%{kB} %d.%m.%Y %{kW}%0c %{kb}]"
 sorendition +b kG
 
 # Default apps
