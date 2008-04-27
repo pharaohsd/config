@@ -1,45 +1,41 @@
-xft.dpi:	                96
-xft.antialias:            true
-Xft.lcdfilter:            lcdfilterlegacy
-Xft.hintstyle:            hintfull
+xft.dpi:	                  96
+xft.antialias:              true
+Xft.lcdfilter:              lcdfilterlegacy
+Xft.hintstyle:              hintfull
 
-Xcursor.theme:            Vanilla-DMZ-AA
-Xcursor.size:             22
+Xcursor.theme:              Vanilla-DMZ-AA
+Xcursor.size:               22
 
-!urxvt*font:              -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
-!urxvt*boldFont:          -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
+!urxvt*font:                 -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
+!urxvt*boldFont:             -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
 
-!urxvt*font:               -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
-!urxvt*boldFont:           -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
+urxvt*font:                 xft:Terminus:pixelsize=12
+urxvt*boldFont:             xft:Terminus:pixelsize=12
 
-urxvt*font:               xft:Terminus:pixelsize=12
-urxvt*boldFont:           xft:Terminus:pixelsize=12
+!urxvt*font:                 xft:DejaVu Sans Mono:size=7:VL Gothic:size=7:
 
-!urxvt*font:               xft:DejaVu Sans Mono:size=7:VL Gothic:size=7:
+urxvt*geometry:             142x71
+urxvt*saveLines:            32767
+urxvt*scrollBar:	          false
+urxvt*scrollBar_right:	    true
+urxvt*loginShell:	          true
+urxvt*borderLess:           true
+urxvt*tintColor:            #FFFFFF
+urxvt*shading:              30
+urxvt*termName:		          rxvt-unicode
+urxvt*inheritPixmap:	      true
+urxvt*cutchars:		          "()*,<>[]{}|'
+urxvt*secondaryScroll:	    true
+urxvt*perl-lib:		          /usr/lib/urxvt/perl/
+urxvt*perl-ext-common:	    default,matcher
+urxvt*urlLauncher:	        firefox3
+urxvt*matcher.button:	      1
+urxvt*matcher.pattern.1:    \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+urxvt*visualBell:	          true
+urxvt*keysym.C-u:           perl:matcher
 
-urxvt*geometry:           80x25
-urxvt*saveLines:          32767
-urxvt*scrollBar:	        false
-urxvt*scrollBar_right:	  true
-urxvt*loginShell:	        true
-urxvt*borderLess:         true
-urxvt*tintColor:          #FFFFFF
-urxvt*shading:            30
-urxvt*termName:		        rxvt-unicode
-urxvt*inheritPixmap:	    true
-urxvt*cutchars:		        "()*,<>[]{}|'
-urxvt*secondaryScroll:	  true
-urxvt*perl-lib:		        /usr/lib/urxvt/perl/
-urxvt*perl-ext-common:	  default,matcher
-urxvt*urlLauncher:	      firefox3
-urxvt*matcher.button:	    1
-urxvt*matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
-urxvt*visualBell:	        true
-urxvt*keysym.C-u:         perl:matcher
-
-
-urxvt*background:         #1C1C1C
-urxvt*foreground:         #B4B4B4 
+urxvt*background:           #1C1C1C
+urxvt*foreground:           #B4B4B4
 
 ! ---| thayer bright |--- {{{
 !black
@@ -69,22 +65,49 @@ urxvt*foreground:         #B4B4B4
 !}}}
 
 ! ---| Donri |--- {{{
-urxvt*color0: #000000
-urxvt*color1: #9e1828
-urxvt*color2: #aece92
-urxvt*color3: #968a38
-urxvt*color4: #414171
-urxvt*color5: #963c59
-urxvt*color6: #418179
-urxvt*color7: #bebebe
-urxvt*color8: #666666
-urxvt*color9: #cf6171
-urxvt*color10: #c5f779
-urxvt*color11: #fff796
-urxvt*color12: #4186be
-urxvt*color13: #cf9ebe
-urxvt*color14: #71bebe
-urxvt*color15: #ffffff
+!urxvt*color0: #0a0a0a
+!urxvt*color1: #9e1828
+!urxvt*color2: #aece92
+!urxvt*color3: #968a38
+!urxvt*color4: #285577
+!urxvt*color5: #963c59
+!urxvt*color6: #418179
+!urxvt*color7: #bebebe
+!urxvt*color8: #666666
+!urxvt*color9: #cf6171
+!urxvt*color10: #c5f779
+!urxvt*color11: #fff796
+!urxvt*color12: #4186be
+!urxvt*color13: #cf9ebe
+!urxvt*color14: #71bebe
+!urxvt*color15: #ffffff
+!}}}
+
+! ---| phrakture 2 |--- {{{
+!black
+*color0:         rgb:19/19/19
+*color8:         rgb:25/25/25
+!red
+*color1:         rgb:80/32/32
+*color9:         rgb:98/2b/2b
+!green
+*color2:         rgb:5b/76/2f
+*color10:        rgb:89/b8/3f
+!brown/yellow
+*color3:         rgb:aa/99/43
+*color11:        rgb:ef/ef/60
+!blue
+*color4:         rgb:32/4c/80
+*color12:        rgb:2b/4f/98
+!magenta
+*color5:         rgb:70/6c/9a
+*color13:        rgb:82/6a/b1
+!cyan
+*color6:         rgb:92/b1/9e
+*color14:        rgb:a1/cd/cd
+!white
+*color7:         rgb:ff/ff/ff
+*color15:        rgb:dd/dd/dd
 !}}}
 
 ! ---| Colorful Obsolescence |--- {{{
@@ -259,3 +282,10 @@ XCalc*Cursor:                 hand2
 XCalc*ShapeStyle:             rectangle
 XCalc*Font: -*-verdana-medium-r-normal--11-*-*-*-*-*-*-*
 XCalc*bevel.screen.LCD.Font: -*-verdana-bold-r-normal--12-*-*-*-*-*-*-*
+
+xpdf*enableFreetype: yes
+xpdf*antialias: yes
+xpdf*foreground: black
+xpdf*background: white
+xpdf*urlCommand: firefox3 %s
+xpdf*viKeys: on
