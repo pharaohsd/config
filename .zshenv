@@ -1,20 +1,33 @@
 #!/bin/zsh
 #
+# Dircolors...
+eval `dircolors -b ~/.dircolors`
+
+# Kill flow control
+if tty -s ; then
+    stty -ixon
+    stty -ixoff
+fi
+
+# Exports
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/mozilla/bin:/opt/java/jre/bin:/home/gig/bin:/home/gig/hacks
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LOCALE=en_US.UTF-8
-export EDITOR=vim
 export BROWSER=firefox3
 export MAIL=/home/gig/.mail/default
+export MAILCHECK=0
 export PACKAGER="Gigamo <gigamo@gmail.com>"
 export CVS_RSH="ssh"
 export OOO_FORCE_DESKTOP="gnome"
 export EDITOR=vim
 export VISUAL=vim
 export HISTCONTROL=ignoredups
-export HISTFILESIZE=10000
-export HISTSIZE=10000
+export IGNOREEOF=3
+
+# watch for people
+watch=(notme)                   # watch for everybody but me
+LOGCHECK=300                    # check every 5 min for login/logout activity
 
 # Make framebuffer colors look like in X
 if [ "$TERM" = "linux" ]; then
@@ -45,6 +58,8 @@ bindkey "\e[3~" delete-char
 
 bindkey "\e[5~" beginning-of-history
 bindkey "\e[6~" end-of-history
+
+WATCHFMT="%B->%b %n has just %a %(l:tty%l:%U-Ghost-%u)%(m: from %m:)"
 
 # Automatically start X and log out after when logging into vc/1
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then

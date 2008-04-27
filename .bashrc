@@ -12,27 +12,26 @@
 #PS1="┌─[\[\e[36;1m\]\u @ \[\e[32;1m\]\H\[\033[1;37m\]] \n\[\033[1;37m\]└─[\[\033[0;36m\]\w\[\033[1;37m\]]> \[\e[0m\]"
 PS1="\[\033[36m\]\u\[\033[37m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]$ "
 
-# disable ^S/^Q flow control 
-stty -ixon
+eval `dircolors -b ~/.dircolors`
 
-# add ~/bin to PATH if it exists
-if [ -d ~/bin ] ; then
-   PATH=~/bin:"${PATH}"
+shopt -s cdspell
+shopt -s extglob
+shopt -s cmdhist
+shopt -s checkwinsize
+shopt -s no_empty_cmd_completion
+shopt -u promptvars
+set -o noclobber
+#kill flow control
+if tty -s ; then
+    stty -ixon
+    stty -ixoff
 fi
-
-# bash options
-shopt -s cmdhist          # save multi-line commands in history as single line
-shopt -s checkwinsize     # update the values of LINES and COLUMNS after each command
-shopt -s histappend       # append (not overwrite) the history file
-shopt -s extglob          # enable egrep-style pattern matching
-shopt -s cdspell          # autocorrects cd misspellings
 
 # command history settings
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/mozilla/bin:/opt/java/jre/bin:/home/gig/bin:/home/gig/hacks
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LOCALE=en_US.UTF-8
-export EDITOR=vim
 export BROWSER=firefox3
 #export MANPAGER=vimpager
 export MAIL=/home/gig/.mail/default
