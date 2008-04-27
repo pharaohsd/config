@@ -9,9 +9,8 @@
 #PS1="\[\e[36;1m\][\[\e[34;1m\]\w\[\e[36;1m\]]: \[\e[0m\]"
 #PS1="\[\e[0m\][\[\e[0m\]\w\[\e[0m\]]: \[\e[0m\]"
 #PS1="\[\e[0m\]\u \e[31m\]\w\[\e[0m\] "
-#export PS1=" ${BLUE}[${NC} \u ${BLUE}]${NC} "
-#export PS2="       ${NC}  :${BLUE} ] ${NC}"
-PS1="┌─[\[\e[36;1m\]\u @ \[\e[32;1m\]\H\[\033[1;37m\]] \n\[\033[1;37m\]└─[\[\033[0;36m\]\w\[\033[1;37m\]]> \[\e[0m\]"
+#PS1="┌─[\[\e[36;1m\]\u @ \[\e[32;1m\]\H\[\033[1;37m\]] \n\[\033[1;37m\]└─[\[\033[0;36m\]\w\[\033[1;37m\]]> \[\e[0m\]"
+PS1="\[\033[36m\]\u\[\033[37m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]$ "
 
 # disable ^S/^Q flow control 
 stty -ixon
@@ -29,31 +28,22 @@ shopt -s extglob          # enable egrep-style pattern matching
 shopt -s cdspell          # autocorrects cd misspellings
 
 # command history settings
-alias hist='history | grep $1'    # search cmd history
-export HISTFILE="$HOME/.bash_history_`hostname`"   # Hostname appended to bash history filename
-export HISTSIZE=10000                                 # the bash history should save n commands
-export HISTFILESIZE=${HISTSIZE}
-export HISTCONTROL=erasedups  # erase duplicate cmds (also avail: ignorespace, ignoreboth, ignoredups)
-# don't append the following to history: consecutive duplicate
-# commands, ls, bg and fg, and exit
-HISTIGNORE='\&:fg:bg:ls:pwd:cd ..:cd ~-:cd -:cd:jobs:set -x:ls -l:ls -l'
-HISTIGNORE=${HISTIGNORE}':%1:%2:htop:top:mutt:sshfs*:ssh*:shutdown*'
-export HISTIGNORE
-
-export MAILPATH=${HOME}/mail/inbox"?You've got mail"'!'  # Mail prompt
-#export MAILPATH=/var/spool/mail/$USER"?You've got mail"'!'  # Mail prompt
-export BROWSER="links '%s' &"
-
-# define editors and pagers
-# worst-case choices
-export EDITOR=/usr/bin/vi
-export PAGER=/bin/more
-# best-case choices
-my_editor=vim
-my_pager=less
-type $my_editor >/dev/null 2>&1 && export EDITOR=$my_editor
-type $my_pager >/dev/null 2>&1 && export PAGER=$my_pager
-
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/mozilla/bin:/opt/java/jre/bin:/home/gig/bin:/home/gig/hacks
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LOCALE=en_US.UTF-8
+export EDITOR=vim
+export BROWSER=firefox3
+#export MANPAGER=vimpager
+export MAIL=/home/gig/.mail/default
+export PACKAGER="Gigamo <gigamo@gmail.com>"
+export CVS_RSH="ssh"
+export OOO_FORCE_DESKTOP="gnome"
+export EDITOR=vim
+export VISUAL=vim
+export HISTCONTROL=ignoredups
+export HISTFILESIZE=10000
+export HISTSIZE=10000
 
 # bash completion
 complete -cf sudo         # sudo tab-completion
@@ -62,82 +52,258 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 # general aliases
-alias cp="cp -i"          # confirm before overwriting something
-alias ls='ls --color=auto -F' # colourized list
-alias ll='ls -lh'         # long list
-alias la='ls -a'          # list all
-alias f='find | grep'     # quick search
-alias c='clear'           # clear screen
-alias dir='ls -1'         # ms-style list
-alias mem="free -m"       # free memory in MB
-alias xmo='vim ~/.xmonad/xmonad.hs' # lazy
-alias sv='sudo vim'       # lazy
-alias sps='ps aux | grep -v grep | grep'  # search process
-alias g="egrep --color=always"  # colourized grep
-alias fixres="xrandr --size 1440x900"      # resets resolution
-alias clam='clamscan --bell -i' # clamav scan a file
-alias clamt='clamscan -r --bell -i ~/tmp' # clamav scan ~/tmp
-alias gb='nh gnomebaker'  # launch gnomebaker as separate process
+# Host specific aliases
+case $HOSTNAME in
+	giGnote)
+		alias outside="weatherget -s BEXX0008 -m"
+	;;
+	*)
+		alias outside="weatherget -s BEXX0008 -m"
+	;;
+esac
+
+alias mv="mv -v --backup=existing"
+alias mmv="noglob zmv -W"
+alias rm="rm -v"
+alias cp="cp -v"
+alias firefox="aoss firefox"
+alias mplayer="mplayer -idx"
+alias wget="wget --timeout 10"
+alias grep="grep --color=auto"
+#alias irb="irb --simple-prompt"
+
+#function call
+alias ex=extract_archive
+
+# todos!
+alias t="/home/gig/bin/todo.sh"
+alias tl="t ls"
+alias ta="t add"
+
+# basics
+alias c="clear"
+alias l="cd ."
+alias ll='ls -ahl --color | more; echo "\e[1;32m --[\e[1;34m Dirs:\e[1;36m `ls -al | egrep \"^drw\" | wc -l` \e[1;32m|\e[1;35m Files: \e[1;31m`ls -al | egrep -v \"^drw\" | grep -v total | wc -l` \e[1;32m]--"'
+#alias e="emacs -nw"
+alias v="vim"
+alias wh="when ci --past=0 --future=3"
+alias cdc="cd; clear"
+
+# more interesting aliases :D
+alias boggle='echo "No no no, Mr. Brian Braun-Duin"'
+alias conngig='sudo iwlist wlan0 scan && sudo netcfg2 wireless-gigamo'
+alias connmarina='sudo iwlist wlan0 scan && sudo netcfg2 wireless-marina'
+
+# auto open images
+alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}="mirage"
+
+# auto open movies
+alias -s {mpg,mpeg,avi,ogm,wmv,m4v,mp4,mov}="mplayer -idx"
+
+# auto open audio
+alias -s {mp3,ogg,wav,flac}="cplay"
+
+# auto open web addresses
+alias -s {html,php,com,net,org,gov}="firefox3"
+
+# auto open regular files
+alias -s txt="vim"
+alias -s pdf="xpdf"
+
+## global pipe aliases
+alias -g M="| most" #	<< most is the best pager evar.
+alias -g G="| grep"
+alias -g E="| egrep"
+alias -g S="| sed -r -e"
+
+alias wcat='wget -q -O -'
 alias pacup='sudo pacman -Syu'
-alias pacs='sudo pacman -Ss'
 alias start='dbus-launch startx'
-alias install='sudo pacman -Sy'
-alias remove='sudo pacman -Rs'
+alias install='sudo pacman -S'
+alias remove='sudo pacman -Rscn'
 alias yaoup='sudo yaourt -Syu --aur'
 alias yaous='sudo yaourt -Ss'
-alias yinstall='sudo yaourt -Sy'
-alias yremove='sudo yaourt -Rs'
-alias screenshot='cd ~/screenshots && scrot -cd3 desktop-%d-%m_%H:%M:%S.png -q 85 && cd'
-alias cp="cp -v"
-alias grep="grep --color=auto -n"
-alias ls="ls -hF -a --color=auto"
-alias mv="mv -v"
-alias rm="rm -v"
-alias halt="sudo shutdown -h now"
+alias yinstall='sudo yaourt -S'
+alias yremove='sudo yaourt -Rsn'
+alias zetaf="sudo shutdown -h now"
 alias reboot="sudo reboot"
 alias svim="sudo vim"
-alias gitupdate="git-fetch origin && git-reset --hard origin/post-2.2"
 alias netcfg="netcfg2"
-alias irssilog="tail -f $HOME/.irssi_pipe | dzen2 -l 6 -tw 300" 
+alias battery="/home/gig/bin/battery.pl"
+alias ls="ls -hF -a --color=auto"
 #unalias -a               # uncomment to unalias everything 
-
-# fuse/ssh aliases (vetted)
-fu () {
-  fusermount -u ${HOME}/fuse/$1
-}
-
 
 # bash functions
 
-# nohup - run command detached from terminal and without output
-# usage: nh <command>
-nh() {
-    nohup "$@" &>/dev/null &
+# list contents of directory on every "cd"
+
+function pastie {
+  url=$(curl http://pastie.caboo.se/pastes/create \
+    -H "Expect:" \
+    -F "paste[parser]=plain_text" \
+    -F "paste[body]=<-" \
+    -F "paste[authorization]=burger" \
+    -s -L -o /dev/null -w "%{url_effective}")
+  echo -n "$url" | xclip
+  echo "$url"
 }
 
-# extract archives -- usage: ex <file>
-extract () {
-    if [ -f $1 ] ; then
-        case $1 in
-            *.tar.bz2)   tar xjf $1        ;;
-            *.tar.gz)    tar xzf $1     ;;
-            *.bz2)       bunzip2 $1       ;;
-            *.rar)       rar x $1     ;;
-            *.gz)        gunzip $1     ;;
-            *.tar)       tar xf $1        ;;
-            *.tbz2)      tar xjf $1      ;;
-            *.tgz)       tar xzf $1       ;;
-            *.zip)       unzip $1     ;;
-            *.Z)         uncompress $1  ;;
-            *.7z)        7z x $1    ;;
-            *)           echo "'$1' cannot be extracted via extract()" ;;
-        esac
+function aurget {
+  cd ~/abs
+  wget "http://aur.archlinux.org/packages/$1/$1.tar.gz" -O - | tar xzf -
+  cd $1
+}
+
+# viewing man pages
+function man
+{
+  /usr/bin/man $* | col -bp | iconv -c | view -c 'set ft=man nomod nolist' -
+}
+
+function todo {
+  if [ $#argv = 0 ]; then
+    less ~/.todo
+  else
+    formatted=$(print -P "%D{%F}, $1: $2")
+    print $formatted >>~/.todo
+    print $formatted
+  fi
+}
+
+# reload zshrc
+function src()
+{
+        autoload -U zrecompile
+                [[ -f ~/.zshrc ]] && zrecompile -p ~/.zshrc
+				for i in "$(find ~/.zsh/ -type f)"; do
+					[[ -f $i ]] && zrecompile -p $i
+					[[ -f $i.zwc.old ]] && rm -f $i.zwc.old
+				done
+                [[ -f ~/.zcompdump ]] && zrecompile -p ~/.zcompdump
+                [[ -f ~/.zcompdump ]] && zrecompile -p ~/.zcompdump
+                [[ -f ~/.zshrc.zwc.old ]] && rm -f ~/.zshrc.zwc.old
+                [[ -f ~/.zcompdump.zwc.old ]] && rm -f ~/.zcompdump.zwc.old
+                source ~/.zshrc
+}
+
+# hg rcs functions
+function hgs() { hg status $* }
+function hgl() { hg log $* }
+function hgc() { hg commit -m "$*" }
+function hgp() { hg push $* }
+function hga() { hg add $* }
+
+# git functions
+function ga() { git add $* }
+function gl() { git log $* }
+function gs() { git status $* }
+function gp() { git push $* }
+function gc() { git commit -m "$*" }
+
+# Found in the mailinglistarchive from Zsh (IIRC ~1996)
+# MISC: Search in the $HISTFILE and select result to execute
+function selhist()
+{
+	emulate -L zsh
+	local TAB=$'\t';
+	(( $# < 1 )) && {
+		echo "Usage: $0 command"
+		return 1
+	};
+	cmd=(${(f)"$(grep -w $1 $HISTFILE | sort | uniq | pr -tn)"})
+	print -l $cmd | less -F
+	echo -n "enter number of desired command [1 - $(( ${#cmd[@]} - 1 ))]: "
+	local answer
+	read answer
+	print -z "${cmd[$answer]#*$TAB}"
+}
+
+# query extended file attributes
+fattr() {
+	local val=$(getfattr -n user.$1 --only-values $REPLY 2>/dev/null) 
+	[[ -n $val && (( -z $2 || $val = $~2 )) ]]
+}
+
+# SEARCH: summarized google, ggogle, mggogle, agoogle and fm
+function search()
+{
+	case "$1" in
+		-g) ${BROWSER:-lynx} http://www.google.com/search\?q=$2
+		;;
+		-u) ${BROWSER:-lynx} http://groups.google.com/groups\?q=$2
+		;;
+		-m) ${BROWSER:-lynx} http://groups.google.com/groups\?selm=$2
+		;;
+		-a) ${BROWSER:-lynx} http://groups.google.com/groups\?as_uauthors=$2
+		;;
+		-c) ${BROWSER:-lynx} http://search.cpan.org/search\?query=$2\&mode=module
+		;;
+		-f) ${BROWSER:-lynx} http://freshmeat.net/search/\?q=$2\&section=projects
+		;;
+		-F) ${BROWSER:-lynx} http://www.filewatcher.com/\?q=$2
+		;;
+		-G) ${BROWSER:-lynx} http://www.rommel.stw.uni-erlangen.de/~fejf/cgi-bin/pfs-web.pl\?filter-search_file=$2
+		;;
+		-s) ${BROWSER:-lynx} http://sourceforge.net/search/\?type=soft\&q=$2
+		;;
+		-w) ${BROWSER:-lynx} http://de.wikipedia.org/wiki/$2
+		;;
+		-W) ${BROWSER:-lynx} http://en.wikipedia.org/wiki/$2
+		;;
+		-d) lynx -source "http://dict.leo.org?$2" | grep -i "TABLE.*/TABLE" | sed "s/^.*\(<TABLE.*TABLE>\).*$/<HTML><BODY>\1<\/BODY><\/HTML>/" | lynx -stdin -dump -width=$COLUMNS -nolist;
+		;;
+		*) 
+		  echo "Usage: $0 {-g | -u | -m | -a | -f | -c | -F | -s | -w | -W | -d}"
+		  echo "	-g:  Searching for keyword in google.com"
+		  echo "	-u:  Searching for keyword in groups.google.com"
+		  echo "	-m:  Searching for message-id in groups.google.com"
+		  echo "	-a:  Searching for Authors in groups.google.com"
+		  echo "	-c:  Searching for Modules on cpan.org."
+		  echo "	-f:  Searching for projects on Freshmeat."
+		  echo "	-F:  Searching for packages on FileWatcher."
+		  echo "	-G:  Gentoo file search."
+		  echo "	-s:  Searching for software on Sourceforge."
+		  echo "	-w:  Searching for keyword at wikipedia (german)."
+		  echo "	-W:  Searching for keyword at wikipedia (english)."
+		  echo "	-d:  Query dict.leo.org ;)"
+	esac
+}
+
+extract_archive () {
+    local old_dirs current_dirs lower
+    lower=${(L)1}
+    old_dirs=( *(N/) )
+    if [[ $lower == *.tar.gz || $lower == *.tgz ]]; then
+        tar xvzf $1
+    elif [[ $lower == *.gz ]]; then
+        gunzip $1
+    elif [[ $lower == *.tar.bz2 || $lower == *.tbz ]]; then
+        tar xvjf $1
+    elif [[ $lower == *.bz2 ]]; then
+        bunzip2 $1
+    elif [[ $lower == *.zip ]]; then
+        unzip $1
+    elif [[ $lower == *.rar ]]; then
+        unrar e $1
+    elif [[ $lower == *.tar ]]; then
+        tar xvf $1
+    elif [[ $lower == *.lha ]]; then
+        lha e $1
     else
-        echo "'$1' is not a valid file"
+        print "Unknown archive type: $1"
+        return 1
     fi
+    # Change in to the newly created directory, and
+    # list the directory contents, if there is one.
+    current_dirs=( *(N/) )
+    for i in {1..${#current_dirs}}; do
+        if [[ $current_dirs[$i] != $old_dirs[$i] ]]; then
+            cd $current_dirs[$i]
+            break
+        fi
+    done
 }
 
-# create archives -- usage: roll <foo.tar.gz> ./foo ./bar
 roll () {
     FILE=$1
     case $FILE in
@@ -149,8 +315,19 @@ roll () {
     esac
 }
 
+function mkcd() { mkdir "$1" && cd "$1"; }
 function calc() { echo "$*" | bc; }
-function mktar() { tar czf "${1%%/}.tar.gz" "${1%%/}/"; }
+function hex2dec { awk 'BEGIN { printf "%d\n",0x$1}'; }
+function dec2hex { awk 'BEGIN { printf "%x\n",$1}'; }
+function mktar() 
+{ 
+  if [ ! -z "$1" ]; then
+    tar czf "${1%%/}.tar.gz" "${1%%/}/"; 
+  else
+    echo "Please specify a file or directory"
+    exit 1
+  fi
+}
 function mkmine() { sudo chown -R ${USER} ${1:-.}; }
 
 # search the vim reference manual for keyword
@@ -196,4 +373,8 @@ if [ "$TERM" = "linux" ]; then
     echo -en "\e]P7ffffff" #lightgrey
     echo -en "\e]PFdedede" #white
     clear #for background artifacting
+fi
+
+if tty -s; then
+  motd
 fi
