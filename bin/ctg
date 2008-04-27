@@ -3,7 +3,7 @@
 AUTHOR="Gigamo <gigamo@gmail.com>"
 APP="ctg"
 VERSION="v0.03"
-DESCRIPTION="simple script that moves files over to local git repo"
+DESCRIPTION="Simple script that moves files over to local git repo"
 
 # {{{ Colors
 RED="\033[1;31m"
