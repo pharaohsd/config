@@ -1,0 +1,31 @@
+#!/bin/sh
+# netinfo <delay> <interface>
+
+last_rx=0
+last_tx=0
+while true; do
+    ipaddr=` ifconfig $2 | awk '/inet addr/{ split($2,s,/:/); print s[2]; }' `
+    if [ $ipaddr != "" ]; then
+
+        link="(` cat /proc/net/wireless | grep $2 | awk '{print $3}' `)"
+        prefix="$2[{kc}$ipaddr{-}$link]"
+        stats=` cat /proc/net/dev | grep $2 | tr : \ `
+
+        rx=` echo $stats | cut -d\  -f2 `
+        tx=` echo $stats | cut -d\  -f10 `
+
+        up=$(( ( $tx - $last_tx ) / $1 ))
+        dn=$(( ( $rx - $last_rx ) / $1 ))
+
+        echo -n "$prefix "
+        #note: 8/1024 == 128 >> bytes to kilobits
+        echo "$up $dn" | awk '{printf "{kg}%06.2f{kw}/{kr}%06.2f{kw}\n",$1/128,$2/128}'
+
+        last_tx=$tx
+        last_rx=$rx
+        sleep $1
+    else
+        echo "$2 not connected"
+        sleep 15
+    fi
+done

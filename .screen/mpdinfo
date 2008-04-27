@@ -1,0 +1,2 @@
+#!/bin/sh
+mpc | head -1
