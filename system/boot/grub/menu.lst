@@ -23,7 +23,7 @@
 
 # general configuration:
 timeout   5
-default   2
+default   0
 color light-blue/black light-cyan/blue
 
 # boot sections follow
@@ -36,7 +36,8 @@ color light-blue/black light-cyan/blue
 # (0) Arch Linux
 title  Arch Linux
 root   (hd0,2)
-kernel /boot/vmlinuz26 root=/dev/sda3 ro
+kernel /boot/vmlinuz26 root=/dev/sda3 ro 
+#video=vesafb:mtrr:3,ywrap vga=866
 initrd /boot/kernel26.img
 
 # (1) Arch Linux
@@ -48,7 +49,8 @@ initrd /boot/kernel26-fallback.img
 # Own Kernel
 title  Arch Linux Custom Kernel
 root   (hd0,2)
-kernel /boot/vmlinuz26-gigamo root=/dev/sda3 ro rootfstype=ext3
+kernel /boot/vmlinuz26-gigamo root=/dev/sda3 ro rootfstype=ext3 
+#video=vesafb:mtrr:3,ywrap vga=866
 initrd /boot/kernel26-gigamo.img   
 
 # Own Kernel Fallback
