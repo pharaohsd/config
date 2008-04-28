@@ -4,7 +4,8 @@
 # Screen {{{
 screen 0
 {
-# Styles {{{
+##}}}
+#Styles {{{
     styles
     {
         normal 
@@ -84,9 +85,16 @@ screen 0
         taglist tl
         {
             mouse { button = "1" command = "tag_view" }
+            mouse { button = "1" modkey = {"Mod4"} command = "client_tag" }
             mouse { button = "3" command = "tag_toggleview" }
+            mouse { button = "3" modkey = {"Mod4"} command = "client_toggletag" }
+            mouse { button = "4" command = "tag_viewnext" }
+            mouse { button = "5" command = "tag_viewprev" }
+            text_normal = "<bg color=\"#0a0a0a\"/><text align=\"center\"/><span foreground=\"#888888\"> <title/> </span>"
+            text_focus = "<bg color=\"#285577\"/><text align=\"center\"/><span foreground=\"#ffffff\"> <title/> </span>"
+            text_urgent = "<bg color=\"#0a0a0a\"/><text align=\"center\"/><span foreground=\"#ffffff\"> <title/> </span>"
         }
-        
+ 
         iconbox ib_tl { image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
         layoutinfo li
         {
@@ -102,7 +110,7 @@ screen 0
         {
             show_icons = false
             show = focus
-            text_focus = "<bg color=\"#0a0a0a\"/><span foreground=\"#ffffff\"><title/></span>"
+            text_focus = "<bg color=\"#0a0a0a\"/><text align=\"left\"/><span foreground=\"#ffffff\"> <title/></span>"
             mouse { button = "4" command = "client_focusnext" }
             mouse { button = "5" command = "client_focusprev" }
             mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
@@ -150,10 +158,9 @@ screen 0
         #iconbox ib_end { align = "right" image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
 #}}}
     }
-#}}}
 }
-#}}}
-# Menu's {{{
+##}}}
+#Menu's {{{
 menu Run:  
 {
     styles

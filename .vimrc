@@ -3,6 +3,11 @@ set nocompatible        " use gVim defaults
 set encoding=utf-8
 syntax on               " enable syntax highlighting
 
+if v:version >= 700
+	set cursorline
+	set listchars+=tab:»·,trail:·,extends:~,nbsp:.
+endif
+
 if has("gui_running")
     let &guicursor = &guicursor . ",a:blinkon0"
     set guioptions-=e
@@ -19,10 +24,11 @@ if has("gui_running")
     else
         set guifont=Bitstream\ Vera\ Sans\ Mono\ 8
     endif
-elseif (&term =~ 'screen')
+elseif (&term =~ 'screen' || &term =~ 'linux')
     set t_Co=16
     set mouse=a
     set termencoding=utf-8
+    set nocursorline
     colorscheme desert
 else
     set t_Co=256
@@ -33,20 +39,15 @@ else
     colorscheme gigamo
 endif
 
-if v:version >= 700
-	set cursorline
-	set listchars+=tab:»·,trail:·,extends:~,nbsp:.
-endif
-
 set shell=/bin/sh
 set vb
 set t_vb=
 set foldenable
 set foldmethod=marker
 set expandtab           " insert spaces instead of tab chars
-set tabstop=2           " a n-space tab width
-set shiftwidth=2        " allows the use of < and > for VISUAL indenting
-set softtabstop=2       " counts n spaces when DELETE or BCKSPCE is used
+set tabstop=4           " a n-space tab width
+set shiftwidth=4        " allows the use of < and > for VISUAL indenting
+set softtabstop=4       " counts n spaces when DELETE or BCKSPCE is used
 set textwidth=80
 set autoindent          " auto indents next new line
 set nosmartindent       " intelligent indenting -- DEPRECATED by cindent
