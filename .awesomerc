@@ -56,24 +56,23 @@ screen 0
 # Tags {{{
     tags
     {
-        tag t { layout = "tile" mwfact = .6 }
-        tag w { layout = "tile" mwfact = .625 }
-        tag d { layout = "tile" }
+        tag t { layout = "tile" mwfact = 0.618033988769 }
+        tag w { layout = "tile" mwfact = 0.618033988769 }
+        tag d { layout = "tile" mwfact = 0.618033988769 }
         tag 4 { layout = "floating" }
-        tag 5 { layout = "tile" nmaster = 3 ncol = 3 }
+        tag 5 { layout = "tile" mwfact = 0.618033988769 nmaster = 3 ncol = 3 }
         tag 6 { layout = "floating" }
-        tag 7 { layout = "tile" nmaster = 3 ncol = 3 }
+        tag 7 { layout = "tile" mwfact = 0.618033988769 nmaster = 3 ncol = 3 }
         tag 8 { layout = "floating" }
-        tag 9 { layout = "tile" nmaster = 3 ncol = 3 }
+        tag 9 { layout = "tile" mwfact = 0.618033988769 nmaster = 3 ncol = 3 }
     }
 #}}}
 # Layouts {{{
     layouts
     {
-        layout tile { image = "/home/gig/.awesome/layouts/tileb.png" }
-        layout tilebottom { image = "/home/gig/.awesome/layouts/tilebottomb.png" }
-        layout max { image = "/home/gig/.awesome/layouts/tabb.png" }
-        layout floating { image = "/home/gig/.awesome/layouts/floatb.png" }
+        layout tile { image = "/home/gig/.awesome/layouts/tiletext.png" }
+        layout tilebottom { image = "/home/gig/.awesome/layouts/tilebottomtext.png" }
+        layout floating { image = "/home/gig/.awesome/layouts/floattext.png" }
     }
 #}}}
 # Statusbar {{{
@@ -94,8 +93,8 @@ screen 0
             text_focus = "<bg color=\"#285577\"/><text align=\"center\"/><span foreground=\"#ffffff\"> <title/> </span>"
             text_urgent = "<bg color=\"#0a0a0a\"/><text align=\"center\"/><span foreground=\"#ffffff\"> <title/> </span>"
         }
- 
-        iconbox ib_tl { image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
+
+        textbox tb_space { text = " " }
         layoutinfo li
         {
             mouse { button = "1" command = "tag_setlayout" arg = "+1" }
@@ -103,14 +102,13 @@ screen 0
             mouse { button = "3" command = "tag_setlayout" arg = "-1" }
             mouse { button = "5" command = "tag_setlayout" arg = "-1" }
         }
-        iconbox ib_lt { image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
 #}}}
 # Tasklist {{{
         tasklist top
         {
             show_icons = false
             show = focus
-            text_focus = "<bg color=\"#0a0a0a\"/><text align=\"left\"/><span foreground=\"#ffffff\"> <title/></span>"
+            text_focus = "<bg color=\"#0a0a0a\"/><text align=\"left\"/><span foreground=\"#ffffff\">  <title/></span>"
             mouse { button = "4" command = "client_focusnext" }
             mouse { button = "5" command = "client_focusprev" }
             mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
@@ -163,11 +161,6 @@ screen 0
 #Menu's {{{
 menu Run:  
 {
-    styles
-    {
-        normal { bg = "#0a0a0a" fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" }
-        focus { bg = "#285577" fg ="#ffffff" }
-    } 
     y = "0"
     x = "178"
     height = "14"
@@ -175,11 +168,6 @@ menu Run:
 
 menu Manual:
 {
-    styles
-    {
-        normal { bg = "#0a0a0a" fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" }
-        focus { bg = "#285577" fg ="#ffffff" }
-    }
     y = "0"
     x = "178"
     height = "14"
@@ -187,11 +175,6 @@ menu Manual:
 
 menu SSH:
 {
-    styles
-    {
-        normal { bg = "#0a0a0a" fg = "#a0a0a0" shadow = "#111111" shadow_offset = "1" }
-        focus { bg = "#285577" fg ="#ffffff" }
-    }
     y = "0"
     x = "178"
     height = "14"
