@@ -1,7 +1,7 @@
-# Gigamo <gigamo@gmail.com> (27/04/08)
+# Gigamo <gigamo@gmail.com> (28/04/08)
 # Only works with awesome-3 git branch as of 25/04/08
 # The braces are meant for vim's "marker" foldmethod.
-# Screen 0 {{{
+# Screen {{{
 screen 0
 {
 # Styles {{{
@@ -42,22 +42,22 @@ screen 0
     }
 #}}}
 # Titlebar {{{
-    titlebar
-    {
-        position = "top"
-        text_align = "center"
-        height = "14"
+#    titlebar
+#    {
+#        position = "top"
+#        text_align = "center"
+#        height = "14"
 #        text_normal = "<bg color=\"#0a0a0a\"/><span foreground=\"#888888\">%t</span>"
 #        text_focus = "<bg color=\"#285577\"/><span foreground=\"#ffffff\">%t</span>"
 #        text_urgent = "<bg color=\"#ff5656\"/><span foreground=\"#ffffff\">%t</span>"
-    }
+#    }
 #}}}
 # Tags {{{
     tags
     {
         tag t { layout = "tile" mwfact = .6 }
-        tag w { layout = "tilebottom" mwfact = .625 }
-        tag d { layout = "tile" mwfact = .5 }
+        tag w { layout = "tile" mwfact = .625 }
+        tag d { layout = "tile" }
         tag 4 { layout = "floating" }
         tag 5 { layout = "tile" nmaster = 3 ncol = 3 }
         tag 6 { layout = "floating" }
@@ -86,7 +86,8 @@ screen 0
             mouse { button = "1" command = "tag_view" }
             mouse { button = "3" command = "tag_toggleview" }
         }
-
+        
+        iconbox ib_tl { image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
         layoutinfo li
         {
             mouse { button = "1" command = "tag_setlayout" arg = "+1" }
@@ -94,26 +95,31 @@ screen 0
             mouse { button = "3" command = "tag_setlayout" arg = "-1" }
             mouse { button = "5" command = "tag_setlayout" arg = "-1" }
         }
+        iconbox ib_lt { image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
 #}}}
 # Tasklist {{{
-#        tasklist top
-#        {
-#            show_icons = false
-#            show = focus
-#            text_align = left
-#            mouse { button = "4" command = "client_focusnext" }
-#            mouse { button = "5" command = "client_focusprev" }
-#            mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
-#            mouse { modkey = {"Mod1"} button = "5" command = "client_swapprev" }
-#        }
+        tasklist top
+        {
+            styles
+            {
+                focus { bg = "#0a0a0a" }
+            }
+            show_icons = false
+            show = focus
+            text_align = left
+            mouse { button = "4" command = "client_focusnext" }
+            mouse { button = "5" command = "client_focusprev" }
+            mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
+            mouse { modkey = {"Mod1"} button = "5" command = "client_swapprev" }
+        }
 #}}}
 # Widgets {{{
-        iconbox ib_start { align = "right" image = "/home/gig/.awesome/separators/left.png" resize = "false" }
+        iconbox ib_start { align = "right" image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
         textbox clock
         { 
             align = "right"
         }
-        iconbox ib_cc { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
+        iconbox ib_cc { align = "right" image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
         textbox cpu_usage
         {
             align = "right"
@@ -123,12 +129,12 @@ screen 0
         { 
             align = "right" 
         }
-        iconbox ib_cb { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
+        iconbox ib_cb { align = "right" image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
         textbox battery 
         { 
             align = "right" 
         }
-        iconbox ib_bm { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
+        iconbox ib_bm { align = "right" image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
         textbox gmail 
         { 
             mouse { button = "1" command = "spawn" arg = "amazing -u gmail/top/0" } 
@@ -139,19 +145,18 @@ screen 0
             align = "right"
             mouse { button = "1" command = "spawn" arg = "amazing -u pacman/top/0" }
         }
-        iconbox ib_pm { align = "right" image = "/home/gig/.awesome/separators/link.png" resize = "false" }
+        iconbox ib_pm { align = "right" image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
         textbox mpd 
         { 
             align = "right" 
             mouse { button = "1" command = "spawn" arg = "mpc toggle" } 
         }
-        iconbox ib_end { align = "right" image = "/home/gig/.awesome/separators/right.png" resize = "false" }
+        #iconbox ib_end { align = "right" image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
 #}}}
     }
 #}}}
 }
 #}}}
-
 # Menu's {{{
 menu Run:  
 {
@@ -295,4 +300,4 @@ keys
     key { modkey = {"Mod4"}             key = "F3"          command = "spawn" arg = "cut -d' ' -f1 ~/.ssh/known_hosts | cut -d, -f1 | awesome-menu -e 'urxvtc -e ssh ' 'SSH:'" 
 }
 #}}}
-# vim: filetype=conf foldenable shiftwidth=2 expandtab cindent
+# vim: filetype=conf foldenable fdm=marker shiftwidth=2 expandtab cindent

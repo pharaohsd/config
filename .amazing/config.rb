@@ -1,20 +1,20 @@
-# Gigamo <gigamo@gmail.com> (26/04/08)
+# Gigamo <gigamo@gmail.com> (28/04/08)
 #
 # Configuration file for amazing (http://github.com/dag/amazing)
 # Only works with amazing's 'config' branch and awesome's awesome-3 branch.
 import "#{ENV["HOME"]}/.passwords.rb" # GMAIL_PWD
 
 BLINK = {}
-COLOR = { :urgent => "#ff5656",
-          :normal => "#888888" }
 
 module Helpers::PangoMarkup
   def urgent(text)
-    foreground(COLOR[:urgent], text)
+    foreground("#ff5656", text)
   end
-
   def normal(text)
-    foreground(COLOR[:normal], text)
+    foreground("#888888", text)
+  end
+  def white(text)
+    foreground("#ffffff", text)
   end
 end
 
@@ -25,7 +25,6 @@ awesome {
     set :interval => 10
 
     property("text") {
-      # Set some hacky direction 'symbols'
       case @state 
         when :charging : dir = "^"
         when :discharging : dir = "v"
@@ -100,7 +99,7 @@ awesome {
 
     property("text") { 
       if @usage[0].to_i >= 50 : urgent(" #{@usage[1].to_i}%/#{@usage[2].to_i}% ")
-      else normal(" #{@usage[1].to_i}%/#{@usage[2].to_i}% ")
+      else white(" #{@usage[1].to_i}%/#{@usage[2].to_i}% ")
       end
     }
   }
