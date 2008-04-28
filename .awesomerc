@@ -100,12 +100,9 @@ screen 0
 # Tasklist {{{
         tasklist top
         {
-            styles
-            {
-                focus { bg = "#0a0a0a" }
-            }
             show_icons = false
             show = focus
+            text_focus = "<bg color=\"#0a0a0a\"/><span foreground=\"#ffffff\"><title/></span>"
             text_align = left
             mouse { button = "4" command = "client_focusnext" }
             mouse { button = "5" command = "client_focusprev" }
