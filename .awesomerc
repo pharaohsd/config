@@ -47,9 +47,9 @@ screen 0
 #        position = "top"
 #        text_align = "center"
 #        height = "14"
-#        text_normal = "<bg color=\"#0a0a0a\"/><span foreground=\"#888888\">%t</span>"
-#        text_focus = "<bg color=\"#285577\"/><span foreground=\"#ffffff\">%t</span>"
-#        text_urgent = "<bg color=\"#ff5656\"/><span foreground=\"#ffffff\">%t</span>"
+#        text_normal = "<bg color=\"#0a0a0a\"/><span foreground=\"#888888\"><title/></span>"
+#        text_focus = "<bg color=\"#285577\"/><span foreground=\"#ffffff\"><title/></span>"
+#        text_urgent = "<bg color=\"#ff5656\"/><span foreground=\"#ffffff\"><title/></span>"
 #    }
 #}}}
 # Tags {{{
