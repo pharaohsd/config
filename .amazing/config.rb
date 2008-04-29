@@ -4,8 +4,6 @@
 # Only works with amazing's 'config' branch and awesome's awesome-3 branch.
 import "#{ENV["HOME"]}/.passwords.rb" # GMAIL_PWD
 
-BLINK = {}
-
 module Helpers::PangoMarkup
   def urgent(text)
     foreground("#ff5656", text)
@@ -66,19 +64,6 @@ awesome {
     set :password => GMAIL_PWD
 
     property("text") {
-#      # Make the widget blink upon new mail!
-#      BLINK[@identifier] ||= []
-#      if @count > 0
-#        if BLINK[@identifier].empty?
-#          BLINK[@identifier] << IO.popen("#{ENV["HOME"]}/bin/blink.rb 1.0 0 top #@identifier text '#{urgent(" #@count")}' '#{normal(" #@count")}'")
-#        end
-#      else
-#        BLINK[@identifier].each do |blinker|
-#          Process.kill("SIGINT", blinker.pid)
-#        end
-#      end
-#
-#      normal(" #@count")
       if @count > 0
         urgent(" #@count")
       else
