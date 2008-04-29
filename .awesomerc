@@ -102,13 +102,15 @@ screen 0
             mouse { button = "3" command = "tag_setlayout" arg = "-1" }
             mouse { button = "5" command = "tag_setlayout" arg = "-1" }
         }
+        textbox tb_space2 { text = " " }
 #}}}
 # Tasklist {{{
         tasklist top
         {
             show_icons = false
             show = focus
-            text_focus = "<bg color=\"#0a0a0a\"/><text align=\"left\"/><span foreground=\"#ffffff\">  <title/></span>"
+            #styles { focus { bg = "#0a0a0a" } }
+            text_focus = "<bg color=\"#0a0a0a\"/><text align=\"left\"/><span foreground=\"#ffffff\"> <title/></span>"
             mouse { button = "4" command = "client_focusnext" }
             mouse { button = "5" command = "client_focusprev" }
             mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
