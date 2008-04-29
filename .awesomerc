@@ -1,11 +1,11 @@
 # Gigamo <gigamo@gmail.com> (28/04/08)
 # Only works with awesome-3 git branch as of 25/04/08
 # The braces are meant for vim's "marker" foldmethod.
-# Screen {{{
+# Screen     {{{
 screen 0
 {
 ##}}}
-#Styles {{{
+#Styles     {{{
     styles
     {
         normal 
@@ -29,7 +29,7 @@ screen 0
             #bg="#8ba574" green , "#285577" blue
     }
 #}}}
-# General {{{
+# General    {{{
     general
     {
         border = 1
@@ -42,7 +42,7 @@ screen 0
         floating_placement = smart
     }
 #}}}
-# Titlebar {{{
+# Titlebar   {{{
 #    titlebar
 #    {
 #        position = "top"
@@ -53,7 +53,7 @@ screen 0
 #        text_urgent = "<bg color=\"#ff5656\"/><span foreground=\"#ffffff\"><title/></span>"
 #    }
 #}}}
-# Tags {{{
+# Tags       {{{
     tags
     {
         tag t { layout = "tile" mwfact = 0.618033988769 }
@@ -67,7 +67,7 @@ screen 0
         tag 9 { layout = "tile" mwfact = 0.618033988769 nmaster = 3 ncol = 3 }
     }
 #}}}
-# Layouts {{{
+# Layouts    {{{
     layouts
     {
         layout tile { image = "/home/gig/.awesome/layouts/tiletext.png" }
@@ -75,12 +75,13 @@ screen 0
         layout floating { image = "/home/gig/.awesome/layouts/floattext.png" }
     }
 #}}}
-# Statusbar {{{
+# Statusbar  {{{
     statusbar top
     {
         position = "top"
         height = "14"
-# Taglist and layoutinfo {{{  
+##}}}
+# Taglist    {{{  
         taglist tl
         {
             mouse { button = "1" command = "tag_view" }
@@ -93,7 +94,8 @@ screen 0
             text_focus = "<bg color=\"#285577\"/><text align=\"center\"/><span foreground=\"#ffffff\"> <title/> </span>"
             text_urgent = "<bg color=\"#0a0a0a\"/><text align=\"center\"/><span foreground=\"#ffffff\"> <title/> </span>"
         }
-
+#}}}
+# Layoutinfo {{{
         textbox tb_space { text = " " }
         layoutinfo li
         {
@@ -104,7 +106,7 @@ screen 0
         }
         textbox tb_space2 { text = " " }
 #}}}
-# Tasklist {{{
+# Tasklist   {{{
         tasklist top
         {
             show_icons = false
@@ -117,7 +119,7 @@ screen 0
             mouse { modkey = {"Mod1"} button = "5" command = "client_swapprev" }
         }
 #}}}
-# Widgets {{{
+# Widgets    {{{
         iconbox ib_start { align = "right" image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
         textbox clock
         { 
@@ -156,11 +158,10 @@ screen 0
             mouse { button = "1" command = "spawn" arg = "mpc toggle" } 
         }
         #iconbox ib_end { align = "right" image = "/home/gig/.awesome/separators/link2.png" resize = "false" }
-#}}}
     }
 }
-##}}}
-#Menu's {{{
+#}}}
+#Menu's     {{{
 menu Run:  
 {
     y = "0"
@@ -182,7 +183,7 @@ menu SSH:
     height = "14"
 }
 #}}}
-# Rules {{{
+# Rules      {{{
 rules
 {
     rule { name = "Gimp" tags = "6" float = "true" }
@@ -194,7 +195,7 @@ rules
     rule { name = "urxvt" icon = "/home/gig/.icons/Somatic-0.2/32x32/apps/gnome-monitor.png" }
 }
 #}}}
-# Mouse {{{
+# Mouse      {{{
 mouse
 {
     root { button = "4" command = "tag_viewnext" }
@@ -207,7 +208,7 @@ mouse
     titlebar { button = "3" command = "client_kill" }
 }
 #}}}
-# Keys {{{
+# Keys       {{{
 keys
 {
     key { modkey = {"Mod4"}             key = "Return"      command = "spawn" arg = "exec xterm" }
