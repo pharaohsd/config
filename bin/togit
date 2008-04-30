@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+# Author: Gigamo <gigamo@gmail.com>
+# Simple script for moving config files over to local git repo
+GITDIR = "#{ENV["HOME"]}/gitconfig/config"
+
+def ctg(file)
+  for i in file
+    puts "Copying #{i} to #{GITDIR} and adding it to GIT"
+    IO.popen("cp -r #{i} #{GITDIR}/#{i} && cd #{GITDIR} && git add #{i}") {}
+  end
+end
+
+begin
+  unless ARGV.empty?
+    ctg(ARGV)
+  end
+rescue EOFError
+  puts "Error!"
+rescue StandardError => err
+  puts "Error!"
+  $stdout.flush
+rescue Exception => exp
+  puts "Exception! Probably didn't specify an argument."
+  $stdout.flush
+end

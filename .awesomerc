@@ -1,4 +1,4 @@
-# Gigamo <gigamo@gmail.com> (28/04/08)
+# Gigamo <gigamo@gmail.com> (30/04/08)
 # Only works with awesome-3 git branch as of 25/04/08
 # The braces are meant for vim's "marker" foldmethod.
 # Screen     {{{
@@ -112,7 +112,7 @@ screen 0
             show_icons = false
             show = focus
             #styles { focus { bg = "#0a0a0a" } }
-            text_focus = "<bg color=\"#0a0a0a\"/><text align=\"left\"/><span foreground=\"#ffffff\"> <title/></span>"
+            text_focus = "<bg color=\"#285577\"/><text align=\"left\"/><span foreground=\"#ffffff\"> <title/></span>"
             mouse { button = "4" command = "client_focusnext" }
             mouse { button = "5" command = "client_focusprev" }
             mouse { modkey = {"Mod1"} button = "4" command = "client_swapnext" }
@@ -289,4 +289,4 @@ keys
     key { modkey = {"Mod4"}             key = "F3"          command = "spawn" arg = "cut -d' ' -f1 ~/.ssh/known_hosts | cut -d, -f1 | awesome-menu -e 'urxvtc -e ssh ' 'SSH:'" 
 }
 #}}}
-# vim: filetype=conf foldenable fdm=marker shiftwidth=2 expandtab cindent
+# vim: filetype=conf fdm=marker sw=2 et cin
