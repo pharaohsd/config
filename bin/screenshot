@@ -1,13 +1,11 @@
 #!/usr/bin/env ruby
 # Author: Gigamo <gigamo@gmail.com>
 # Requires imagemagick and ncftp
-require '/home/gig/.passwords.rb' # My ftp pw and username in there
+require '/home/gig/.passwords.rb'
 
 FTP_HOST = "users.telenet.be"
 FTP_PATH = "pics"
-PIC_PATH = "#{ENV["HOME"]}/screenshots/" # Include trailing slash or leave blank to save in working directory
-
-NO_CLEAN = 1 # Remove the files locally afterwards or not
+PIC_PATH = "#{ENV["HOME"]}/screenshots/"
 
 def usage
   puts "Usage: screenshot [name] <default name: current>
@@ -15,49 +13,52 @@ def usage
   exit 0
 end
 
-def link
-  puts "\nLink:\n\nhttp://#{FTP_HOST}/gigamo/#{FTP_PATH}/#{PIC_NAME}.png"
-end
-
 def printscreen
-  unless File.executable? "/usr/bin/mogrify"
-    puts "Error: imagemagick is not installed on your system!\nAborting printscreen"
-    exit 1
-  else
+  begin
     IO.popen("import -window root #{PIC_PATH}#{PIC_NAME}.png && cp #{PIC_PATH}#{PIC_NAME}.png #{PIC_PATH}#{PIC_NAME}t.png && mogrify -resize 25% #{PIC_PATH}#{PIC_NAME}t.png") {}
+  rescue EOFError
+    unless File.executable? "/usr/bin/mogrify"
+      puts "Error: imagemagick is not installed on your system!\nAborting printscreen"
+    else
+      puts "Error!"
+    end
+  rescue StandardError => err
+    puts "Error!"
   end
 end
 
 def upload
-  unless File.executable? "/usr/bin/ncftp"
-    puts "Error: ncftp is not installed on your system!\nAborting upload"
-    exit 1
-  else
+  begin
     IO.popen("ncftpput -u #{FTP_USER} -p #{FTP_PWD} -R -m #{FTP_HOST} #{FTP_PATH} #{PIC_PATH}#{PIC_NAME}.png #{PIC_PATH}#{PIC_NAME}t.png") {}
     puts "\nUpload successful!"
+  rescue EOFError
+    unless File.executable? "/usr/bin/ncftp"
+      puts "Error: ncftp is not installed on your system!\nAborting upload"
+    else
+      puts "Error!"
+    end
+  rescue StandardError => err
+    puts "Error!"
   end
-end
-
-def clean
-  IO.popen("rm -f #{PIC_PATH}#{PIC_NAME}.png #{PIC_PATH}#{PIC_NAME}t.png") {}
 end
 
 def run
   printscreen
   upload
-  link
-  if NO_CLEAN == 0
-    clean
-  end
   exit 0
 end
 
-if ARGV[0] == "-h" or ARGV[0] == "--help"
-  usage
-elsif ARGV.empty?
-  PIC_NAME = "current"
-else
-  PIC_NAME = ARGV[0]
+begin
+  if ARGV[0] == "-h" or ARGV[0] == "--help"
+    usage
+  elsif ARGV.empty?
+    PIC_NAME = "current"
+    run
+  else
+    PIC_NAME = ARGV[0]
+    run
+  end
+rescue StandardError => err
+  puts "Error!"
+  $stdout.flush
 end
-
-run
